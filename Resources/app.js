@@ -14,19 +14,25 @@ var VwApp = {
 
 	// Maak alvast namespaces aan voor (..)
 	UI: {},
-	Data: []
+	Data: {}
 };
 
 // Laad data in.
 (function() {
-	var data;
+	var data,
+		file;
 	
-	data = VwApp.IO.getJSON('Data/Bruggen.json');
-	
-	if (data) {
-		VwApp.Data = data;
-	} else {
-		Titanium.API.warn('Het is mislukt de data in te lezen.');
+	// Loopt door alle bestanden aangegeven in de Config.js
+	// Als Vwapp.Config.DataToLoad.bruggen = 'Data/Bruggon.json' dan word
+	// VwApp.Data.bruggen het object dat alle data uit het bestand bevat.
+	for (file in VwApp.Config.DataToLoad) {
+		if (VwApp.Config.DataToLoad.hasOwnProperty(file)) {
+			data = VwApp.IO.getJSON(VwApp.Config.DataToLoad[file]);
+			
+			if (data){
+				VwApp.Data[file] = data
+			} 		
+		}
 	}
 })();
 

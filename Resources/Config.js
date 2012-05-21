@@ -1,6 +1,13 @@
 var Config = {
 
 	/*
+	 * Data bestanden
+	 */
+	DataToLoad: {
+		'bruggen' : 'Data/Bruggen.json'
+	},
+
+	/*
 	 * Text opties
 	 */
 	
