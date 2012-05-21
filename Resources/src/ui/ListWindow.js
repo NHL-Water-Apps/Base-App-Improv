@@ -9,7 +9,7 @@
 		}),
 		
 		table: Titanium.UI.createTableView({
-			data:	[],
+			data: VwApp.Data.bruggen,
 			zIndex: 0 
 		}),
 		
