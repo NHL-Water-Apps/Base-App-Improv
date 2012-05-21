@@ -10,10 +10,26 @@ var VwApp = {
 	Config: require('Config'),
 	Map:	require('lib/Map'),
 	Utils:  require('lib/Utils'),
+	IO:	require('lib/IO'),
 
 	// Maak alvast namespaces aan voor (..)
-	UI: {}
+	UI: {},
+	Data: []
 };
+
+// Laad data in.
+(function() {
+	var data;
+	
+	data = VwApp.IO.getJSON('Data/Bruggen.json');
+	
+	if (data) {
+		VwApp.Data = data;
+	} else {
+		Titanium.API.warn('Het is mislukt de data in te lezen.');
+	}
+})();
+
 
 // Laad alle andere code in.
 Titanium.include('src/ui/MapWindow.js');
