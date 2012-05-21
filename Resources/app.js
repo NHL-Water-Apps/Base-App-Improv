@@ -10,10 +10,32 @@ var VwApp = {
 	Config: require('Config'),
 	Map:	require('lib/Map'),
 	Utils:  require('lib/Utils'),
+	IO:	require('lib/IO'),
 
 	// Maak alvast namespaces aan voor (..)
-	UI: {}
+	UI: {},
+	Data: {}
 };
+
+// Laad data in.
+(function() {
+	var data,
+		file;
+	
+	// Loopt door alle bestanden aangegeven in de Config.js
+	// Als Vwapp.Config.DataToLoad.bruggen = 'Data/Bruggon.json' dan word
+	// VwApp.Data.bruggen het object dat alle data uit het bestand bevat.
+	for (file in VwApp.Config.DataToLoad) {
+		if (VwApp.Config.DataToLoad.hasOwnProperty(file)) {
+			data = VwApp.IO.getJSON(VwApp.Config.DataToLoad[file]);
+			
+			if (data){
+				VwApp.Data[file] = data
+			} 		
+		}
+	}
+})();
+
 
 // Laad alle andere code in.
 Titanium.include('src/ui/MapWindow.js');
