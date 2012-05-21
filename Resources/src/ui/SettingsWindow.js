@@ -3,8 +3,8 @@
 	var SettingsWindow = {
 		// Het window object van de settingswindow
 		window: Titanium.UI.createWindow({
-			title: 			 VwApp.Config.SettingsTabTitle,				
-			backgroundColor: VwApp.Config.ViewBackgroundColor,
+			title: 			  VwApp.Config.SettingsTabTitle,				
+			backgroundColor:  VwApp.Config.ViewBackgroundColor,
 			orientationModes: VwApp.Config.OrientationModes	
 		}),
 		
@@ -17,7 +17,7 @@
 					'100%',
 			width: 	'100%',
 			scrollable: false,
-			data: 	tableData,
+			//data: 	tableData,
 			style: 	Titanium.UI.iPhone.TableViewStyle.GROUPED
 		}),
 		
@@ -48,10 +48,11 @@
 		
 		boatHeightLabel: Titanium.UI.createLabel({
 			text: 			VwApp.Config.HeightText,
-			top: 			Titanium.Platform.osname === 'android' ? '35%' : '6%',
+			top: 			Titanium.Platform.osname === 'android' ? '32%' : '6%',
 			left: 			'5%',
 			height: 		'auto',
 			width: 			'auto',
+			color:			VwApp.Config.TextColor,
 			touchEnabled: 	false
 		}),
 		
@@ -78,7 +79,7 @@
 		
 		boatWidthLabel: Titanium.UI.createLabel({
 			text: 		VwApp.Config.WidthText,
-			top: 		Titanium.Platform.osname === 'android' ? '35%' : '6%',
+			top: 		Titanium.Platform.osname === 'android' ? '32%' : '6%',
 			left: 		'5%',
 			touchEnabled: false,
 			height: 	'auto',
@@ -151,7 +152,29 @@
 			value: 	Titanium.App.Properties.getBool('laadData', false),
 			left: 	'5%'
 		})
+		
 	};
+	
+	//	Het label en het inputfield toevoegen aan de hoogte rij
+	SettingsWindow.boatHeightRow.add(SettingsWindow.boatHeightInput);
+	SettingsWindow.boatHeightRow.add(SettingsWindow.boatHeightLabel);
+	
+	//	Zelfde voor de breedte
+	SettingsWindow.boatWidthRow.add(SettingsWindow.boatWidthInput);
+	SettingsWindow.boatWidthRow.add(SettingsWindow.boatWidthLabel);
+	
+	// Deze beide toevoegen aan de sectie
+	SettingsWindow.boatDimensionSection.add(SettingsWindow.boatHeightRow);
+	SettingsWindow.boatDimensionSection.add(SettingsWindow.boatWidthRow);
+	
+	// Sectie toevoegen aan de tabel
+	SettingsWindow.settingsView.data = [SettingsWindow.boatDimensionSection];
+	
+	// Tabel toevoegen aan de scrollView om ze een android bug te omzeilen
+	SettingsWindow.settingsScrollView.add(SettingsWindow.settingsView);
+	
+	// Het geheel toevoegen aan de window
+	SettingsWindow.window.add(SettingsWindow.settingsScrollView);
 	
 	// Voeg SettingsWindow toe aan de UI namespace voor gebruik buiten deze 
 	// closure.

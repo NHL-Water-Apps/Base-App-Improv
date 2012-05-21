@@ -63,6 +63,9 @@ var Config = {
 	// Achtergrond kleur van de zoekbalkjes
 	SearchBackgroundColor: '#000000',
 	
+	// Text kleur
+	TextColor: 	'#000000',
+	
 	/*
 	 * Overige instellingen
 	 */
