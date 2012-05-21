@@ -109,6 +109,7 @@
 			top: 			'1%'
 		}),
 		
+		// Voor satelliet
 		mapSateliteRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.MapSateliteText,
 			className: 		"row",
@@ -117,6 +118,7 @@
 			touchEnabled: 	false,
 		}),
 		
+		// Voor de staten kaart
 		mapStandardRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.MapStandardText,
 			className: 		"row",
@@ -125,6 +127,7 @@
 			touchEnabled: 	false
 		}),
 		
+		// En voor de hybride kaart
 		mapHybridRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.MapHybridText,
 			className: 		"row",
@@ -246,14 +249,15 @@
 	});
 	
 	//	Kopelen van de controle functies aan de inputvelden
-	if(VwApp.Config.ShowHeight)	// indien we deze optie geven
+	// 	indien we deze optie geven
+	if(VwApp.Config.ShowHeight)	
 	{	
 		SettingsWindow.boatHeightInput.addEventListener('blur', function(){
 			// controle op dit veld aanroepen
 			VwApp.Validation.checkField(SettingsWindow.boatHeightInput, 'height'); 
 		});
 	}
-	// indien we een breedte willen weergeven
+	// 	indien we een breedte willen weergeven
 	if(VwApp.Config.ShowWidth)
 	{
 		SettingsWindow.boatWidthInput.addEventListener('blur', function(){
