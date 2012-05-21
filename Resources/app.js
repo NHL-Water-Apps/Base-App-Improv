@@ -43,6 +43,5 @@ Titanium.include('src/ui/ListWindow.js');
 Titanium.include('src/ui/SettingsWindow.js');
 Titanium.include('src/ui/TabBar.js');
 
-
 // Start de app
 VwApp.UI.TabBar.tabGroup.open();
