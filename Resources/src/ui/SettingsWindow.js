@@ -82,6 +82,7 @@
 			top: 		Titanium.Platform.osname === 'android' ? '32%' : '6%',
 			left: 		'5%',
 			touchEnabled: false,
+			color:		VwApp.Config.TextColor,
 			height: 	'auto',
 			width: 		'auto'
 		}),
@@ -106,6 +107,7 @@
 		mapSateliteRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.MapSateliteText,
 			className: 		"row",
+			color:			VwApp.Config.TextColor,
 			hasCheck: 		false,
 			touchEnabled: 	false,
 		}),
@@ -113,6 +115,7 @@
 		mapStandardRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.MapStandardText,
 			className: 		"row",
+			color:			VwApp.Config.TextColor,
 			hasCheck: 		false,
 			touchEnabled: 	false
 		}),
@@ -120,7 +123,8 @@
 		mapHybridRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.MapHybridText,
 			className: 		"row",
-			hasCheck: 		false,
+			color:			VwApp.Config.TextColor,
+			hasCheck: 		false,	
 			touchEnabled: 	false
 		}),
 		
@@ -142,6 +146,7 @@
 			text: 	VwApp.Config.LoadPicturesText,
 			top: 	Titanium.Platform.osname === 'android' ? '33%' : '6%', 
 			left: 	'23%',
+			color:	VwApp.Config.TextColor,
 			touchEnabled: false,
 			height: 'auto',
 			width: 	'auto'
@@ -163,12 +168,23 @@
 	SettingsWindow.boatWidthRow.add(SettingsWindow.boatWidthInput);
 	SettingsWindow.boatWidthRow.add(SettingsWindow.boatWidthLabel);
 	
-	// Deze beide toevoegen aan de sectie
+	// 	Deze beide toevoegen aan de sectie
 	SettingsWindow.boatDimensionSection.add(SettingsWindow.boatHeightRow);
 	SettingsWindow.boatDimensionSection.add(SettingsWindow.boatWidthRow);
 	
+	// 	De verschillende types kaart toevoegen aan de sectie
+	SettingsWindow.mapTypeSection.add(SettingsWindow.mapStandardRow);
+	SettingsWindow.mapTypeSection.add(SettingsWindow.mapSateliteRow);
+	if(Titanium.Platform.osname !== 'android') { SettingsWindow.mapTypeSection.add(SettingsWindow.mapHybridRow); }
+	
+	// 	De optie toevoegen om afbeeldingen te laden of niet
+	SettingsWindow.loadPictureRow.add(SettingsWindow.loadPictureLabel);
+	SettingsWindow.loadPictureRow.add(SettingsWindow.loadPictureCheckBox);
+	SettingsWindow.dataUsageSection.add(SettingsWindow.loadPictureRow);
+	
 	// Sectie toevoegen aan de tabel
-	SettingsWindow.settingsView.data = [SettingsWindow.boatDimensionSection];
+	SettingsWindow.settingsView.data = [SettingsWindow.boatDimensionSection, SettingsWindow.mapTypeSection, 
+											SettingsWindow.dataUsageSection];
 	
 	// Tabel toevoegen aan de scrollView om ze een android bug te omzeilen
 	SettingsWindow.settingsScrollView.add(SettingsWindow.settingsView);
