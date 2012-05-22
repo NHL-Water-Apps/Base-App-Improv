@@ -11,6 +11,7 @@ var VwApp = {
 	Map:	require('lib/Map'),
 	Utils:  require('lib/Utils'),
 	IO:	require('lib/IO'),
+	Validation: require('lib/Validation'),
 
 	// Maak alvast namespaces aan voor (..)
 	UI: {},
