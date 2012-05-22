@@ -106,6 +106,7 @@ var Config = {
 	
 	// Instellingen voor de trail achter de persoon aan
 	TrailerTimeout: 1000, // 1 seconde
+	// Aantal stipjes trail op de kaart
 	AmountOfTrail: 10,
 	
 	OrientationModes: [ 
