@@ -40,7 +40,6 @@ var containerScrollView = {
 			width : 		'auto',
 			heigth : 		'auto'
 	}),
-	
 	//de button om de brug op de kaart te tonen
 		Toonkaart : Titanium.UI.createButton({
 			top: 			80, 
@@ -48,8 +47,15 @@ var containerScrollView = {
 			width: 			'auto', 
 			title: 			VwApp.Config.ShowOnMapDetail,
 			position: 		'center'
-	})
+	}),
+		LAT : Titanium.UI.createTextField({
+			text : ""
+		}),
+		LON : Titanium.UI.createTextField({
+			text : ""
+		})
 }
+
 	function ChangeValue(data) {
 		if (!data) {
 			return;
@@ -64,10 +70,25 @@ var containerScrollView = {
 			containerScrollView.Breedte.setText(VwApp.Config.WidthDetail + data.WIDTH + VwApp.Config.UnitDetail);
 		else
 			containerScrollView.Breedte.setText("er kon geen breedte gevonden worden");
-		
-		
+		if(data.LON && data.LAT)
+		{ containerScrollView.LAT.setText(data.LAT);
+		  containerScrollView.LON.setText(data.LON);
+		}
+		else
+		{ containerScrollView.LAT.setText("");
+		  containerScrollView.LON.setText("");
+		}
 		
 	}
+	
+	//wanneer er geklikt wordt op de button setlocation op map en open de map, mits lat en lon aanwezig
+	Toonkaart.addEventListener('click', function(){   
+	if(containerScrollView.LAT.text != "")
+		{
+			setLocation(containerScrollView.LAT.text, containerScrollView.LON.text, VwApp.Config.DefaultUserLocZoom)
+			VwApp.UI.DetailView(VwApp.UI.TabBar.Mapwindow)
+		}	
+	});
 	
 	//toevoegen aan scrollview
 	containerScrollView.window.add(containerScrollView.imagebridge),
