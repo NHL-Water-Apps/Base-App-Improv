@@ -29,11 +29,13 @@ var Config = {
 	// Sectie afmetingen van de boot: 
 	DimensionHeader: 'Boot eigenschappen',
 	
+	// Alle eigenschappen vna de hoogte 
 	ShowHeight:		 true,
 	HeightText:		 'Hoogte(m):',
 	HeightHintText:  'Hoogte',
 	
-	ShowWidth:		 false,		 
+	// Alle eigenschappen van de breedte
+	ShowWidth:		 true,		 
 	WidthText:		 'Breedte(m):',
 	WidthHintText:   'Breedte',
 	

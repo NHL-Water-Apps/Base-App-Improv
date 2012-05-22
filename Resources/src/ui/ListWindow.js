@@ -20,14 +20,13 @@
 		
 		table : Titanium.UI.createTableView({
 			// 	Alle data meegeven aan de lijst
-			data: 	VwApp.Data.bruggen,       
+			data: 	VwApp.Data.bruggen,  
 			zIndex: 0 
 			})
 	};
 	
 	//	Search toevoegen
 	ListWindow.table.search = ListWindow.searchbar;
-	
 	
 	// Voeg alle UI onderdelen toe aan ListWindow.window
 	ListWindow.window.add(ListWindow.table);
