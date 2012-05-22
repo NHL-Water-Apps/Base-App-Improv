@@ -1,4 +1,4 @@
-/*
+/**
  * Een functie die zal kijken of een van een textVeld kijkt wat het nummer hiervan is
  * 		- Controle of het ingevoerde valid is
  * 		- Indien deze waarde opslaan,
@@ -8,9 +8,9 @@
  * 		- Als er niets valids gevonden is in het textvak dan zal
  * 			de text in het textvak rood gemaakt worden
  * 
- * 	@param: {Titanium.UI.textField} [fieldName] 
+ * 	@param {Titanium.UI.textField} [fieldName] 
  * 			De textField die gecontroleerd dient te worden
- * 	@param: {string} [saveName]
+ * 	@param {string} [saveName]
  * 			Mee te geven naam waarin de waarde (indien juist) zal worden opgeslagen	om zo 
  * 				later weer te gebruiken
  */

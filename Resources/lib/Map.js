@@ -94,7 +94,7 @@ var addAnnotation = function(data, icon, subtitle) {
 	var newAnnotation;
 	
 	// Check of de minimaal benodigde data om een annotatie te maken bestaat.
-	if (!(data && data.LAT && data.LON && data.TITLE)) {
+	if (!(data && data.LAT && data.LON && data.title)) {
 		return;
 	}
 	
@@ -106,7 +106,7 @@ var addAnnotation = function(data, icon, subtitle) {
 		latitude: 	data.LAT,
 		longitude: 	data.LON,
 		
-		title:		data.TITLE,
+		title:		data.title,
 		subtitle: 	subtitle,
 		
 		pincolor:	Titanium.Map.ANNOTATION_GREEN,
@@ -119,9 +119,94 @@ var addAnnotation = function(data, icon, subtitle) {
 	mapView.addAnnotation(newAnnotation);
 };
 
+/**
+ *	Alle annotations toevoegen aan de map uit de meegegeven array en met de 
+ * 		juiste iconen (Gemaakt voor de bruggen)
+ * 	@param {array} [dataArray]
+ * 		De array aan data dat dient te worden toegevoegd
+ * 
+ * 	@param {string} [iconGreen]
+ * 		Het incoontje dat gebruikt dient te worden wanneer we er onderdoor
+ * 			te kunnen.
+ * 	@param {string} [iconRed]
+ * 		Het incoontje dat gebruikt dient te worden wanneer we er NIET onderdoor
+ * 			kunnen.
+ */
+var annotationsArray = function(dataArray, iconGreen, iconRed){
+	// Kijken of er een hoogte ingeven is
+	var height = parseFloat(Titanium.App.Properties.getString('height', null));
+	// Loop door alle data
+	for(var i = 0; i < dataArray.length; i++)
+	{
+		// Subtitel opbouwen uit de hoogte en breedte
+		var subtitle = Config.AnnotationSubHeight + dataArray[i].HEIGTH + '\t' 
+				+ Config.AnnotationSubWidth + dataArray[i].WIDTH;
+		// Kijken of we er onderdoor kunnen
+		if(!height || dataArray[i].HEIGTH > height ) {
+			addAnnotation(dataArray[i], iconGreen, subtitle );
+		}
+		// en anders
+		else{
+			addAnnotation(dataArray[i], iconRed, subtitle );
+		}
+	}
+};
+
+/**
+ * 	De onderstaande functie zal annotaions toevoegen op de kaart om zo een trail
+ * 		te maken.
+ * 	Indien er al x aantal annotaions op de kaart staan zal hij de als eerste
+ * 		toegevoegde annotation weghalen.
+ * 
+ * 	@param {int} [plaats] 
+ * 		De postite om op te beginnen met loggen	
+ */
+var trailers = [];
+function showTrail(plaats){
+	// Controle of we niet al teveel annotaions op de kaart hebben
+	// Als we al we te veel hebben zetten we de pointer op 0 (en dan opnieuw eroverheen)
+	if(plaats > Config.AmountOfTrail) { plaats = 0; }
+	
+	// Kijken of we een positie kunnen krijg
+	if(Titanium.Geolocation.getLocationServicesEnabled()){
+		updateGeolocation();
+		var location = getUserLocation();
+		//for(naam in location) { Titanium.API.warn(naam); }
+		//Titanium.API.warn(location.speed);
+		if(location && location.speed)
+		{
+			// Kijken of we bewegen
+			if(location.speed > 0){		
+				// Indien dan zal er een nieuwe annotaion gemaakt worden maar eerst zullen we een oude annotation verwijderen
+				if(trailers[plaats])
+				{
+					mapView.removeAnnotation(trailers[plaats]);
+				}
+				// Darna maken we een nieuw annotion aan op deze lokatie in de array
+				trailers[plaats] = Titanium.Map.createAnnotation({
+					latitude:	location.latitude,
+					longitude:	location.longitude,
+					title:		'',
+					opacity: 	1,
+					duration: 	3000,
+					image: '/images/trailstip.png'
+				});
+				// Daarna deze annotatie toeveogen aan de kaart					
+				mapView.addAnnotation(trailers[plaats]);			
+			}
+		}
+	}
+	// Toevoegen en verwijderen is klaar
+	// Functie opnieuw aanroepen na een timout (en pointer met 1 verhogen)
+	setTimeout(function(){
+ 		showTrail(plaats + 1)}, Config.TrailerTimeout);
+}
+
 // Maak een aantal functies van de module publiek beschikbaar.
 exports.setMapView = 		setMapView;
 exports.setLocation = 		setLocation;
 exports.updateGeolocation = updateGeolocation;
 exports.getUserLocation = 	getUserLocation;
 exports.addAnnotation =		addAnnotation;
+exports.annotationsArray = 	annotationsArray;
+exports.showTrail = 		showTrail;

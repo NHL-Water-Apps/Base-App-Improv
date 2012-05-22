@@ -22,9 +22,9 @@
 			// 	Alle data meegeven aan de lijst
 			data: 	VwApp.Data.bruggen,  
 			zIndex: 0 
-			})
+		})
 	};
-	
+	ListWindow.table.setFilterAttribute('TITLE');
 	//	Search toevoegen
 	ListWindow.table.search = ListWindow.searchbar;
 	

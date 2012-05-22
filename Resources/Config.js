@@ -24,6 +24,9 @@ var Config = {
 	GeolocationIntent: 'GPS moet aan staan om de locatie te kunnen bepalen',
 	NoGeolocationMsg:  'Kon de huidige locatie niet bepalen, GPS is niet beschikbaar',
 	
+	// Voor de subtitel van een annotation
+	AnnotationSubHeight: 	'h: ',
+	AnnotationSubWidth:		'w: ',
 	
 	// Settings view:
 	// Sectie afmetingen van de boot: 
@@ -61,7 +64,7 @@ var Config = {
 	BridgeGreenIcon: 	'/images/BrugGroen.png',
 	BridgeRedIcon: 		'/images/BrugRood.png',
 	
-	// Trailing lijn (android)
+	// Trailing lijn
 	TraillingLineIcon: 	'/images/trailstip.png',
 	
 	// Icoontje voor de locatie van de gebruiker
@@ -100,6 +103,10 @@ var Config = {
 	// De hoeveelheid zoom uitgedrukt in deltaX dat de kaart inzoomt als er op
 	// de button voor de positie van de gebruiker word gedrukt.
 	DefaultUserLocZoom: 0.005,
+	
+	// Instellingen voor de trail achter de persoon aan
+	TrailerTimeout: 1000, // 1 seconde
+	AmountOfTrail: 10,
 	
 	OrientationModes: [ 
 		Titanium.UI.PORTRAIT,
