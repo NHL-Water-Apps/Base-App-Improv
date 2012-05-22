@@ -55,6 +55,13 @@ var Config = {
 	ListTabIcon: 	 '/images/list.png',
 	SettingsTabIcon: '/images/settings.png',
 	
+	// Icoontje voor op de kaart (brug hier)
+	BridgeGreenIcon: 	'/images/BrugGroen.png',
+	BridgeRedIcon: 		'/images/BrugRood.png',
+	
+	// Trailing lijn (android)
+	TraillingLineIcon: 	'/images/trailstip.png',
+	
 	// Icoontje voor de locatie van de gebruiker
 	UserLocateIcon:  '/images/location.png',
 	
