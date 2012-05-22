@@ -19,16 +19,13 @@
 		}),
 		
 		table : Titanium.UI.createTableView({
-			data: 	VwApp.Data.bruggen.blob,       
+			// 	Alle data meegeven aan de lijst
+			data: 	VwApp.Data.bruggen,       
 			zIndex: 0 
 			})
 	};
 	
-	//for(var i in VwApp.Data.bruggen.blob[0]) { Titanium.API.warn(i); }
-	alert(VwApp.Data.bruggen);
-	//var data = VwApp.Data.bruggen; //implementatie data.
-	
-	//	Search toevoegen? Maybe
+	//	Search toevoegen
 	ListWindow.table.search = ListWindow.searchbar;
 	
 	
