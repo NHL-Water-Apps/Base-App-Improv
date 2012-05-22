@@ -86,10 +86,27 @@ var Config = {
 	
 	// Text kleur
 	TextColor: 	'#000000',
-	
+		/*	- - - - - - - - - - 
+	 * 	   DETAIL
+	 *	- - - - - - - - - -
+	 */ 
+	 // Text weer te geven als er geen foto is
+	 NoPictureDetail: 'Geen foto beschikbaar',
+	 // 
+	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
+	 //detailview eigenschappen
+	 HeigthDetail : "Hoogte: ",
+	 WidthDetail : "Breedte: ",
+	 TypeDetail : "Type: ",
+	 AdressDetail : "Adres: ",
+	 UnitDetail : " Meter",
+	 //titel van de toon op kaart knop
+	 ShowOnMapDetail : "Toon op kaart",
+	 
 	/*
 	 * Overige instellingen
 	 */
+	
 	
 	// De regio waar de app op terugvalt als het de locatie van de gebruiker
 	// niet gevonden kan worden. In dit geval een overzicht van Friesland.
