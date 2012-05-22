@@ -124,7 +124,7 @@ var getJSON = function(filename) {
     	return null;
     }
     
-    return JSONdata;
+    return JSONobject;
 }; 
 
 exports.getFile = getFile;
