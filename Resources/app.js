@@ -40,6 +40,7 @@ var VwApp = {
 
 // Laad alle andere code in.
 Titanium.include('src/ui/MapWindow.js');
+Titanium.include('src/ui/DetailView.js');
 Titanium.include('src/ui/ListWindow.js');
 Titanium.include('src/ui/SettingsWindow.js');
 Titanium.include('src/ui/TabBar.js');

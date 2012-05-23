@@ -24,6 +24,9 @@ var Config = {
 	GeolocationIntent: 'GPS moet aan staan om de locatie te kunnen bepalen',
 	NoGeolocationMsg:  'Kon de huidige locatie niet bepalen, GPS is niet beschikbaar',
 	
+	// Voor de subtitel van een annotation
+	AnnotationSubHeight: 	'h: ',
+	AnnotationSubWidth:		'w: ',
 	
 	// Settings view:
 	// Sectie afmetingen van de boot: 
@@ -61,7 +64,7 @@ var Config = {
 	BridgeGreenIcon: 	'/images/BrugGroen.png',
 	BridgeRedIcon: 		'/images/BrugRood.png',
 	
-	// Trailing lijn (android)
+	// Trailing lijn
 	TraillingLineIcon: 	'/images/trailstip.png',
 	
 	// Icoontje voor de locatie van de gebruiker
@@ -83,10 +86,27 @@ var Config = {
 	
 	// Text kleur
 	TextColor: 	'#000000',
-	
+		/*	- - - - - - - - - - 
+	 * 	   DETAIL
+	 *	- - - - - - - - - -
+	 */ 
+	 // Text weer te geven als er geen foto is
+	 NoPictureDetail: 'Geen foto beschikbaar',
+	 // 
+	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
+	 //detailview eigenschappen
+	 HeigthDetail : "Hoogte: ",
+	 WidthDetail : "Breedte: ",
+	 TypeDetail : "Type: ",
+	 AdressDetail : "Adres: ",
+	 UnitDetail : " Meter",
+	 //titel van de toon op kaart knop
+	 ShowOnMapDetail : "Toon op kaart",
+	 
 	/*
 	 * Overige instellingen
 	 */
+	
 	
 	// De regio waar de app op terugvalt als het de locatie van de gebruiker
 	// niet gevonden kan worden. In dit geval een overzicht van Friesland.
@@ -100,6 +120,11 @@ var Config = {
 	// De hoeveelheid zoom uitgedrukt in deltaX dat de kaart inzoomt als er op
 	// de button voor de positie van de gebruiker word gedrukt.
 	DefaultUserLocZoom: 0.005,
+	
+	// Instellingen voor de trail achter de persoon aan
+	TrailerTimeout: 1000, // 1 seconde
+	// Aantal stipjes trail op de kaart
+	AmountOfTrail: 10,
 	
 	OrientationModes: [ 
 		Titanium.UI.PORTRAIT,

@@ -82,6 +82,45 @@
 		} 		
 	});
 	
+	/**
+ 	 *	Fucntie die draait op het moment dat er op een punt in de kaart geklikt wordt
+ 	 * 	Als hierop geklikt is zal er gekeken "waar" er op de item geklikt is en als dat
+ 	 * 		op het knopje is, zal er een nieuw venster geopend worden naar een detailview	 
+ 	 */
+	MapWindow.map.addEventListener('click', function(e){
+		/*if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane')
+		{
+			// Indien een nieuw window aanmaken
+			var windowBrug = Titanium.UI.createWindow({
+				title: 				e.title,
+				backgroundColor: 	"#FFF",
+				// Onze custom value meegeven met alle data over het POI
+				dataToPass: 		e.annotation.dataToPass,
+				url: 				'/src/uiDetailView.js',
+				navBarHidden: 		false,
+				tabBarHidden: 		true
+			});
+		
+			// En deze dan openen
+			MapTab.open(windowBrug, {animated: true});
+		}
+		*/	
+		if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane') {alert('Naar detail! MapWindow Line: 108'); }
+	});
+	
+	// Alle annotations toevoegen aan de kaart
+	VwApp.Map.annotationsArray(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
+	
+	// Indien we een locatie krijgen gaan we gelijk naar deze locatie bij het starten van de app
+	VwApp.Map.updateGeolocation();
+	location = VwApp.Map.getUserLocation();
+	if (location) {
+		VwApp.Map.setLocation(location.latitude, location.longitude, VwApp.Config.DefaultUserLocZoom);
+	}
+	
+	// Het loggen van de trail starten
+	VwApp.Map.showTrail(0);
+	
 	// Voeg alle onderdelen toe aan MapWindow.window
 	MapWindow.window.add(MapWindow.map);
 	MapWindow.window.add(MapWindow.searchbar);
