@@ -145,7 +145,6 @@ function ChangeValue(data) {
 	}
 }
 
-	
 	//wanneer er geklikt wordt op de button setlocation op map en open de map, mits lat en lon aanwezig
 	DetailWindow.Toonkaart.addEventListener('click', function(){   
 	if(Lat != "")
