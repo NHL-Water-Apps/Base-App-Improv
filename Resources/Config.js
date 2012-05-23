@@ -126,6 +126,9 @@ var Config = {
 	// Aantal stipjes trail op de kaart
 	AmountOfTrail: 10,
 	
+	// De maximale hoeveelheid annotaties die we kunnen toevoegen
+	maxAnnotations: 20,
+	
 	OrientationModes: [ 
 		Titanium.UI.PORTRAIT,
 		Titanium.UI.UPSIDE_PORTRAIT,

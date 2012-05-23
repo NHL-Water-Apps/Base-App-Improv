@@ -312,8 +312,7 @@
 	SettingsWindow.dataUsageSection.add(SettingsWindow.loadPictureRow);
 	
 	// Sectie toevoegen aan de tabel
-	//SettingsWindow.settingsView.data = [ SettingsWindow.mapTypeSection, 
-	//										SettingsWindow.dataUsageSection];
+	// Maar alleen als we dit aangegeven hebben in de config (hoogte en breedte) anders niet
 	if(VwApp.Config.ShowHeight || VwApp.Config.ShowWidth){
 		SettingsWindow.settingsView.data = [SettingsWindow.boatDimensionSection, SettingsWindow.mapTypeSection, 
 											SettingsWindow.dataUsageSection];

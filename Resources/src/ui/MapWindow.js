@@ -96,8 +96,8 @@
 	});
 	
 	// Alle annotations toevoegen aan de kaart
-	VwApp.Map.annotationsArray(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
-	
+	//VwApp.Map.annotationsArray(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
+	alert(VwApp.UI.MapWindow.map.getRegion());
 	// Indien we een locatie krijgen gaan we gelijk naar deze locatie bij het starten van de app
 	VwApp.Map.updateGeolocation();
 	location = VwApp.Map.getUserLocation();

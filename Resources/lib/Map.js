@@ -2,7 +2,8 @@ var Config = require('Config');
 
 // Locale variabelen.
 var currentUserLocation
-  , mapView;
+  , mapView
+  , annotationsCount;
 
 /**
  * Stelt de reden in waarom de app de huidige locatie van de gebruiker wil 
@@ -153,6 +154,39 @@ var annotationsArray = function(dataArray, iconGreen, iconRed){
 };
 
 /**
+ *	Een methode die de te tonen annotaties gaat filteren op afstand
+ * 	
+ * 	@param {Array} [annotationsData] 
+ * 		An array contatianing the needed annotations
+ * 	@param {Object} [region]
+ * 		Een map regio waar we ons nu bevinden
+ */
+var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
+	// Maak twee variabelen die we nodig hebben aan
+	var toAddAnnotations = 	[];
+	var counter = 			0;
+	
+	// Kijken welke we dienen toe te voegen aan de array
+	for(var i = 0; i < annotationsData.lenght; i++){
+		
+	}
+	
+	// Kijken hoeveel we er nu hebben
+	annotationsCount = counter + annotationsCount;
+	
+	// Indien dit meer is dan toegestaan de kaart leeg gooien
+	if(annotationsCount > Config.maxAnnotations){
+		// Punten verwijderen
+		mapView.removeAllAnnotations();
+		// En de counter opnieuw instellen
+		annotationsCount = counter;
+	}
+	
+	// Voeg alle annotaties toe aan de kaart
+	mapView.addAnnotations(toAddAnnotations);
+};
+
+/**
  * 	De onderstaande functie zal annotaions toevoegen op de kaart om zo een trail
  * 		te maken.
  * 	Indien er al x aantal annotaions op de kaart staan zal hij de als eerste
@@ -210,3 +244,4 @@ exports.getUserLocation = 	getUserLocation;
 exports.addAnnotation =		addAnnotation;
 exports.annotationsArray = 	annotationsArray;
 exports.showTrail = 		showTrail;
+exports.filterAnnotations = filterAnnotations;
