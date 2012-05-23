@@ -83,7 +83,7 @@
 	});
 	
 	MapWindow.map.addEventListener('regionChanged', function(e){
-		VwApp.Map.filterAnnotations([], e, null, null);
+		VwApp.Map.filterAnnotations(VwApp.Data.bruggen, e, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
 	});
 	/**
  	 *	Fucntie die draait op het moment dat er op een punt in de kaart geklikt wordt

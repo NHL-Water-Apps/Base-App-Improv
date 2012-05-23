@@ -3,7 +3,8 @@ var Config = require('Config');
 // Locale variabelen.
 var currentUserLocation
   , mapView
-  , annotationsCount;
+  , annotationsCount
+  , annotationsArray;
 
 /**
  * Stelt de reden in waarom de app de huidige locatie van de gebruiker wil 
@@ -160,14 +161,21 @@ var annotationsArray = function(dataArray, iconGreen, iconRed){
  * 		An array contatianing the needed annotations
  * 	@param {Object} [region]
  * 		Een map regio waar we ons nu bevinden
+ * 	@param {string} [iconGreen] 
+ * 		Link naar de afbeelding die we moeten inladen bij normale weergave of 
+ * 			wanneer we er wel onderdoor kunnen
+ * 	@param {string} [iconRed]
+ * 		Link naar de afbeelding die we moeten inladen wanneer we er niet onderdoor kunne
  */
 var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 	// Controleren of we een regio meegekregen hebben
-	if(!region) {
+	if(!region || !annotationsData || !iconGreen) {
+		Titanium.API.error('Meegegeven data komt niet overeen. Error vanuit filterAnnotations functie!');
 		return;
 	}
 	// Kijken of we niet al te ver uitgezoomed zijn
-	if((region.latitudeDelta > 0.1 && region.longitudeDelta  > 0.05 ) || (region.longitudeDelta > 0.1 && region.latitudeDelta > 0.05)){
+	if((region.latitudeDelta > 0.1 && region.longitudeDelta  > 0.05 ) || 
+		(region.longitudeDelta > 0.1 && region.latitudeDelta > 0.05)){
 		// indien dan alle punten verwijderen 
 		mapView.removeAllAnnotations();
 		// en einde functie
@@ -191,17 +199,54 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 	// Maak twee variabelen die we nodig hebben aan
 	var toAddAnnotations = 	[];
 	var counter = 			0;
+	// Opgeslagen hoogte inlezen
+	var height = parseFloat(Titanium.App.Properties.getString('height', null));
 	// Coordinaten berekenen (lat en long worden vanuit het midden meegegeven)
-	var leftTop	= 			region.latitude - (region.latitudeDelta / 2);
-	var rightTop = 			region.latitude + (region.latitudeDelta / 2);
-	
+	// De boven waarden
+	var top	=	 			region.latitude - (region.latitudeDelta / 2) - 0.5;
+	var bottom = 			region.latitude + (region.latitudeDelta / 2) + 0.5;
+	// En de onder waarden
+	var left = 		region.longitude - (region.longitudeDelta / 2) - 0.5;
+	var right = 		region.longitude + (region.longitudeDelta / 2) + 0.5;
 	//for(i in region) { Titanium.API.warn(i); }
 	//Titanium.API.warn('LAT: ' + region.latitudeDelta);
 	//Titanium.API.warn('LON: ' + region.longitudeDelta);
-	
+	Titanium.API.warn('top: ' + top + ' Bottom: ' + bottom + ' left: ' + left + ' right: ' +  right);
 	// Kijken welke we dienen toe te voegen aan de array
 	for(var i = 0; i < annotationsData.lenght; i++){
-		
+		// Kijken of het binnen ons bereik ligt
+		if(annotationsData[i].LAT > top && annotationsData[i].LAT < bottom && 
+			annotationsData[i].LON > left && annotationsData[i].LON < right){
+			Titanium.API.warn('Drawing annotation.');
+			// indoen we voldoen het onderschrift maken
+			var subtitle = Config.AnnotationSubHeight + annotationsData[i].HEIGTH + '\t' 
+				+ Config.AnnotationSubWidth + annotationsData[i].WIDTH;
+			// Maak een annotatie (Hij valt binnen de waarden dus zou op de kaart moeten komen)
+			toAddAnnotations[counter] = Titanium.Map.createAnnotation({
+				animate:	true,
+				
+				// Custom property voor het maken van een 
+				// detail pagina
+				dataToPass: annotationsData[i],
+	
+				latitude: 	annotationsData[i].LAT,
+				longitude: 	annotationsData[i].LON,
+				
+				title:		annotationsData[i].title,
+				subtitle: 	subtitle,
+				
+				pincolor:	Titanium.Map.ANNOTATION_GREEN,
+				// Kijken welke afbeelding we moeten invullen
+				image: 		(iconRed && annotationsData[i].HEIGHT < height) ?
+								iconRed : iconGreen,
+									
+				rightButton: Titanium.Platform.osname === 'android' ? 
+					Config.AndroidrightButton : Titanium.UI.iPhone.SystemButton.DISCLOSURE
+			});
+			
+			// 1 aangemaakt teller verhogen
+			counter++;
+		}	// Bereik controle
 	}
 	
 	// Kijken hoeveel we er nu hebben
@@ -215,6 +260,7 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 		annotationsCount = counter;
 	}
 	
+	Titanium.API.warn('Aantal: ' + counter + ' uit de mogelijke ' + annotationsData.length);
 	// Voeg alle annotaties toe aan de kaart
 	mapView.addAnnotations(toAddAnnotations);
 };
