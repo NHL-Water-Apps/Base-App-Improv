@@ -25,7 +25,6 @@
 		table : Titanium.UI.createTableView({   
 			data: 			VwApp.Data.bruggen,     
 			zIndex: 		0,
-			color: 			VwApp.Config.TextColor   //werkt nog niet?????????????????????????????????
 		})
 			
 	};	
@@ -40,9 +39,9 @@
 	//eventlistener	wanneer er geklikt wordt op een van de vakken in de lijst
 	ListWindow.table.addEventListener('click', function(e){  
 	//waardes van detailview veranderen
-	for(d in e){ Titanium.API.warn(d);	}		 
+	//for(d in e){ Titanium.API.warn(d);	}		 
 		VwApp.UI.changeDetailView(e.rowData);
-		VwApp.UI.TabBar.listTab.open(VwApp.UI.DetailView)
+		VwApp.UI.DetailView.window.open();
 	});
 	
 	
