@@ -69,13 +69,13 @@ var getXML = function(filename) {
 		try {
 			XMLdocument = Titanium.XML.parseString(XMLdata.blob.text);
 		} catch (e) {
-			Titanium.API.warn('Functie Data.getXML: Het parsen van het XML bestand \'' + XMLDIR + filename +'\' is mislukt')
+			Titanium.API.warn('Functie Data.getXML: Het parsen van het XML bestand \'' + filename +'\' is mislukt')
 			XMLdata.file = null;
 			XMLdata.blob = null;
 			return null;
 		}		
 	} else {
-		Titanium.API.warn('Functie Data.getXML: Het is mislukt om \'' + XMLDIR + filename + '\' uit te lezen');
+		Titanium.API.warn('Functie Data.getXML: Het is mislukt om \''+ filename + '\' uit te lezen');
 		return null;
 	}
 	
@@ -114,13 +114,13 @@ var getJSON = function(filename) {
     	try {
     		JSONobject = JSON.parse(JSONdata.blob.text);
     	} catch (e) {
-    		Titanium.API.warn('Functie Data.getJSON: Het parsen van het JSON bestand \'' + JSONDIR + filename +'\' is mislukt');
+    		Titanium.API.warn('Functie Data.getJSON: Het parsen van het JSON bestand \''+ filename +'\' is mislukt');
     		JSONdata.file = null;
     		JSONdata.blob = null;
     		return null;
     	}	
     } else {
-    	Titanium.API.warn('Functie Data.getJSON: Het is mislukt om \'' + JSONDIR + filename +'\' uit te lezen');
+    	Titanium.API.warn('Functie Data.getJSON: Het is mislukt om \'' + filename +'\' uit te lezen');
     	return null;
     }
     
