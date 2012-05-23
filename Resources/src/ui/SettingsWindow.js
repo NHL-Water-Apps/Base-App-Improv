@@ -257,9 +257,10 @@
 			VwApp.Validation.checkField(SettingsWindow.boatHeightInput, 'height');
 			
 			// Vervolgens de kaart updaten
-			VwApp.UI.MapWindow.map.removeAllAnnotations();
+			//VwApp.UI.MapWindow.map.removeAllAnnotations();
 			// Alle annotations toevoegen aan de kaart
-			VwApp.Map.annotationsArray(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
+			//VwApp.Map.annotationsArray(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
+			VwApp.UI.MapWindow.map.fireEvent('regionChanged');
 		});
 	}
 	// 	indien we een breedte willen weergeven

@@ -162,9 +162,42 @@ var annotationsArray = function(dataArray, iconGreen, iconRed){
  * 		Een map regio waar we ons nu bevinden
  */
 var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
+	// Controleren of we een regio meegekregen hebben
+	if(!region) {
+		return;
+	}
+	// Kijken of we niet al te ver uitgezoomed zijn
+	if((region.latitudeDelta > 0.1 && region.longitudeDelta  > 0.05 ) || (region.longitudeDelta > 0.1 && region.latitudeDelta > 0.05)){
+		// indien dan alle punten verwijderen 
+		mapView.removeAllAnnotations();
+		// en einde functie
+		return;
+	}
+	
+	/*
+	 * REGION EIGENSCHAPPEN
+	 *
+	 * Properties:
+	 *	latitude : Number
+	 *		Latitude value for the center point of the map, in decimal degrees.
+	 *	latitudeDelta : Number
+	 *		The amount of north-to-south distance displayed on the map, measured in decimal degrees.
+	 *	longitude : Number
+	 *		Longitude value for the center point of the map, in decimal degrees.
+	 *	longitudeDelta : Number
+	 *		The amount of east-to-west distance displayed on the map, measured in decimal degrees.
+	 */
+	
 	// Maak twee variabelen die we nodig hebben aan
 	var toAddAnnotations = 	[];
 	var counter = 			0;
+	// Coordinaten berekenen (lat en long worden vanuit het midden meegegeven)
+	var leftTop	= 			region.latitude - (region.latitudeDelta / 2);
+	var rightTop = 			region.latitude + (region.latitudeDelta / 2);
+	
+	//for(i in region) { Titanium.API.warn(i); }
+	//Titanium.API.warn('LAT: ' + region.latitudeDelta);
+	//Titanium.API.warn('LON: ' + region.longitudeDelta);
 	
 	// Kijken welke we dienen toe te voegen aan de array
 	for(var i = 0; i < annotationsData.lenght; i++){
@@ -203,31 +236,29 @@ function showTrail(plaats){
 	
 	// Kijken of we een positie kunnen krijg
 	if(Titanium.Geolocation.getLocationServicesEnabled()){
+		// Locatie updaten
 		updateGeolocation();
+		// En uitlezen
 		var location = getUserLocation();
-		//for(naam in location) { Titanium.API.warn(naam); }
-		//Titanium.API.warn(location.speed);
-		if(location && location.speed)
-		{
-			// Kijken of we bewegen
-			if(location.speed > 0){		
-				// Indien dan zal er een nieuwe annotaion gemaakt worden maar eerst zullen we een oude annotation verwijderen
-				if(trailers[plaats])
-				{
-					mapView.removeAnnotation(trailers[plaats]);
-				}
-				// Darna maken we een nieuw annotion aan op deze lokatie in de array
-				trailers[plaats] = Titanium.Map.createAnnotation({
-					latitude:	location.latitude,
-					longitude:	location.longitude,
-					title:		'',
-					opacity: 	1,
-					duration: 	3000,
-					image: '/images/trailstip.png'
-				});
-				// Daarna deze annotatie toeveogen aan de kaart					
-				mapView.addAnnotation(trailers[plaats]);			
+		// Kijken of dit iets terug gaf en of we bewegen
+		if(location && location.speed && location.speed > 0)
+		{		
+			// Indien dan zal er een nieuwe annotaion gemaakt worden maar eerst zullen we een oude annotation verwijderen
+			if(trailers[plaats])
+			{
+				mapView.removeAnnotation(trailers[plaats]);
 			}
+			// Darna maken we een nieuw annotion aan op deze lokatie in de array
+			trailers[plaats] = Titanium.Map.createAnnotation({
+				latitude:	location.latitude,
+				longitude:	location.longitude,
+				title:		'',
+				opacity: 	1,
+				duration: 	3000,
+				image: '/images/trailstip.png'
+			});
+			// Daarna deze annotatie toeveogen aan de kaart					
+			mapView.addAnnotation(trailers[plaats]);			
 		}
 	}
 	// Toevoegen en verwijderen is klaar

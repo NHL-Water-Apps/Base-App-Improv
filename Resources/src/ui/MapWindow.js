@@ -76,12 +76,15 @@
 		
 		VwApp.Map.updateGeolocation();
 		location = VwApp.Map.getUserLocation();
-		
+		VwApp.Map.filterAnnotations([], null, null);
 		if (location) {
 			VwApp.Map.setLocation(location.latitude, location.longitude, VwApp.Config.DefaultUserLocZoom);
 		} 		
 	});
 	
+	MapWindow.map.addEventListener('regionChanged', function(e){
+		VwApp.Map.filterAnnotations([], e, null, null);
+	});
 	/**
  	 *	Fucntie die draait op het moment dat er op een punt in de kaart geklikt wordt
  	 * 	Als hierop geklikt is zal er gekeken "waar" er op de item geklikt is en als dat
@@ -97,7 +100,7 @@
 	
 	// Alle annotations toevoegen aan de kaart
 	//VwApp.Map.annotationsArray(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
-	alert(VwApp.UI.MapWindow.map.getRegion());
+	
 	// Indien we een locatie krijgen gaan we gelijk naar deze locatie bij het starten van de app
 	VwApp.Map.updateGeolocation();
 	location = VwApp.Map.getUserLocation();
