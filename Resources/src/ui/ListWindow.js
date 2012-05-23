@@ -41,7 +41,7 @@
 	//waardes van detailview veranderen
 	//for(d in e){ Titanium.API.warn(d);	}		 
 		VwApp.UI.changeDetailView(e.rowData);
-		VwApp.UI.DetailView.window.open();
+		VwApp.UI.TabBar.listTab.open(VwApp.UI.DetailView.window, {animate: true});
 	});
 	
 	
