@@ -112,9 +112,7 @@
 	MapWindow.window.add(MapWindow.map);
 	MapWindow.window.add(MapWindow.searchbar);
 	
-	if (Titanium.Platform.osname === 'android') {
-		MapWindow.window.add(MapWindow.locationButton);
-	}
+	MapWindow.window.add(MapWindow.locationButton);	
 			
 	// Voeg MapWindow toe aan de UI namespace voor gebruik buiten deze closure.
 	VwApp.UI.MapWindow = MapWindow;
