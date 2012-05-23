@@ -1,11 +1,11 @@
 (function () {
-		//sorteren van de data
-		VwApp.Data.bruggen.sort(sortName);  
+	//sorteren van de data
+	VwApp.Data.bruggen.sort(sortName);  
  
 
 		//listwindow
 	var ListWindow = {
-			window: Titanium.UI.createWindow({
+		window: Titanium.UI.createWindow({
 			title: 			  VwApp.Config.ListTabTitle,				
 			backgroundColor:  VwApp.Config.ViewBackgroundColor,
 			orientationModes: VwApp.Config.OrientationModes,	
@@ -41,7 +41,7 @@
 	//waardes van detailview veranderen
 	//for(d in e){ Titanium.API.warn(d);	}		 
 		VwApp.UI.changeDetailView(e.rowData);
-		VwApp.UI.TabBar.listTab.open(VwApp.UI.DetailView.window, {animate: true});
+		VwApp.UI.TabBar.listTab.open(VwApp.UI.DetailWindow.window);
 	});
 	
 	
