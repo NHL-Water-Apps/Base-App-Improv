@@ -39,7 +39,8 @@
 	//eventlistener	wanneer er geklikt wordt op een van de vakken in de lijst
 	ListWindow.table.addEventListener('click', function(e){  
 	//waardes van detailview veranderen
-	//for(d in e){ Titanium.API.warn(d);	}		 
+	//for(d in e){ Titanium.API.warn(d);	}
+		 
 		VwApp.UI.changeDetailView(e.rowData);
 		VwApp.UI.TabBar.listTab.open(VwApp.UI.DetailWindow.window);
 	});
@@ -51,6 +52,14 @@
 
 
 //sorteerfunctie
-function sortName(a,b) {
- 	return a.title - b.title;
-}
+function sortName(thisObject,thatObject) { 
+    if (thisObject.title > thatObject.title)
+    {
+        return 1;
+    }
+    else if (thisObject.title < thatObject.title)
+    {
+        return -1;
+    }
+    return 0;
+  }

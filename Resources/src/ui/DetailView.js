@@ -18,35 +18,54 @@
 		}),
 		
 		//Hieronder staan de eigenschappen van de brug. Type, hoogte etc
+		NoImagebridge : Titanium.UI.createLabel({
+			text : 			"",
+			textAlign : 	"left",
+			left: 			'3 %',
+			top: 			'0%',
+			width : 		'auto',
+			heigth : 		'auto',
+			color:			VwApp.Config.TextColor
+		}),
 		Type : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
 			width : 		'auto',
-			heigth : 		'auto'
+			heigth : 		'auto',
+			color:			VwApp.Config.TextColor
 		}),
 		Hoogte : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
 			width : 		'auto',
-			heigth : 		'auto'
+			heigth : 		'auto',
+			color:			VwApp.Config.TextColor
 		}),
 		Breedte : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
 			width : 		'auto',
-			heigth : 		'auto'
+			heigth : 		'auto',
+			color:			VwApp.Config.TextColor
 		}),
 		Adres : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			top: 			'2%',
+			top: 			'5%',
 			width : 		'auto',
-			heigth : 		'auto'
+			heigth : 		'auto',
+			color:			VwApp.Config.TextColor
 		}),
+		Imagebridge : 	Ti.UI.createImageView({
+			url:				'http://www.viphouten.nl/wp-content/uploads/2012/04/geen-foto.jpg',  //dummylink voor foto, dit kan dataToPass zijn
+			height: 			'35%',
+			width : 			'80%',
+			top: 				'2%',
+			}),
 		//de button om de brug op de kaart te tonen
 		Toonkaart : Titanium.UI.createButton({
 			top: 			80, 
@@ -54,71 +73,104 @@
 			width: 			'auto', 
 			title: 			VwApp.Config.ShowOnMapDetail,
 			position: 		'center'
-		}),
-		LAT : Titanium.UI.createLabel({
-			text : "",
-			textAlign : 	"left",
-			left: 			'3 %',
-			top: 			'2%',
-			width : 		'auto',
-			heigth : 		'auto'
-		}),
-		LON : Titanium.UI.createLabel({
-			text : "",
-			textAlign : 	"left",
-			left: 			'3 %',
-			top: 			'2%',
-			width : 		'auto',
-			heigth : 		'auto'
-		})
+		}),		
 };
+//variabelen voor de lat en de lon
+var Lat = "";
+var Lon = "";
 
+//changevalue wanneer er iets aangeklikt wordt in de lijst		
 function ChangeValue(data) {
+	//wanneer er geen data is gevonden, niks doen.
 	if (!data) {
 		return;
 	}
-	//alert(' got here');
-	if (data.ADRESS) {
-		DetailWindow.Adres.setText(VwApp.Config.AdressDetail + data.ADRESS);
-	}
+	//title
+	if (data.title)
+	{DetailWindow.window.setTitle(data.title)}
 	else
-		DetailWindow.Adres.setText("Er kon geen adres gevonden worden");
-	if(data.Breedte)
-		DetailWindow.Breedte.setText(VwApp.Config.WidthDetail + data.WIDTH + VwApp.Config.UnitDetail);
+	{DetailWindow.window.setTitle("-")}
+	//lengte
+	if (data.ADRESS) 
+		{DetailWindow.Adres.setText(VwApp.Config.AdressDetail + data.ADRESS);}
 	else
-		DetailWindow.Breedte.setText("er kon geen breedte gevonden worden");
+		{DetailWindow.Adres.setText(VwApp.Config.AdressDetail + "-");}
+	//hoogte
+	if(data.HEIGTH)
+		{DetailWindow.Hoogte.setText(VwApp.Config.HeigthDetail + data.HEIGTH + VwApp.Config.UnitDetail);}
+	else
+		{DetailWindow.Hoogte.setText(VwApp.Config.HeigthDetail + "-");}
+	//breedte
+	if(data.WIDTH)
+		{DetailWindow.Breedte.setText(VwApp.Config.WidthDetail + data.WIDTH + VwApp.Config.UnitDetail);}
+	else
+		{DetailWindow.Breedte.setText(VwApp.Config.WidthDetail +"-");}
+	//type
+	if(data.BRIDGETYPE)
+		{DetailWindow.Type.setText(VwApp.Config.TypeDetail + data.BRIDGETYPE);}
+	else
+	{DetailWindow.Type.setText(VwApp.Config.TypeDetail + "-")}
+	
 	if(data.LON && data.LAT)
 	{ 
-		DetailWindow.LAT.setText(data.LAT);
-	  	DetailWindow.LON.setText(data.LON);
+	    Lat = data.LAT;
+	  	Lon = data.LON;
 	}
 	else
 	{ 
-		DetailWindow.LAT.setText("");
-	  	DetailWindow.LON.setText("");
+		Lat = "";
+	  	Lon = "";
 	}
-	
+	//afbeelding
+	//kijken of er een foto beschikbaar is en of het laten zien van foto's aangevinkt is in de settings.
+	if(data.PICTURE != "geen foto beschikbaar" && Titanium.App.Properties.getBool('laadData', false))   
+	{
+	//foto van de brug tonen
+			DetailWindow.Imagebridge.setUrl("http://www.moorsmagazine.com/images13/brug002.jpg");  //dummylink voor foto, dit kan dataToPass zijn 
+			DetailWindow.Imagebridge.setHeight('35%');
+			DetailWindow.NoImagebridge.setText("");
+	}
+	else   //geen foto beschikbaar
+	{   
+		if(Titanium.App.Properties.getBool('laadData', false))     //wanneer foto's laden ingeschakeld is en er is geen foto beschikbaar toon de tekst dat er geen foto beschikbaar is
+			{
+				DetailWindow.Imagebridge.setHeight('0%');  //image hoogte is 0%, dus niet zichtbaar
+				DetailWindow.NoImagebridge.setText(VwApp.Config.NoPictureDetail);
+			}
+		else //als het laden van foto's uitgeschakeld is geef hierover een melding
+			{
+				DetailWindow.Imagebridge.setHeight('0%'); //image hoogte is 0%, dus niet zichtbaar
+				DetailWindow.NoImagebridge.setText(VwApp.Config.PictureOffDetail);
+			}
+	}
 }
+
 	
 	//wanneer er geklikt wordt op de button setlocation op map en open de map, mits lat en lon aanwezig
 	DetailWindow.Toonkaart.addEventListener('click', function(){   
-	if(DetailWindow.LAT.text != "")
+	if(Lat != "")
 		{
-			setLocation(DetailWindow.LAT.text, DetailWindow.LON.text, VwApp.Config.DefaultUserLocZoom)
-			VwApp.UI.DetailWindow(VwApp.UI.TabBar.Mapwindow)
-		}	
+			VwApp.Map.setLocation(Lat, Lon, VwApp.Config.DefaultUserLocZoom);
+			VwApp.UI.TabBar.tabGroup.setActiveTab(VwApp.UI.TabBar.mapTab);
+			VwApp.UI.DetailWindow.window.close();
+		}
+	else
+	{alert (VwApp.Config.LatLonNotFound)}	
 	});
 	
 	//toevoegen aan scrollview
-	//DetailWindow.Container.add(DetailWindow.imagebridge); Bestaat nog niet?
+	DetailWindow.Container.add(DetailWindow.Imagebridge)
+	DetailWindow.Container.add(DetailWindow.NoImagebridge)
+	DetailWindow.Container.add(DetailWindow.Adres);
 	DetailWindow.Container.add(DetailWindow.Type);
 	DetailWindow.Container.add(DetailWindow.Hoogte);
 	DetailWindow.Container.add(DetailWindow.Breedte); 
 	DetailWindow.Container.add(DetailWindow.Toonkaart); 
 	DetailWindow.window.add(DetailWindow.Container);
 	
+	
 	VwApp.UI.DetailWindow = DetailWindow;
 	VwApp.UI.changeDetailView = ChangeValue;
 })();
-
+	
 

@@ -90,6 +90,7 @@ var Config = {
 	 * 	   DETAIL
 	 *	- - - - - - - - - -
 	 */ 
+	 
 	 // Text weer te geven als er geen foto is
 	 NoPictureDetail: 'Geen foto beschikbaar',
 	 // 
@@ -102,6 +103,7 @@ var Config = {
 	 UnitDetail : " Meter",
 	 //titel van de toon op kaart knop
 	 ShowOnMapDetail : "Toon op kaart",
+	 LatLonNotFound : "Geen coordinaten gevonden..",
 	 
 	/*
 	 * Overige instellingen

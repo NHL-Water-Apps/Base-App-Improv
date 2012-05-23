@@ -96,6 +96,7 @@
 			VwApp.UI.changeDetailView(e.annotation.dataToPass);
 			VwApp.UI.TabBar.mapTab.open(VwApp.UI.DetailWindow.window, {animate: true});
 		}
+
 	});
 	
 	// Alle annotations toevoegen aan de kaart
