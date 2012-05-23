@@ -88,24 +88,11 @@
  	 * 		op het knopje is, zal er een nieuw venster geopend worden naar een detailview	 
  	 */
 	MapWindow.map.addEventListener('click', function(e){
-		/*if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane')
+		if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane')
 		{
-			// Indien een nieuw window aanmaken
-			var windowBrug = Titanium.UI.createWindow({
-				title: 				e.title,
-				backgroundColor: 	"#FFF",
-				// Onze custom value meegeven met alle data over het POI
-				dataToPass: 		e.annotation.dataToPass,
-				url: 				'/src/uiDetailView.js',
-				navBarHidden: 		false,
-				tabBarHidden: 		true
-			});
-		
-			// En deze dan openen
-			MapTab.open(windowBrug, {animated: true});
+			VwApp.UI.changeDetailView(e.annotation.dataToPass);
+			VwApp.UI.TabBar.mapTab.open(VwApp.UI.DetailWindow.window, {animate: true});
 		}
-		*/	
-		if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane') {alert('Naar detail! MapWindow Line: 108'); }
 	});
 	
 	// Alle annotations toevoegen aan de kaart
