@@ -21,22 +21,17 @@ var VwApp = {
 // Laad data in.
 (function() {
 	var data,
-		file;
+		name;
 	
 	// Loopt door alle bestanden aangegeven in de Config.js
-	// Als Vwapp.Config.DataToLoad.bruggen = 'Data/Bruggon.json' dan word
-	// VwApp.Data.bruggen het object dat alle data uit het bestand bevat.
-	for (file in VwApp.Config.DataToLoad) {
-		if (VwApp.Config.DataToLoad.hasOwnProperty(file)) {
-			data = VwApp.IO.getJSON(VwApp.Config.DataToLoad[file]);
-			
-			if (data){
-				VwApp.Data[file] = data
-			} 		
+	// Als Vwapp.Config.DataToLoad.bruggen = 'Data/Bruggon' dan word
+	// VwApp.Data.bruggen een array dat alle data uit het bestand bevat.
+	for (name in VwApp.Config.DataToLoad) {
+		if (VwApp.Config.DataToLoad.hasOwnProperty(name)) {
+				VwApp.Data[name] = require(VwApp.Config.DataToLoad[name]);
 		}
 	}
 })();
-
 
 // Laad alle andere code in.
 Titanium.include('src/ui/MapWindow.js');

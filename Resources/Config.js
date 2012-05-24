@@ -2,9 +2,11 @@ var Config = {
 
 	/*
 	 * Data bestanden
+	 * 
+	 * GEEN .JS extensie toevoegen aan het pad.
 	 */
 	DataToLoad: {
-		'bruggen' : 'Data/Bruggen.json'
+		'bruggen' : 'Data/Bruggen'
 	},
 
 	/*

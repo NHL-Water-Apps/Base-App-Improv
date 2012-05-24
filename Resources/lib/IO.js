@@ -124,6 +124,9 @@ var getJSON = function(filename) {
     	return null;
     }
     
+    JSONdata.blob = null;
+    JSONdata.file = null;
+    
     return JSONobject;
 }; 
 
