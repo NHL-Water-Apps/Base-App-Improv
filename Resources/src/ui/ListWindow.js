@@ -2,8 +2,7 @@
 	//sorteren van de data
 	VwApp.Data.bruggen.sort(sortName);  
  
-
-		//listwindow
+	//listwindow
 	var ListWindow = {
 		window: Titanium.UI.createWindow({
 			title: 			  VwApp.Config.ListTabTitle,				

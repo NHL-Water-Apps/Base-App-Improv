@@ -33,7 +33,11 @@
 			bottom: 5,
 			height: 'auto',
 			width: 	'auto',
-		})
+		}),
+		
+		// Een variable die we gebruiken voor het aangeven of we nu de annotaties
+		// 	kunnen wegschrijven (false wanneer we bewegen op de kaart)
+		drawAnnotations: true
 	};
 	
 	/**
@@ -76,27 +80,49 @@
 		
 		VwApp.Map.updateGeolocation();
 		location = VwApp.Map.getUserLocation();
-		VwApp.Map.filterAnnotations([], null, null);
 		if (location) {
 			VwApp.Map.setLocation(location.latitude, location.longitude, VwApp.Config.DefaultUserLocZoom);
 		} 		
 	});
 	
+	/**
+	 *	Eventlisener die aangeroepen wordt als de map wordt verplaats of ingezoomt
+	 * 		deze roept de functie aan die alle annotaties op de kaart aanmaakt 
+	 */
 	MapWindow.map.addEventListener('regionChanged', function(e){
-		VwApp.Map.filterAnnotations(VwApp.Data.bruggen, e, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
+		for(i in e) { Titanium.API.warn(i); }
+		Titanium.API.warn('Type' + e.type);
+		Titanium.API.warn('Source' + e.source);
+		if(VwApp.UI.MapWindow.drawAnnotations){
+			VwApp.Map.filterAnnotations(VwApp.Data.bruggen, e, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
+		}
 	});
+	
+	/**
+	 *	Twee tegengestelde eventliseners die er voor zorgen dat er geen annotaties geladen worden als
+	 * 		er nog bewogen wordt op de kaart 
+	 *
+	MapWindow.window.addEventListener('touchstart', function(){
+		Titanium.API.warn('Draw disabled');
+		VwApp.UI.MapWindow.drawAnnotations = false;
+	});
+	MapWindow.window.addEventListener('touchend', function(){
+		Titanium.API.warn('Draw enabled');
+		VwApp.UI.MapWindow.drawAnnotations = true;
+	});
+	*/
 	/**
  	 *	Fucntie die draait op het moment dat er op een punt in de kaart geklikt wordt
  	 * 	Als hierop geklikt is zal er gekeken "waar" er op de item geklikt is en als dat
  	 * 		op het knopje is, zal er een nieuw venster geopend worden naar een detailview	 
  	 */
 	MapWindow.map.addEventListener('click', function(e){
+		// Kijken waar er gedrukt is
 		if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane')
 		{
 			VwApp.UI.changeDetailView(e.annotation.dataToPass);
 			VwApp.UI.TabBar.mapTab.open(VwApp.UI.DetailWindow.window, {animate: true});
 		}
-
 	});
 	
 	// Alle annotations toevoegen aan de kaart
@@ -120,4 +146,8 @@
 			
 	// Voeg MapWindow toe aan de UI namespace voor gebruik buiten deze closure.
 	VwApp.UI.MapWindow = MapWindow;
+	
+	// Een variable die we gebruiken voor het aangeven of we nu de annotaties
+	//    kunnen wegschrijven (false wanneer we bewegen op de kaart)
+	VwApp.UI.MapWindow.drawAnnotations = true;
 })();
