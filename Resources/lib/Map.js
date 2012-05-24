@@ -3,8 +3,8 @@ var Config = require('Config');
 // Locale variabelen.
 var currentUserLocation
   , mapView
-  , annotationsCount
-  , annotationsArray;
+  , annotationsCount;
+var annotationsArray = [];
 
 /**
  * Stelt de reden in waarom de app de huidige locatie van de gebruiker wil 
@@ -208,9 +208,7 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 	// En de onder waarden
 	var left = 		region.longitude - (region.longitudeDelta / 2);
 	var right = 	region.longitude + (region.longitudeDelta / 2);
-	//for(i in region) { Titanium.API.warn(i); }
-	//Titanium.API.warn('LAT: ' + region.latitudeDelta);
-	//Titanium.API.warn('LON: ' + region.longitudeDelta);
+	
 	Titanium.API.warn('top: ' + top + ' Bottom: ' + bottom + ' left: ' + left + ' right: ' +  right);
 	// Kijken welke we dienen toe te voegen aan de array
 	for(var i = 0; i < annotationsData.length; i++){
@@ -255,21 +253,39 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 	}
 	
 	// Kijken hoeveel we er nu hebben
-	annotationsCount = counter + annotationsCount;
+	//annotationsCount = counter + annotationsCount;
 	
 	// Indien dit meer is dan toegestaan de kaart leeg gooien
-	if(annotationsCount > Config.maxAnnotations){
-		// Punten verwijderen
-		mapView.removeAnnotations(annotationsArray);
-		// En de counter opnieuw instellen
-		annotationsArray = []
-		annotationsCount = counter;
-	}
+	//if(annotationsCount > Config.maxAnnotations){
+	//	// Punten verwijderen
+	//	removeAnnotations(annotationsArray);
+	//	// En de counter opnieuw instellen
+	//	annotationsArray = [];
+	//	annotationsCount = counter;
+	//}
+	// For testing :D
+	removeAnnotations(annotationsArray);
+	
 	
 	Titanium.API.warn('Aantal: ' + counter + ' uit de mogelijke ' + annotationsData.length);
 	// Voeg alle annotaties toe aan de kaart
-	annotationsArray += toAddAnnotations;
+	annotationsArray = toAddAnnotations;
 	mapView.addAnnotations(toAddAnnotations);
+};
+
+var concat = function(destination, source){
+	for(var i = 0; i < source.length; i++){
+		destination[destination.length] = source[i];
+	}
+	return destination
+};
+
+var removeAnnotations = function(toRemove){
+	Titanium.API.warn('Annotaties op de kaart: ' + toRemove.length);
+	for(var i = 0; i < toRemove.length; i++){
+		mapView.removeAnnotation(toRemove[i]);
+	}
+	annotationsArray = [];
 };
 
 /**
@@ -329,3 +345,4 @@ exports.addAnnotation =		addAnnotation;
 exports.annotationsArray = 	annotationsArray;
 exports.showTrail = 		showTrail;
 exports.filterAnnotations = filterAnnotations;
+//exports.removeAnnotations = removeAnnotations;

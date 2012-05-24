@@ -77,13 +77,15 @@
 	 * De eventhandler voor de knop die de locatie van de gebruiker moet vinden.
 	 */
 	MapWindow.locationButton.addEventListener('click', function() {
-		var location;
+		/*var location;
 		
 		VwApp.Map.updateGeolocation();
 		location = VwApp.Map.getUserLocation();
 		if (location) {
 			VwApp.Map.setLocation(location.latitude, location.longitude, VwApp.Config.DefaultUserLocZoom);
-		} 		
+		} 
+		*/
+		//VwApp.Map.removeAnnotations();
 	});
 	
 	/**
