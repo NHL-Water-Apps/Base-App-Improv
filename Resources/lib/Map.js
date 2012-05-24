@@ -217,10 +217,14 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 		// Kijken of het binnen ons bereik ligt
 		if(annotationsData[i].LAT > top && annotationsData[i].LAT < bottom && 
 			annotationsData[i].LON > left && annotationsData[i].LON < right){
-			Titanium.API.warn('Drawing annotation.');
 			// indoen we voldoen het onderschrift maken
-			var subtitle = Config.AnnotationSubHeight + annotationsData[i].HEIGTH + '\t' 
-				+ Config.AnnotationSubWidth + annotationsData[i].WIDTH;
+			var subtitle = '';
+			if(annotationsData[i].HEIGTH){
+				subtitle += Config.AnnotationSubHeight + annotationsData[i].HEIGTH + '\t';
+			}
+			if(annotationsData[i].WIDTH){
+				subtitle += Config.AnnotationSubWidth + annotationsData[i].WIDTH;
+			}
 			// Maak een annotatie (Hij valt binnen de waarden dus zou op de kaart moeten komen)
 			toAddAnnotations[counter] = Titanium.Map.createAnnotation({
 				// Voor sneller laden
@@ -238,7 +242,7 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 				
 				pincolor:	Titanium.Map.ANNOTATION_GREEN,
 				// Kijken welke afbeelding we moeten invullen
-				image: 		(height && iconRed && annotationsData[i].HEIGHT < height) ?
+				image: 		(annotationsData[i].HEIGTH && height && iconRed && annotationsData[i].HEIGHT < height) ?
 								iconRed : iconGreen,
 									
 				rightButton: Titanium.Platform.osname === 'android' ? 

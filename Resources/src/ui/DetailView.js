@@ -3,7 +3,6 @@
 	var DetailWindow = {
 		window: Titanium.UI.createWindow({
 			top: 			0,
-			//layout: 		'vertical',
 			height: 		'100%',
 			width: 			'100%', 
 			backgroundColor: VwApp.Config.ViewBackgroundColor,  
@@ -147,14 +146,14 @@ function ChangeValue(data) {
 
 	//wanneer er geklikt wordt op de button setlocation op map en open de map, mits lat en lon aanwezig
 	DetailWindow.Toonkaart.addEventListener('click', function(){   
-	if(Lat != "")
-		{
-			VwApp.Map.setLocation(Lat, Lon, VwApp.Config.DefaultUserLocZoom);
-			VwApp.UI.TabBar.tabGroup.setActiveTab(VwApp.UI.TabBar.mapTab);
-			VwApp.UI.DetailWindow.window.close();
-		}
-	else
-	{alert (VwApp.Config.LatLonNotFound)}	
+	if(Lat != "")		{
+		VwApp.Map.setLocation(Lat, Lon, VwApp.Config.DefaultUserLocZoom);
+		VwApp.UI.TabBar.tabGroup.setActiveTab(VwApp.UI.TabBar.mapTab);
+		VwApp.UI.DetailWindow.window.close();
+	}
+	else {
+		alert (VwApp.Config.LatLonNotFound);
+	}	
 	});
 	
 	//toevoegen aan scrollview
