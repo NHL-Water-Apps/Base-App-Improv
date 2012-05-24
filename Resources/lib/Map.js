@@ -219,8 +219,8 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 			annotationsData[i].LON > left && annotationsData[i].LON < right){
 			// indoen we voldoen het onderschrift maken
 			var subtitle = '';
-			if(annotationsData[i].HEIGTH){
-				subtitle += Config.AnnotationSubHeight + annotationsData[i].HEIGTH + '\t';
+			if(annotationsData[i].HEIGHT){
+				subtitle += Config.AnnotationSubHeight + annotationsData[i].HEIGHT + '\t';
 			}
 			if(annotationsData[i].WIDTH){
 				subtitle += Config.AnnotationSubWidth + annotationsData[i].WIDTH;
@@ -242,7 +242,7 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 				
 				pincolor:	Titanium.Map.ANNOTATION_GREEN,
 				// Kijken welke afbeelding we moeten invullen
-				image: 		(annotationsData[i].HEIGTH && height && iconRed && annotationsData[i].HEIGHT < height) ?
+				image: 		(annotationsData[i].HEIGHT && height && iconRed && annotationsData[i].HEIGHT < height) ?
 								iconRed : iconGreen,
 									
 				rightButton: Titanium.Platform.osname === 'android' ? 

@@ -27,8 +27,8 @@ var Config = {
 	NoGeolocationMsg:  'Kon de huidige locatie niet bepalen, GPS is niet beschikbaar',
 	
 	// Voor de subtitel van een annotation
-	AnnotationSubHeight: 	'h: ',
-	AnnotationSubWidth:		'w: ',
+	AnnotationSubHeight: 	'H: ',
+	AnnotationSubWidth:		'B: ',
 	
 	// Settings view:
 	// Sectie afmetingen van de boot: 
