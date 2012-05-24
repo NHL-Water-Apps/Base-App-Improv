@@ -203,17 +203,17 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 	var height = parseFloat(Titanium.App.Properties.getString('height', null));
 	// Coordinaten berekenen (lat en long worden vanuit het midden meegegeven)
 	// De boven waarden
-	var top	=		region.latitude - (region.latitudeDelta / 2);
-	var bottom = 	region.latitude + (region.latitudeDelta / 2);
+	var top	=	 			region.latitude - (region.latitudeDelta / 2) - 0.5;
+	var bottom = 			region.latitude + (region.latitudeDelta / 2) + 0.5;
 	// En de onder waarden
-	var left = 		region.longitude - (region.longitudeDelta / 2);
-	var right = 	region.longitude + (region.longitudeDelta / 2);
+	var left = 		region.longitude - (region.longitudeDelta / 2) - 0.5;
+	var right = 		region.longitude + (region.longitudeDelta / 2) + 0.5;
 	//for(i in region) { Titanium.API.warn(i); }
 	//Titanium.API.warn('LAT: ' + region.latitudeDelta);
 	//Titanium.API.warn('LON: ' + region.longitudeDelta);
 	Titanium.API.warn('top: ' + top + ' Bottom: ' + bottom + ' left: ' + left + ' right: ' +  right);
 	// Kijken welke we dienen toe te voegen aan de array
-	for(var i = 0; i < annotationsData.length; i++){
+	for(var i = 0; i < annotationsData.lenght; i++){
 		// Kijken of het binnen ons bereik ligt
 		if(annotationsData[i].LAT > top && annotationsData[i].LAT < bottom && 
 			annotationsData[i].LON > left && annotationsData[i].LON < right){
@@ -223,8 +223,7 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 				+ Config.AnnotationSubWidth + annotationsData[i].WIDTH;
 			// Maak een annotatie (Hij valt binnen de waarden dus zou op de kaart moeten komen)
 			toAddAnnotations[counter] = Titanium.Map.createAnnotation({
-				// Voor sneller laden
-				animate:	false,
+				animate:	true,
 				
 				// Custom property voor het maken van een 
 				// detail pagina
@@ -238,7 +237,7 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 				
 				pincolor:	Titanium.Map.ANNOTATION_GREEN,
 				// Kijken welke afbeelding we moeten invullen
-				image: 		(height && iconRed && annotationsData[i].HEIGHT < height) ?
+				image: 		(iconRed && annotationsData[i].HEIGHT < height) ?
 								iconRed : iconGreen,
 									
 				rightButton: Titanium.Platform.osname === 'android' ? 
