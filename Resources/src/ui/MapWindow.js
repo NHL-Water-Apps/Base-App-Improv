@@ -37,7 +37,8 @@
 		
 		// Een variable die we gebruiken voor het aangeven of we nu de annotaties
 		// 	kunnen wegschrijven (false wanneer we bewegen op de kaart)
-		drawAnnotations: true
+		drawAnnotations: true,
+		regionChanged: 0
 	};
 	
 	/**
@@ -90,12 +91,13 @@
 	 * 		deze roept de functie aan die alle annotaties op de kaart aanmaakt 
 	 */
 	MapWindow.map.addEventListener('regionChanged', function(e){
-		for(i in e) { Titanium.API.warn(i); }
-		Titanium.API.warn('Type' + e.type);
-		Titanium.API.warn('Source' + e.source);
-		if(VwApp.UI.MapWindow.drawAnnotations){
-			VwApp.Map.filterAnnotations(VwApp.Data.bruggen, e, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
-		}
+		clearTimeout(MapWindow.regionChanged);
+		
+		MapWindow.regionChanged = setTimeout(function() {			
+			if(VwApp.UI.MapWindow.drawAnnotations){
+				VwApp.Map.filterAnnotations(VwApp.Data.bruggen, e, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
+			}
+		}, 400);		
 	});
 	
 	/**
