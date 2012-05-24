@@ -260,13 +260,15 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 	// Indien dit meer is dan toegestaan de kaart leeg gooien
 	if(annotationsCount > Config.maxAnnotations){
 		// Punten verwijderen
-		mapView.removeAllAnnotations();
+		mapView.removeAnnotations(annotationsArray);
 		// En de counter opnieuw instellen
+		annotationsArray = []
 		annotationsCount = counter;
 	}
 	
 	Titanium.API.warn('Aantal: ' + counter + ' uit de mogelijke ' + annotationsData.length);
 	// Voeg alle annotaties toe aan de kaart
+	annotationsArray += toAddAnnotations;
 	mapView.addAnnotations(toAddAnnotations);
 };
 
