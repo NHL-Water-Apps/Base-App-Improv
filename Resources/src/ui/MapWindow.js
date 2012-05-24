@@ -77,15 +77,13 @@
 	 * De eventhandler voor de knop die de locatie van de gebruiker moet vinden.
 	 */
 	MapWindow.locationButton.addEventListener('click', function() {
-		/*var location;
+		var location;
 		
 		VwApp.Map.updateGeolocation();
 		location = VwApp.Map.getUserLocation();
 		if (location) {
 			VwApp.Map.setLocation(location.latitude, location.longitude, VwApp.Config.DefaultUserLocZoom);
 		} 
-		*/
-		//VwApp.Map.removeAnnotations();
 	});
 	
 	/**
@@ -102,19 +100,7 @@
 		}, 400);		
 	});
 	
-	/**
-	 *	Twee tegengestelde eventliseners die er voor zorgen dat er geen annotaties geladen worden als
-	 * 		er nog bewogen wordt op de kaart 
-	 *
-	MapWindow.window.addEventListener('touchstart', function(){
-		Titanium.API.warn('Draw disabled');
-		VwApp.UI.MapWindow.drawAnnotations = false;
-	});
-	MapWindow.window.addEventListener('touchend', function(){
-		Titanium.API.warn('Draw enabled');
-		VwApp.UI.MapWindow.drawAnnotations = true;
-	});
-	*/
+
 	/**
  	 *	Fucntie die draait op het moment dat er op een punt in de kaart geklikt wordt
  	 * 	Als hierop geklikt is zal er gekeken "waar" er op de item geklikt is en als dat
