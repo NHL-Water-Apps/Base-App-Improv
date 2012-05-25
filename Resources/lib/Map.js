@@ -92,7 +92,7 @@ var getUserLocation = function() {
  * @param {string} [subtitle]
  * 		De ondertitel van de annotatie.
  */
-var addAnnotation = function(data, icon, subtitle) {
+var makeAnnotation = function(data, icon, subtitle) {
 	var newAnnotation;
 	
 	// Check of de minimaal benodigde data om een annotatie te maken bestaat.
@@ -100,8 +100,8 @@ var addAnnotation = function(data, icon, subtitle) {
 		return;
 	}
 	
-	newAnnotation = Titanium.Map.createAnnotation({
-		animate:	true,
+	return Titanium.Map.createAnnotation({
+		animate:	false,
 		
 		dataToPass: data,
 		
@@ -117,8 +117,6 @@ var addAnnotation = function(data, icon, subtitle) {
 		rightButton: Titanium.Platform.osname === 'android' ? 
 			Config.AndroidrightButton : Titanium.UI.iPhone.SystemButton.DISCLOSURE
 	});
-	
-	mapView.addAnnotation(newAnnotation);
 };
 
 /**
@@ -223,29 +221,11 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 			if(annotationsData[i].WIDTH){
 				subtitle += Config.AnnotationSubWidth + annotationsData[i].WIDTH;
 			}
+			
+			var icon = (annotationsData[i].HEIGHT && height && iconRed && annotationsData[i].HEIGHT < height) ?
+								iconRed : iconGreen;
 			// Maak een annotatie (Hij valt binnen de waarden dus zou op de kaart moeten komen)
-			toAddAnnotations[counter] = Titanium.Map.createAnnotation({
-				// Voor sneller laden
-				animate:	false,
-				
-				// Custom property voor het maken van een 
-				// detail pagina
-				dataToPass: annotationsData[i],
-	
-				latitude: 	annotationsData[i].LAT,
-				longitude: 	annotationsData[i].LON,
-				
-				title:		annotationsData[i].title,
-				subtitle: 	subtitle,
-				
-				pincolor:	Titanium.Map.ANNOTATION_GREEN,
-				// Kijken welke afbeelding we moeten invullen
-				image: 		(annotationsData[i].HEIGHT && height && iconRed && annotationsData[i].HEIGHT < height) ?
-								iconRed : iconGreen,
-									
-				rightButton: Titanium.Platform.osname === 'android' ? 
-					Config.AndroidrightButton : Titanium.UI.iPhone.SystemButton.DISCLOSURE
-			});
+			toAddAnnotations[counter] = makeAnnotation(annotationsData[i], icon, subtitle);
 			
 			// 1 aangemaakt teller verhogen
 			counter++;
@@ -342,7 +322,7 @@ exports.setMapView = 		setMapView;
 exports.setLocation = 		setLocation;
 exports.updateGeolocation = updateGeolocation;
 exports.getUserLocation = 	getUserLocation;
-exports.addAnnotation =		addAnnotation;
+exports.makeAnnotation =	makeAnnotation;
 exports.annotationsArray = 	annotationsArray;
 exports.showTrail = 		showTrail;
 exports.filterAnnotations = filterAnnotations;

@@ -6,7 +6,9 @@ var Config = {
 	 * GEEN .JS extensie toevoegen aan het pad.
 	 */
 	DataToLoad: {
-		'bruggen' : 'Data/Bruggen'
+		'bruggen' : 'Data/Bruggen',
+		'jachthavens' : 'Data/Jachthavens',
+		'ligplaatsen' : 'Data/Ligplaatsen'
 	},
 
 	/*
