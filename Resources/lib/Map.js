@@ -384,13 +384,13 @@ var deleteAnnotation = function(region){
 	if(!toCheck) { return; }
 	// Kijken of we deze moeten verwijderen
 	if(toCheck.latitude > region.top && toCheck.latitude < region.bottom &&
-		toCheck.longitude > region.bottom && toCheck.longitude < region.right)
+		toCheck.longitude > region.left && toCheck.longitude < region.right)
 	{
 		// Als we hier zijn dan niet
 		Titanium.API.warn('Terug zetten!');
 		
 		// Annotatie weer toevoegen
-		annotationsArray.shift(toCheck);
+		annotationsArray.unshift(toCheck);
 	}
 	else
 	{
@@ -401,11 +401,12 @@ var deleteAnnotation = function(region){
 		mapView.removeAnnotation(toCheck);	
 	}
 	
+	Titanium.API.warn(annotationsArray.length);
 	// Timeout aanroepen voor de volgende ronde
 	timeOut = setTimeout(function(){
 		// Zichzelf aanroepen
 		deleteAnnotation(region);
-	}, config.RemoveInterval);
+	}, Config.RemoveInterval);
 };
 
 var concat = function(destination, source){

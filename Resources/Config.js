@@ -127,8 +127,8 @@ var Config = {
 	// de button voor de positie van de gebruiker word gedrukt.
 	DefaultUserLocZoom: 0.005,
 	
-	// Instellingen voor de trail achter de persoon aan
-	TrailerTimeout: 1000, // 1 seconde
+	// Instellingen voor de trail achter de persoon aan (in miliseconden)
+	TrailerTimeout: 100000, // 1 seconde
 	// Aantal stipjes trail op de kaart
 	AmountOfTrail: 10,
 	
