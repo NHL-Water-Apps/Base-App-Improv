@@ -142,11 +142,26 @@ var isAnnotationEqual = function(a, b) {
 	return false;
 };
 
+/**
+ * Vergelijkt twee sets van annotations, returned een nieuwe set met alle 
+ * unieke annotations uit beide sets.
+ * 
+ * @param {array} [a]
+ * 		Een array met annotation objecten
+ * 
+ * @param {array} [b]
+ * 		Een array met annotation objecten
+ * 
+ * @return {array}
+ * 		Een array met de unieke set annontations van array a en b.
+ */
 var getDistinctSet = function(a, b) {
 	var source,
 		dest,
-		destLength;
-		
+		destLength
+		distinct;
+	
+	// Set de kleinste array als source en de grootste als dest.	
 	if (a.length > b.length) {
 		source = b;
 		dest   = a;
@@ -155,13 +170,25 @@ var getDistinctSet = function(a, b) {
 		dest   = b;
 	}
 	
+	// Cache de huidige lengte van dest.
 	destLength = dest.length;
 	
+	// Loop door alle items van source heen en voeg ze aan dest toe als ze 
+	// nog niet in dest zitten.
 	for (var i = 0; i < source.length; i++) {
+		distinct = true;
 		for (var j = 0; j < destLength; j++) {
-			
+			if (isAnnotationEqual(dest[i], source[j])) {
+				distinct = false;
+			}
 		}
+			
+		if (distinct) {
+			dest.push(source[i]);
+		}		
 	}
+	
+	return dest;
 };
 
 /**
