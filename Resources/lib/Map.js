@@ -264,13 +264,14 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 	//	annotationsCount = counter;
 	//}
 	// For testing :D
-	removeAnnotations(annotationsArray);
-	
+	//removeAnnotations(annotationsArray);
+	mapView.removeAllAnnotations();
 	
 	Titanium.API.warn('Aantal: ' + counter + ' uit de mogelijke ' + annotationsData.length);
 	// Voeg alle annotaties toe aan de kaart
 	annotationsArray = toAddAnnotations;
 	mapView.addAnnotations(toAddAnnotations);
+	mapView.addAnnotations(trailers);
 };
 
 var concat = function(destination, source){
