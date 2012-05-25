@@ -134,6 +134,7 @@ var Config = {
 	
 	// De maximale hoeveelheid annotaties die we kunnen toevoegen
 	maxAnnotations: 20,
+	RemoveInterval: 100,
 	
 	OrientationModes: [ 
 		Titanium.UI.PORTRAIT,
