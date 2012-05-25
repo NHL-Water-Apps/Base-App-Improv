@@ -28,7 +28,14 @@ var VwApp = {
 	// VwApp.Data.bruggen een array dat alle data uit het bestand bevat.
 	for (name in VwApp.Config.DataToLoad) {
 		if (VwApp.Config.DataToLoad.hasOwnProperty(name)) {
-				VwApp.Data[name] = require(VwApp.Config.DataToLoad[name]);
+			VwApp.Data[name] = require(VwApp.Config.DataToLoad[name]);
+			
+			// Geef elke item een uniek ID.
+			// En geeft elk object ook het type data.
+			for (var i = 0; i < VwApp.Data[name].length; i++) {
+				VwApp.Data[name][i].ID = i;
+				VwApp.Data[name][i].TYPE = name;					
+			}
 		}
 	}
 })();

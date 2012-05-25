@@ -3,8 +3,8 @@ var Config = require('Config');
 // Locale variabelen.
 var currentUserLocation
   , mapView
-  , annotationsCount;
-var annotationsArray = [];
+  , annotationsCount
+  , annotationsArray = [];
 
 /**
  * Stelt de reden in waarom de app de huidige locatie van de gebruiker wil 
@@ -280,24 +280,30 @@ var removeAnnotations = function(toRemove){
  */
 var trailers = [];
 function showTrail(plaats){
+	
 	// Controle of we niet al teveel annotaions op de kaart hebben
 	// Als we al we te veel hebben zetten we de pointer op 0 (en dan opnieuw eroverheen)
 	if(plaats > Config.AmountOfTrail) { plaats = 0; }
 	
 	// Kijken of we een positie kunnen krijg
 	if(Titanium.Geolocation.getLocationServicesEnabled()){
+		
 		// Locatie updaten
 		updateGeolocation();
+		
 		// En uitlezen
 		var location = getUserLocation();
+		
 		// Kijken of dit iets terug gaf en of we bewegen
 		if(location && location.speed && location.speed > 0)
 		{		
+			
 			// Indien dan zal er een nieuwe annotaion gemaakt worden maar eerst zullen we een oude annotation verwijderen
 			if(trailers[plaats])
 			{
 				mapView.removeAnnotation(trailers[plaats]);
 			}
+			
 			// Darna maken we een nieuw annotion aan op deze lokatie in de array
 			trailers[plaats] = Titanium.Map.createAnnotation({
 				latitude:	location.latitude,
@@ -307,10 +313,12 @@ function showTrail(plaats){
 				duration: 	3000,
 				image: '/images/trailstip.png'
 			});
+			
 			// Daarna deze annotatie toeveogen aan de kaart					
 			mapView.addAnnotation(trailers[plaats]);			
 		}
 	}
+	
 	// Toevoegen en verwijderen is klaar
 	// Functie opnieuw aanroepen na een timout (en pointer met 1 verhogen)
 	setTimeout(function(){
