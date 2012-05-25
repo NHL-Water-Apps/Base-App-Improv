@@ -254,6 +254,79 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 	mapView.addAnnotations(trailers);
 };
 
+
+/**
+ *	Functie die bepaalt welke annotaties toegevoegd dienen te worden vanuit
+ * 		een grotere dataset
+ * 	
+ * 	@param {Array} [data] 
+ * 		Een array die 
+ * 	@param {String} [iconGreen] 
+ * 		Link naar de afbeelding die we moeten inladen bij normale weergave of 
+ * 			wanneer we er wel onderdoor kunnen
+ * 	@param {Float} [height]
+ * 		De hoogte om mee te vergeljiken (optioneel)
+ * 	@param {String} [iconRed]
+ * 		Link naar de afbeelding die we moeten inladen wanneer we er niet onderdoor kunne
+ *  @param {Object} [delimiter]
+ * 		Een object die top, bottom, left, right bevat die aangeven wat de maximale
+ * 			latitude en longtitude zijn van een annotatie
+ * 
+ * 	@returns {Array}
+ * 		De annotaties die binnen het bereik vallen
+ * 
+ */
+var getAnnotationsToAdd = function(data, iconGreen, height, iconRed, delimiter){
+	
+	// Kijken of de meegegeven data wel goed is
+	if(!delimiter || !delimiter.top || !delimiter.bottom || !delimiter.bottom || !delimiter.right ||
+			!iconGreen || !data)
+	{
+				Titanium.API.warn('Foutive aanroep van de functie getAnnotationsToAdd');
+				return;
+	}
+	
+	// de array die te toe te voegen zal bewaren 
+	var toAddAnnotations = [];
+	var counter =		   0;
+	
+	// Loopje door de data
+	for(var i = 0; i < annotationsData.length; i++){
+		// Kijken of het binnen ons bereik ligt
+		if(data[i].LAT > delimiter.top && data[i].LAT < delimiter.bottom && 
+			data[i].LON > delimiter.bottom && data[i].LON < delimiter.right){
+			
+			// indoen we voldoen het onderschrift maken
+			var subtitle = '';
+			
+			// Kijken of er een hoogte meegegeven is
+			if(data[i].HEIGHT){
+				subtitle += Config.AnnotationSubHeight + annotationsData[i].HEIGHT + '\t';
+			}
+			// Kijken of er een breedte meegegeven is
+			if(data[i].WIDTH){
+				subtitle += Config.AnnotationSubWidth + annotationsData[i].WIDTH;
+			}
+			
+			// Kijken welke icoon we gaan weergeven (indien we hiervoor gaan controleren)
+			var icon = (data[i].HEIGHT && height && iconRed && data[i].HEIGHT < height) ?
+								iconRed : iconGreen;
+								
+			// Maak een annotatie (Hij valt binnen de waarden dus zou op de kaart moeten komen)
+			toAddAnnotations[counter] = makeAnnotation(data[i], icon, subtitle);
+			
+			// 1 aangemaakt teller verhogen
+			counter++;
+			
+			// Einde op controle op delimiters
+		} 
+		// Einde loop
+	} 
+	
+	// Juiste annotaties terug geven
+	return toAddAnnotations;
+};
+
 var concat = function(destination, source){
 	for(var i = 0; i < source.length; i++){
 		destination[destination.length] = source[i];
