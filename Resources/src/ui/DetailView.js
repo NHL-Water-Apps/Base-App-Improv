@@ -60,9 +60,9 @@
 			color:			VwApp.Config.TextColor
 		}),
 		Imagebridge : 	Ti.UI.createImageView({
-			url:				'http://www.viphouten.nl/wp-content/uploads/2012/04/geen-foto.jpg',  //dummylink voor foto, dit kan dataToPass zijn
+			url:				'',  //dummylink voor foto, dit kan dataToPass zijn
 			height: 			'35%',
-			width : 			'80%',
+			width : 			Titanium.Gesture.isPortrait() ? '90%' :'60%',
 			top: 				'2%',
 			}),
 		//de button om de brug op de kaart te tonen
@@ -95,12 +95,12 @@ function ChangeValue(data) {
 	else
 		{DetailWindow.Adres.setText(VwApp.Config.AdressDetail + "-");}
 	//hoogte
-	if(data.HEIGTH)
-		{DetailWindow.Hoogte.setText(VwApp.Config.HeigthDetail + data.HEIGTH + VwApp.Config.UnitDetail);}
+	if(data.HEIGHT || data.HEIGHT == 0)
+		{DetailWindow.Hoogte.setText(VwApp.Config.HeigthDetail + data.HEIGHT + VwApp.Config.UnitDetail);}
 	else
 		{DetailWindow.Hoogte.setText(VwApp.Config.HeigthDetail + "-");}
 	//breedte
-	if(data.WIDTH)
+	if(data.WIDTH || data.WIDTH == 0)
 		{DetailWindow.Breedte.setText(VwApp.Config.WidthDetail + data.WIDTH + VwApp.Config.UnitDetail);}
 	else
 		{DetailWindow.Breedte.setText(VwApp.Config.WidthDetail +"-");}
@@ -122,16 +122,17 @@ function ChangeValue(data) {
 	}
 	//afbeelding
 	//kijken of er een foto beschikbaar is en of het laten zien van foto's aangevinkt is in de settings.
-	if(data.PICTURE != "geen foto beschikbaar" && Titanium.App.Properties.getBool('laadData', false))   
+	if(data.PICTURE && Titanium.App.Properties.getBool('laadData', true))   
 	{
 	//foto van de brug tonen
-			DetailWindow.Imagebridge.setUrl("http://www.moorsmagazine.com/images13/brug002.jpg");  //dummylink voor foto, dit kan dataToPass zijn 
+			DetailWindow.Imagebridge.setUrl('http://www.fryslan.nl/binfo4/images/bruggen/0750a.jpg');  //dummylink voor foto. dit kan data.PICTURE zijn
 			DetailWindow.Imagebridge.setHeight('35%');
+			DetailWindow.Imagebridge.setWidth(Titanium.Gesture.isPortrait() ? '90%' :'60%');
 			DetailWindow.NoImagebridge.setText("");
 	}
 	else   //geen foto beschikbaar
 	{   
-		if(Titanium.App.Properties.getBool('laadData', false))     //wanneer foto's laden ingeschakeld is en er is geen foto beschikbaar toon de tekst dat er geen foto beschikbaar is
+		if(Titanium.App.Properties.getBool('laadData', true))     //wanneer foto's laden ingeschakeld is en er is geen foto beschikbaar toon de tekst dat er geen foto beschikbaar is
 			{
 				DetailWindow.Imagebridge.setHeight('0%');  //image hoogte is 0%, dus niet zichtbaar
 				DetailWindow.NoImagebridge.setText(VwApp.Config.NoPictureDetail);
@@ -146,7 +147,8 @@ function ChangeValue(data) {
 
 	//wanneer er geklikt wordt op de button setlocation op map en open de map, mits lat en lon aanwezig
 	DetailWindow.Toonkaart.addEventListener('click', function(){   
-	if(Lat != "")		{
+	if(Lat != "")		
+	{
 		VwApp.Map.setLocation(Lat, Lon, VwApp.Config.DefaultUserLocZoom);
 		VwApp.UI.TabBar.tabGroup.setActiveTab(VwApp.UI.TabBar.mapTab);
 		VwApp.UI.DetailWindow.window.close();
