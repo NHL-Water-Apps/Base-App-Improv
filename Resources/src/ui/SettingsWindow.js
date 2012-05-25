@@ -5,7 +5,8 @@
 		window: Titanium.UI.createWindow({
 			title: 			  VwApp.Config.SettingsTabTitle,				
 			backgroundColor:  VwApp.Config.ViewBackgroundColor,
-			orientationModes: VwApp.Config.OrientationModes	
+			orientationModes: VwApp.Config.OrientationModes,
+			navBarHidden: 	  true	
 		}),
 		
 		// 	Dit wordt onze hoofd tabel, deze zal alle opties bevatten

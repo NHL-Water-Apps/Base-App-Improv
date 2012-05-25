@@ -8,6 +8,7 @@
 			title: 			  VwApp.Config.ListTabTitle,				
 			backgroundColor:  VwApp.Config.ViewBackgroundColor,
 			orientationModes: VwApp.Config.OrientationModes,	
+			nabBarHidden:	  true
 		}),
 		//Searchbar die zoekt op title
 		searchbar: Titanium.UI.createSearchBar({   
@@ -31,6 +32,9 @@
 	//	Search toevoegen
 	ListWindow.table.search = ListWindow.searchbar;
 	
+	if(Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad'){
+		ListWindow.window.add(ListWindow.searchbar); 
+	}
 	
 	// Voeg alle UI onderdelen toe aan ListWindow.window
 	ListWindow.window.add(ListWindow.table);
