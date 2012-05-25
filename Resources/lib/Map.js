@@ -274,7 +274,6 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
  * 
  * 	@returns {Array}
  * 		De annotaties die binnen het bereik vallen
- * 
  */
 var getAnnotationsToAdd = function(data, iconGreen, height, iconRed, delimiter){
 	
@@ -325,6 +324,47 @@ var getAnnotationsToAdd = function(data, iconGreen, height, iconRed, delimiter){
 	
 	// Juiste annotaties terug geven
 	return toAddAnnotations;
+};
+
+/**
+ *	Fucntie die door de annotationsArray heen gaat (recursive) en kijkt of
+ * 		een punt nog wel binnen ons kijkveld valt. Zoniet dan wordt hij verwijderd
+ * 		en anders gaat hij weer naar de volgende
+ * 
+ * 	@param	{Object} [region]
+ * 		Een object die top, bottom, left, right bevat die aangeven wat de maximale
+ * 			latitude en longtitude zijn van een annotatie die mag blijven
+ */
+var deleteAnnotation = function(region){
+	
+	// Geen annotaties over dus einde functie
+	if(!annotationsArray) { return; }
+	
+	// De annotatie uit de array halen die we gaan verwijderen
+	var toCheck = annotations.pop();
+	
+	// Kijken of we deze moeten verwijderen
+	if(toCheck.latitude > region.top && toCheck.latitude < region.bottom &&
+		toCheck.longitude > region.bottom && toCheck.longitude < region.right)
+	{
+		// Als we hier zijn dan niet
+		
+		// Annotatie weer toevoegen
+		annotations.shift(toCheck);
+	}
+	else
+	{
+		// Anders wel buiten onze zicht
+		
+		// Verwijderen van de kaart
+		mapView.RemoveAnnotation(toCheck);	
+	}
+	
+	// Timeout aanroepen voor de volgende ronde
+	setTimeout(function(){
+		// Zichzelf aanroepen
+		deleteAnnotation(region);
+	}, config.RemoveInterval);
 };
 
 var concat = function(destination, source){
