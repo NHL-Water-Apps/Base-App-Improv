@@ -95,7 +95,7 @@
 		
 		MapWindow.regionChanged = setTimeout(function() {			
 			if(VwApp.UI.MapWindow.drawAnnotations){
-				VwApp.Map.filterAnnotations(VwApp.Data.bruggen, e, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
+				VwApp.Map.filterAnnotations(e);
 			}
 		}, 400);		
 	});

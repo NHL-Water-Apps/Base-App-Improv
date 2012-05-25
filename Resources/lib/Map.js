@@ -3,7 +3,7 @@ var Config = require('Config');
 // Locale variabelen.
 var currentUserLocation
   , mapView
-  , annotationsCount
+  , timeOut
   , annotationsArray = [];
 
 /**
@@ -208,6 +208,7 @@ var annotationsArray = function(dataArray, iconGreen, iconRed){
 	}
 };
 
+
 /**
  *	Een methode die de te tonen annotaties gaat filteren op afstand
  * 	
@@ -221,9 +222,9 @@ var annotationsArray = function(dataArray, iconGreen, iconRed){
  * 	@param {string} [iconRed]
  * 		Link naar de afbeelding die we moeten inladen wanneer we er niet onderdoor kunne
  */
-var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
+var filterAnnotations = function(region){
 	// Controleren of we een regio meegekregen hebben
-	if(!region || !annotationsData || !iconGreen) {
+	if(!region || !annotationsData) {
 		Titanium.API.error('Meegegeven data komt niet overeen. Error vanuit filterAnnotations functie!');
 		return;
 	}
@@ -255,59 +256,36 @@ var filterAnnotations = function(annotationsData, region, iconGreen, iconRed){
 	var counter = 			0;
 	// Opgeslagen hoogte inlezen
 	var height = parseFloat(Titanium.App.Properties.getString('height', null));
-	// Coordinaten berekenen (lat en long worden vanuit het midden meegegeven)
-	// De boven waarden
-	var top	=		region.latitude - (region.latitudeDelta / 2);
-	var bottom = 	region.latitude + (region.latitudeDelta / 2);
-	// En de onder waarden
-	var left = 		region.longitude - (region.longitudeDelta / 2);
-	var right = 	region.longitude + (region.longitudeDelta / 2);
 	
-	Titanium.API.warn('top: ' + top + ' Bottom: ' + bottom + ' left: ' + left + ' right: ' +  right);
-	// Kijken welke we dienen toe te voegen aan de array
-	for(var i = 0; i < annotationsData.length; i++){
-		// Kijken of het binnen ons bereik ligt
-		if(annotationsData[i].LAT > top && annotationsData[i].LAT < bottom && 
-			annotationsData[i].LON > left && annotationsData[i].LON < right){
-			// indoen we voldoen het onderschrift maken
-			var subtitle = '';
-			if(annotationsData[i].HEIGHT){
-				subtitle += Config.AnnotationSubHeight + annotationsData[i].HEIGHT + '\t';
-			}
-			if(annotationsData[i].WIDTH){
-				subtitle += Config.AnnotationSubWidth + annotationsData[i].WIDTH;
-			}
-			
-			var icon = (annotationsData[i].HEIGHT && height && iconRed && annotationsData[i].HEIGHT < height) ?
-								iconRed : iconGreen;
-			// Maak een annotatie (Hij valt binnen de waarden dus zou op de kaart moeten komen)
-			toAddAnnotations[counter] = makeAnnotation(annotationsData[i], icon, subtitle);
-			
-			// 1 aangemaakt teller verhogen
-			counter++;
-		}	// Bereik controle
-	}
+	// Coordinaten berekenen (lat en long worden vanuit het midden meegegeven) en in een object stoppen
+	var delimiters = {
+						// De boven waarden berekenen
+						top	:		region.latitude - (region.latitudeDelta / 2),
+						bottom : 	region.latitude + (region.latitudeDelta / 2),
+						
+						// En de onder waarden
+						left :		region.longitude - (region.longitudeDelta / 2),
+						right : 	region.longitude + (region.longitudeDelta / 2)
+					};
 	
-	// Kijken hoeveel we er nu hebben
-	//annotationsCount = counter + annotationsCount;
+	Titanium.API.warn('top: ' + delimiters.top + ' Bottom: ' + delimiters.bottom + ' left: ' + 
+						delimiters.left + ' right: ' +  delimiters.right);
 	
-	// Indien dit meer is dan toegestaan de kaart leeg gooien
-	//if(annotationsCount > Config.maxAnnotations){
-	//	// Punten verwijderen
-	//	removeAnnotations(annotationsArray);
-	//	// En de counter opnieuw instellen
-	//	annotationsArray = [];
-	//	annotationsCount = counter;
-	//}
-	// For testing :D
-	//removeAnnotations(annotationsArray);
-	mapView.removeAllAnnotations();
+	// Annotaties binnen deze regio bepalen
+	var newAnnotations = getAnnotationsToAdd(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, 
+							height, VwApp.Config.BridgeRedIcon, delimiters);
+
+	// Nieuwe annotatiies bepalen							
+	newAnnotations = getDistinctSet(newAnnotations, annotationsArray);
+	mapView.addAnnotations(newAnnotations);
 	
-	Titanium.API.warn('Aantal: ' + counter + ' uit de mogelijke ' + annotationsData.length);
-	// Voeg alle annotaties toe aan de kaart
-	annotationsArray = toAddAnnotations;
-	mapView.addAnnotations(toAddAnnotations);
-	mapView.addAnnotations(trailers);
+	// Alle Annotaties in totaal updaten
+	annotationsArray = concat(newAnnotations, annotationsArray);
+	
+	// Oude delete functie verwijderen
+	clearTimeout(timeOut);
+	// Nieuwe toevoegen
+	deleteAnnotation(delimiters);
 };
 
 
@@ -417,7 +395,7 @@ var deleteAnnotation = function(region){
 	}
 	
 	// Timeout aanroepen voor de volgende ronde
-	setTimeout(function(){
+	timeOut = setTimeout(function(){
 		// Zichzelf aanroepen
 		deleteAnnotation(region);
 	}, config.RemoveInterval);
