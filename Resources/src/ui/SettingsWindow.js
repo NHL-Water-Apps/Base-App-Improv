@@ -1,5 +1,4 @@
 (function () {
-		
 	var SettingsWindow = {
 		// Het window object van de settingswindow
 		window: Titanium.UI.createWindow({
@@ -179,8 +178,8 @@
 	 *	Om de tabel mee te schalen indien je hem scheef houdt (of recht zet) 
 	 */
 	Titanium.Gesture.addEventListener('orientationchange', function () {
-		settingsView.height 	= '100%';
-		settingsView.width 		= '100%';
+		VwApp.UI.SettingsWindow.settingsView.height 	= '100%';
+		VwApp.UI.SettingsWindow.settingsView.width 		= '100%';
 	});
 
 	// Ophalen van de opgeslagen waarde
