@@ -120,6 +120,51 @@ var makeAnnotation = function(data, icon, subtitle) {
 };
 
 /**
+ * Vergelijkt twee annotations met elkaar en returned boolean true als ze 
+ * exact dezelfde zijn.
+ * 
+ * @param {object} [a]
+ * 		Een annotation object om mee te vergelijken.
+ * 
+ * @param {object} [b]
+ * 		Een annotation object om mee te vergelijken.
+ * 
+ * @return {bool}
+ * 		True als A en B gelijk zijn, anders false.
+ */
+var isAnnotationEqual = function(a, b) {
+	if (a && b && a.dataToPass && b.dataToPass && a.dataToPass.ID && a.dataToPass.TYPE) {
+		return (a.dataToPass.ID === back.dataToPass.ID && a.dataToPass.TYPE === b.dataToPass.TYPE);
+	} else if (a && b && a.ID && a.TYPE) {
+		return (a.ID === b.ID && a.TYPE === b.TYPE);
+	} 
+	
+	return false;
+};
+
+var getDistinctSet = function(a, b) {
+	var source,
+		dest,
+		destLength;
+		
+	if (a.length > b.length) {
+		source = b;
+		dest   = a;
+	} else {
+		source = a;
+		dest   = b;
+	}
+	
+	destLength = dest.length;
+	
+	for (var i = 0; i < source.length; i++) {
+		for (var j = 0; j < destLength; j++) {
+			
+		}
+	}
+};
+
+/**
  *	Alle annotations toevoegen aan de map uit de meegegeven array en met de 
  * 		juiste iconen (Gemaakt voor de bruggen)
  * 	@param {array} [dataArray]
