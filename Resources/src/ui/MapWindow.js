@@ -95,7 +95,7 @@
 		
 		MapWindow.regionChanged = setTimeout(function() {			
 			if(VwApp.UI.MapWindow.drawAnnotations){
-				VwApp.Map.filterAnnotations(e);
+				VwApp.Map.filterAnnotations(e, VwApp.Data);
 			}
 		}, 400);		
 	});
