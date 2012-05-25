@@ -144,51 +144,35 @@ var isAnnotationEqual = function(a, b) {
 
 /**
  * Vergelijkt twee sets van annotations, returned een nieuwe set met alle 
- * unieke annotations uit beide sets.
+ * unieke annotations uit de source set.
  * 
- * @param {array} [a]
- * 		Een array met annotation objecten
+ * @param {array} [source]
+ * 		Een array met annotation objecten waarvan je de unieke items wil.
  * 
- * @param {array} [b]
- * 		Een array met annotation objecten
+ * @param {array} [compare]
+ * 		Een array met annotation objecten waarmee je wilt vergelijken.
  * 
  * @return {array}
- * 		Een array met de unieke set annontations van array a en b.
+ * 		Een array met de unieke set annotations van de source array.
  */
-var getDistinctSet = function(a, b) {
-	var source,
-		dest,
-		destLength
-		distinct;
-	
-	// Set de kleinste array als source en de grootste als dest.	
-	if (a.length > b.length) {
-		source = b;
-		dest   = a;
-	} else {
-		source = a;
-		dest   = b;
-	}
-	
-	// Cache de huidige lengte van dest.
-	destLength = dest.length;
+var getDistinctSet = function(source, compare) {
+	var distinctSet = [];
 	
 	// Loop door alle items van source heen en voeg ze aan dest toe als ze 
 	// nog niet in dest zitten.
 	for (var i = 0; i < source.length; i++) {
 		distinct = true;
-		for (var j = 0; j < destLength; j++) {
+		for (var j = 0; j < compare.length; j++) {
 			if (isAnnotationEqual(dest[i], source[j])) {
 				distinct = false;
 			}
-		}
-			
+		}			
 		if (distinct) {
-			dest.push(source[i]);
+			distinctSet.push(source[i]);
 		}		
 	}
 	
-	return dest;
+	return distinctSet;
 };
 
 /**
