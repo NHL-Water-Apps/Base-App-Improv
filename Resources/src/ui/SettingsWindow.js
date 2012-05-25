@@ -253,6 +253,7 @@
 	if(VwApp.Config.ShowHeight)	
 	{	
 		SettingsWindow.boatHeightInput.addEventListener('blur', function(){
+			SettingsWindow.boatHeightInput.blur();
 			// controle op dit veld aanroepen
 			VwApp.Validation.checkField(SettingsWindow.boatHeightInput, 'height');
 			
@@ -267,6 +268,8 @@
 	if(VwApp.Config.ShowWidth)
 	{
 		SettingsWindow.boatWidthInput.addEventListener('blur', function(){
+			SettingsWindow.boatWidthInput.blur();
+			
 			// controle op dit veld aanroepen
 			VwApp.Validation.checkField(SettingsWindow.boatWidthInput, 'width');
 		});
