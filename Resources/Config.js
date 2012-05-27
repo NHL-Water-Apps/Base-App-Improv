@@ -83,13 +83,13 @@ var Config = {
 	 */
 	
 	// Achtergrond kleur van alle views
-	ViewBackgroundColor:   '#EEEEEE',
+	ViewBackgroundColor:   '#000000',
 	
 	// Achtergrond kleur van de zoekbalkjes
 	SearchBackgroundColor: '#000000',
 	
 	// Text kleur
-	TextColor: 	'#000000',
+	TextColor: 	'#EEEEEE',
 		/*	- - - - - - - - - - 
 	 * 	   DETAIL
 	 *	- - - - - - - - - -

@@ -89,6 +89,7 @@ function ChangeValue(data) {
 	{DetailWindow.window.setTitle(data.title)}
 	else
 	{DetailWindow.window.setTitle("-")}
+	
 	//lengte
 	if (data.ADRESS) 
 		{DetailWindow.Adres.setText(VwApp.Config.AdressDetail + data.ADRESS);}
@@ -125,7 +126,7 @@ function ChangeValue(data) {
 	if(data.PICTURE && Titanium.App.Properties.getBool('laadData', true))   
 	{
 	//foto van de brug tonen
-			DetailWindow.Imagebridge.setUrl('http://www.fryslan.nl/binfo4/images/bruggen/0750a.jpg');  //dummylink voor foto. dit kan data.PICTURE zijn
+			DetailWindow.Imagebridge.setUrl(ChangeLink(data.PICTURE));
 			DetailWindow.Imagebridge.setHeight('35%');
 			DetailWindow.Imagebridge.setWidth(Titanium.Gesture.isPortrait() ? '90%' :'60%');
 			DetailWindow.NoImagebridge.setText("");
@@ -143,7 +144,37 @@ function ChangeValue(data) {
 				DetailWindow.NoImagebridge.setText(VwApp.Config.PictureOffDetail);
 			}
 	}
-}
+	}
+function ChangeLink(link)
+	{
+		var oldlink = link;  //inladen van de oude link
+		var newlink = "";  //link die ontstaat uit de oude link
+		var slash = 0;    //integer to count the number of '/'	
+		for(var i = 0; i < oldlink.length; i++)
+			{
+				if(oldlink[i] == ',')   //wanneer en een ',' voorkomt, stoppen met het maken van de nieuwe link(voor de snelheid, deze if is niet noodzakelijk, wordt later afgevangen
+				{i = oldlink.length}
+
+				if(oldlink[i] == '/')  //het aantal '/' tellen
+				{	
+					newlink = newlink + oldlink[i];
+					slash++;
+				}
+				if(slash == 6)  //bij de 6de slash
+				{
+					slash++;
+					while(oldlink[i] != '=') //alles er tussenuithalen tot er een '=' komt
+					{i++}
+				}
+	
+				if(oldlink[i] != ',' && oldlink[i] != '/' && oldlink[i] != '=' && oldlink[i] != undefined) //else de nieuwe link maken
+				{
+				newlink = newlink + oldlink[i];
+				}
+				
+			}
+	 	return newlink;
+	}
 
 	//wanneer er geklikt wordt op de button setlocation op map en open de map, mits lat en lon aanwezig
 	DetailWindow.Toonkaart.addEventListener('click', function(){   

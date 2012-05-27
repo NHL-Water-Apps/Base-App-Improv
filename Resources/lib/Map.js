@@ -189,16 +189,17 @@ var getDistinctSet = function(source, compare) {
  * 			kunnen.
  */
 var annotationsArray = function(dataArray, iconGreen, iconRed){
-	// Kijken of er een hoogte ingeven is
+	// Kijken of er een hoogte en breedte ingeven is
 	var height = parseFloat(Titanium.App.Properties.getString('height', null));
+	var width = parseFloat(Titanium.App.Properties.getString('width', null));
 	// Loop door alle data
 	for(var i = 0; i < dataArray.length; i++)
 	{
 		// Subtitel opbouwen uit de hoogte en breedte
 		var subtitle = Config.AnnotationSubHeight + dataArray[i].HEIGTH + '\t' 
 				+ Config.AnnotationSubWidth + dataArray[i].WIDTH;
-		// Kijken of we er onderdoor kunnen
-		if(!height || dataArray[i].HEIGTH > height ) {
+		// Kijken of we er onderdoor kunnen, in de breedte en de breedte
+		if(!height || (dataArray[i].HEIGTH > height && dataArray[i].WIDTH > width)) {
 			addAnnotation(dataArray[i], iconGreen, subtitle );
 		}
 		// en anders
