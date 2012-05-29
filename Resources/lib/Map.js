@@ -4,6 +4,7 @@ var Config = require('Config');
 var currentUserLocation
   , mapView
   , timeOut = 0
+  , previousRegion
   , annotationsArray = [];
 
 /**
@@ -158,8 +159,8 @@ var isAnnotationEqual = function(a, b) {
 var getDistinctSet = function(source, compare) {
 	var distinctSet = [];
 	
-	// Loop door alle items van source heen en voeg ze aan dest toe als ze 
-	// nog niet in dest zitten.
+	// Loop door alle items van source heen en voeg ze aan distinctSet toe als ze 
+	//  als compare niet voorkomt in source
 	for (var i = 0; i < source.length; i++) {
 		distinct = true;
 		for (var j = 0; j < compare.length; j++) {
@@ -269,6 +270,18 @@ var filterAnnotations = function(region, data){
 						right : 	region.longitude + (region.longitudeDelta / 2)
 					};
 	
+	// Kijken of we meer dan een scherm zijn verplaatst (dan kunnen alle annotaties weg)
+	if(previousRegion && delimiters && (Math.abs(delimiters.top - previousRegion.top) >= region.latitudeDelta || 
+		Math.abs(delimiters.bottom - previousRegion.bottom) >= region.latitudeDelta || 
+		Math.abs(delimiters.left - previousRegion.left) >= region.longitudeDelta ||
+		Math.abs(delimiters.right - previousRegion.right) >= region.longitudeDelta 
+		)){
+			
+		mapView.removeAllAnnotations();
+		annotationsArray = [];
+	}
+	
+	previousRegion = delimiters;
 	Titanium.API.warn('top: ' + delimiters.top + ' Bottom: ' + delimiters.bottom + ' left: ' + 
 						delimiters.left + ' right: ' +  delimiters.right);
 	
@@ -360,7 +373,7 @@ var getAnnotationsToAdd = function(data, iconGreen, height, iconRed, delimiter){
 		} 
 		// Einde loop
 	} 
-	Titanium.API.warn(toAddAnnotations.length + ' uit de ' + data.length + 'toegevoegd.');
+	Titanium.API.warn(toAddAnnotations.length + ' uit de ' + data.length + ' toegevoegd.');
 	// Juiste annotaties terug geven
 	return toAddAnnotations;
 };
@@ -410,19 +423,23 @@ var deleteAnnotation = function(region){
 	}, Config.RemoveInterval);
 };
 
+/**
+ *	Functie die twee arrays samenvoegd
+ * 	
+ * 	@param {Array} [destination] 
+ * 		De array waarin de elementen moeten worden toegevoegd
+ * 
+ * 	@param {Array} [source]
+ * 		De array die bij de andere array dient te worden toegevoegd 
+ */
 var concat = function(destination, source){
+	
 	for(var i = 0; i < source.length; i++){
+		// Toevoegen aan het einde van de array
 		destination[destination.length] = source[i];
 	}
+	// Samengevoegde array terugegeven
 	return destination
-};
-
-var removeAnnotations = function(toRemove){
-	Titanium.API.warn('Annotaties op de kaart: ' + toRemove.length);
-	for(var i = 0; i < toRemove.length; i++){
-		mapView.removeAnnotation(toRemove[i]);
-	}
-	annotationsArray = [];
 };
 
 /**
@@ -490,4 +507,3 @@ exports.makeAnnotation =	makeAnnotation;
 exports.annotationsArray = 	annotationsArray;
 exports.showTrail = 		showTrail;
 exports.filterAnnotations = filterAnnotations;
-//exports.removeAnnotations = removeAnnotations;
