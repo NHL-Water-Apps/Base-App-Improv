@@ -231,12 +231,14 @@ var filterAnnotations = function(region, data){
 		return;
 	}
 	
+	// Alle annotaties verwijderen
 	mapView.removeAllAnnotations();
+	// En trail stippen weer terug zetten
 	mapView.addAnnotations(trailers);
 	
 	// Kijken of we niet al te ver uitgezoomed zijn
-	if((region.latitudeDelta > 0.1 && region.longitudeDelta  > 0.05 ) || 
-		(region.longitudeDelta > 0.1 && region.latitudeDelta > 0.05)){
+	if((region.latitudeDelta > Config.regionDeltaHorizontal && region.longitudeDelta  > regionDeltaVertical ) || 
+		(region.longitudeDelta > Config.regionDeltaHorizontal && region.latitudeDelta > regionDeltaVertical)){
 		// indien dan alle punten verwijderen 
 		//mapView.removeAllAnnotations();
 		//mapView.addAnnotations(trailers);

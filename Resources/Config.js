@@ -133,6 +133,10 @@ var Config = {
 	// Aantal stipjes trail op de kaart
 	AmountOfTrail: 10,
 	
+	// Minimale hoogte voor annotaties
+	regionDeltaHorizontal:	0.1,
+	regionDeltaVertical: 	0.05,
+	
 	// De interval waarop we annotaties verwijderen in miliseconden
 	RemoveInterval: 200,
 	
