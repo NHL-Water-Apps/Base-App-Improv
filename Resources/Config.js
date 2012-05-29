@@ -72,11 +72,13 @@ var Config = {
 	TraillingLineIcon: 	'/images/trailstip.png',
 	
 	// Icoontje voor de locatie van de gebruiker
-	UserLocateIcon:  '/images/location.png',
+	UserLocateIcon:  	'/images/location.png',
 	
 	// Android icoontje voor 'ga naar details' op de map annotations
 	AndroidrightButton: '/images/rightbutton.png',
 	
+	//icoontje voor 'ga naar de kaart' in het detailscherm
+	ShowOnMap:			'/images/ToonOpKaart.png',
 	
 	/*
 	 * Kleuren opties
@@ -100,13 +102,18 @@ var Config = {
 	 // 
 	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	 //detailview eigenschappen
-	 HeigthDetail : "Hoogte: ",
-	 WidthDetail : "Breedte: ",
-	 TypeDetail : "Type: ",
-	 AdressDetail : "Adres: ",
-	 UnitDetail : " Meter",
+	 HeigthDetail : 	"Hoogte: ",
+	 WidthDetail : 		"Breedte: ",
+	 TypeDetail : 		"Type: ",
+	 AdressDetail : 	"Adres: ",
+	 UnitDetail : 		" Meter",
+	 SquareUnitDetail:  " Vierkante meter",
+	 BronDetail: 		"Bron: ",
+	 ZipcodeDetail: 	"Postcode: ",
+	 CityDetail:   		"Stad: ",
+	 SizeDetail: 		"Oppervlakte: ",
+	 CodeDetail:		"Code: ",
 	 //titel van de toon op kaart knop
-	 ShowOnMapDetail : "Toon op kaart",
 	 LatLonNotFound : "Geen coordinaten gevonden..",
 	 
 	/*
