@@ -54,7 +54,7 @@ var Config = {
 	MapHybridText:	 'Hybride',
 	
 	DataUsageHeader: 'Datagebruik:',
-	LoadPicturesText: 'Internet afbeeldingen laden',
+	LoadPicturesText: 'Afbeeldingen laden',
 	
 	
 	/*
@@ -90,6 +90,7 @@ var Config = {
 	
 	// Text kleur
 	TextColor: 	'#EEEEEE',
+	TextColorIPhone: '#000000',
 		/*	- - - - - - - - - - 
 	 * 	   DETAIL
 	 *	- - - - - - - - - -

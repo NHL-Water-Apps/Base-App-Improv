@@ -18,13 +18,13 @@
 		}),
 		
 		// Object van de zoekbalk op de kaart.
-		searchbar: Titanium.UI.createSearchBar({
+		/*searchbar: Titanium.UI.createSearchBar({
 			barColor: 	VwApp.Config.SearchBackgroundColor, 
 			showCancel: false, 
 			focusable: 	false, 
 			hintText: 	VwApp.Config.SearchBarText, 
 			top : 0
-		}),
+		}),*/
 		
 		// De button waarmee je naar je eigen locatie gaat.
 		locationButton: Titanium.UI.createButton({
@@ -46,13 +46,13 @@
 	 */
 	if (Titanium.Platform.osname === 'android') {
 		// Zoekbalk is default onzichtbaar. (voor android)
-		MapWindow.searchbar.setVisible(false);
+		//MapWindow.searchbar.setVisible(false);
 
 		// Event listener op orientation change, om de hoogte van de searchbar
 		// consistent te houden tussen landschap en portret mode 
 		Titanium.Gesture.addEventListener('orientationchange', function () {
 			var height = Titanium.Gesture.isPortrait() ? '12%' : '20%';
-			MapWindow.searchbar.setHeight(height);
+			//MapWindow.searchbar.setHeight(height);
 		});
 		
 		// Bij het laden alvast een keer kunstmatig bovenstaande event-
@@ -61,13 +61,13 @@
 		
 		// Event listener die de zoekbalk toont/verbergt wanneer er op de search 
 		// soft-button van het android toestel word gedrukt.
-		MapWindow.window.addEventListener('android:search', function () {
+		/*MapWindow.window.addEventListener('android:search', function () {
 			if (MapWindow.searchbar.visible === true) {
 				MapWindow.searchbar.setVisible(false, {animated: true});
 			} else {
 				MapWindow.searchbar.setVisible(true, {animated: true});
 			}
-		});
+		});*/
 	}
 	
 	// Stel de huidige mapview in als mapview te gebruiken door de Map module.
@@ -130,7 +130,7 @@
 	
 	// Voeg alle onderdelen toe aan MapWindow.window
 	MapWindow.window.add(MapWindow.map);
-	MapWindow.window.add(MapWindow.searchbar);
+	//MapWindow.window.add(MapWindow.searchbar);
 	
 	MapWindow.window.add(MapWindow.locationButton);	
 			

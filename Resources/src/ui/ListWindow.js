@@ -8,7 +8,7 @@
 			title: 			  VwApp.Config.ListTabTitle,				
 			backgroundColor:  VwApp.Config.ViewBackgroundColor,
 			orientationModes: VwApp.Config.OrientationModes,	
-			nabBarHidden:	  true
+			navBarHidden:	  true
 		}),
 		//Searchbar die zoekt op title
 		searchbar: Titanium.UI.createSearchBar({   
