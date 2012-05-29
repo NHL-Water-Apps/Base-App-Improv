@@ -230,11 +230,16 @@ var filterAnnotations = function(region, data){
 		Titanium.API.error('Meegegeven data komt niet overeen. Error vanuit filterAnnotations functie!');
 		return;
 	}
+	
+	mapView.removeAllAnnotations();
+	mapView.addAnnotations(trailers);
+	
 	// Kijken of we niet al te ver uitgezoomed zijn
 	if((region.latitudeDelta > 0.1 && region.longitudeDelta  > 0.05 ) || 
 		(region.longitudeDelta > 0.1 && region.latitudeDelta > 0.05)){
 		// indien dan alle punten verwijderen 
-		mapView.removeAllAnnotations();
+		//mapView.removeAllAnnotations();
+		//mapView.addAnnotations(trailers);
 		// en einde functie
 		return;
 	}
@@ -254,8 +259,8 @@ var filterAnnotations = function(region, data){
 	 */
 	
 	// Maak twee variabelen die we nodig hebben aan
-	var toAddAnnotations = 	[];
-	var counter = 			0;
+	//var toAddAnnotations = 	[];
+	//var counter = 			0;
 	// Opgeslagen hoogte inlezen
 	var height = parseFloat(Titanium.App.Properties.getString('height', null));
 	
@@ -269,7 +274,7 @@ var filterAnnotations = function(region, data){
 						left :		region.longitude - (region.longitudeDelta / 2),
 						right : 	region.longitude + (region.longitudeDelta / 2)
 					};
-	
+	/*
 	// Kijken of we meer dan een scherm zijn verplaatst (dan kunnen alle annotaties weg)
 	if(previousRegion && delimiters && (Math.abs(delimiters.top - previousRegion.top) >= region.latitudeDelta || 
 		Math.abs(delimiters.bottom - previousRegion.bottom) >= region.latitudeDelta || 
@@ -280,7 +285,7 @@ var filterAnnotations = function(region, data){
 		mapView.removeAllAnnotations();
 		annotationsArray = [];
 	}
-	
+	*/
 	previousRegion = delimiters;
 	Titanium.API.warn('top: ' + delimiters.top + ' Bottom: ' + delimiters.bottom + ' left: ' + 
 						delimiters.left + ' right: ' +  delimiters.right);
@@ -288,22 +293,23 @@ var filterAnnotations = function(region, data){
 	// Annotaties binnen deze regio bepalen
 	var newAnnotations = getAnnotationsToAdd(data.bruggen, Config.BridgeGreenIcon, 
 							height, Config.BridgeRedIcon, delimiters);
-	Titanium.API.warn('Er zijn: ' + newAnnotations.length + ' gevonden.');						
+	//Titanium.API.warn('Er zijn: ' + newAnnotations.length + ' gevonden.');						
 	
-
+	/*
 	// Nieuwe annotatiies bepalen							
 	newAnnotations = getDistinctSet(newAnnotations, annotationsArray);
-	Titanium.API.warn(newAnnotations.length + ' over na distict');
-	mapView.addAnnotations(newAnnotations);
+	*/
+	//Titanium.API.warn(newAnnotations.length + ' over na distict');
+	if(newAnnotations) { mapView.addAnnotations(newAnnotations); }
 	
 	// Alle Annotaties in totaal updaten
-	annotationsArray = concat(newAnnotations, annotationsArray);
-	Titanium.API.warn('Kaart bevat nu in totaal ' + annotationsArray.length);
+	//annotationsArray = concat(newAnnotations, annotationsArray);
+	//Titanium.API.warn('Kaart bevat nu in totaal ' + annotationsArray.length);
 	
 	// Oude delete functie verwijderen
-	clearTimeout(timeOut);
+	//clearTimeout(timeOut);
 	// Nieuwe toevoegen
-	deleteAnnotation(delimiters);
+	//deleteAnnotation(delimiters);
 };
 
 
