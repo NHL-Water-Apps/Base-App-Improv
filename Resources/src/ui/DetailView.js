@@ -1,5 +1,5 @@
 (function () {
-	//scrollview
+	//Detailwindow en zijn elementen
 	var DetailWindow = {
 		window: Titanium.UI.createWindow({
 			top: 			0,
@@ -15,8 +15,15 @@
 			width:			'100%',
 			layout:			'vertical' 
 		}),
-		
-		//Hieronder staan de eigenschappen van de brug. Type, hoogte etc
+		//wanneer er een foto beschikbaar is deze weergeven in een imageview
+		Imagebridge : 	Ti.UI.createImageView({
+			image:				'',
+			height: 			'auto',
+			width: 				'80%',
+			top: 				'2%',
+			bottom:				'5%'
+		}),
+		//Wanneer er geen foto beschikbaar is komt er een tekst te staan
 		NoImagebridge : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -27,6 +34,7 @@
 			color:			VwApp.Config.TextColor
 		}),
 		
+		//Hieronder staan de eigenschappen van de data
 		Type : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -69,6 +77,7 @@
 			left: 			'3 %',
 			width : 		'auto',
 			heigth : 		'auto',
+			top:			'5%',
 			color:			VwApp.Config.TextColor
 		}),
 		
@@ -106,14 +115,6 @@
 			width : 		'auto',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
-		}),
-		 
-		Imagebridge : 	Ti.UI.createImageView({
-			image:				'',  //dummylink voor foto, dit kan dataToPass zijn
-			height: 			'auto',
-			width: 				'80%',
-			top: 				'2%',
-			bottom:				'5%'
 		}),
 			
 		//de button om de brug op de kaart te tonen
@@ -274,58 +275,75 @@
 	}
 	
 	/**
-	 * 
- 	 * @param {Object} link
- 	 * 		WAT DOE DA LINK?
+	 * De onnodige info van de link afhalen zodat deze in te laden is als image, toe te passen op de bruglinks
+ 	 * @param {string} link, van de afbeelding naar een pagina van de brug
+ 	 *  
 	 */
 	function ChangeBridgeLink(link) {
-		var oldlink = link;  //inladen van de oude link
-		var newlink = "";  //link die ontstaat uit de oude link
-		var slash = 0;    //integer to count the number of '/'
-			
+		//inladen van de oude link
+		var oldlink = link;
+		
+		//link die ontstaat uit de oude link  
+		var newlink = ""; 
+		
+		//integer om het aantal '/' te tellen 
+		var slash = 0;    
+		
+		//de oude link doorlopen, karakter voor karakter
 		for(var i = 0; i < oldlink.length; i++)	{
-			if(oldlink[i] == ',')    //wanneer en een ',' voorkomt, stoppen met het maken van de nieuwe link(voor de snelheid, deze if is niet noodzakelijk, wordt later afgevangen
-				i = oldlink.length;
+			//wanneer en een ',' voorkomt, stoppen met het maken van de nieuwe link
+			if(oldlink[i] == ',')  
+				return newlink;
 
-			if(oldlink[i] == '/') {  //het aantal '/' tellen
+			//het aantal '/' tellen
+			if(oldlink[i] == '/') {  
 				newlink = newlink + oldlink[i];
 				slash++;
 			}
-			
-			if(slash == 6) { //bij de 6de slash
+			//bij de 6de slash
+			if(slash == 6) { 
 				slash++;
 				
-				while(oldlink[i] != '=') { //alles er tussenuithalen tot er een '=' komt
+				//alles er tussenuithalen tot er een '=' komt
+				while(oldlink[i] != '=') { 
 					i++
 				}
 			}
-
-			if(oldlink[i] != ',' && oldlink[i] != '/' && oldlink[i] != '=' && oldlink[i] != undefined) {//else de nieuwe link maken
+			//else de nieuwe link maken
+			if(oldlink[i] != ',' && oldlink[i] != '/' && oldlink[i] != '=' && oldlink[i] != undefined) {
 				newlink = newlink + oldlink[i];
 			}
 				
 		}
-		
-	 	return newlink;
 	}
 
 	function ChangeMoorageLink(oldlink) {
-		var newlink = "";  //link die ontstaat uit de oude link
-		var slash = 0;    //integer to count the number of '/'	
+		
+		//link die ontstaat uit de oude link
+		var newlink = "";
+		
+		//integer om het aantal '/' te tellen
+		var slash = 0;    	
+		
+		//de oude link doorlopen, karakter voor karakter
 		for (var i = 0; i < oldlink.length; i++) {				
 			if(oldlink[i] == '/') {
 				slash++
 			}
-				
-			if(slash == 7) {   //wanneer en een '.' voorkomt				
+			
+			//bij de 7de slash 
+			if(slash == 7) {  				
+				//stukje toevoegen aan de nieuwe link
 				newlink = newlink +"/foto_marrekrite/";
+				//de laatste 5 karakters plakken aan de nieuwe link
 				for(var n = oldlink.length - 5; n < oldlink.length; n++) {				
 					newlink = newlink + oldlink[n];
 				}
+				//fotonummer toevoegen aan de link, in dit geval altijd 1
 				newlink = newlink + "_1.jpg";
 				return newlink;
 			}
-			
+			//newlink maken uit de oude link
 			newlink = newlink + oldlink[i];				
 		}
 	 	
