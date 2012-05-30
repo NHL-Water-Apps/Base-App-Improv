@@ -35,6 +35,12 @@ var addData = function(data) {
 var sortData = function() {
 	
 	tableData.sort(function(a, b) {
+		if (!a.title)
+			return 1;
+			
+		if (!b.title)
+			return -1;
+		
 		if (a.title < b.title)
 			return -1;
 		if (a.title > b.title)
