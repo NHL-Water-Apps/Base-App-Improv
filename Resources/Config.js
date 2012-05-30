@@ -94,7 +94,7 @@ var Config = {
 	BridgeRedIcon: 		'/images/BrugRood.png',
 	
 	AanlegPlaatsIcon:   '/images/Aanleg.png',
-	JachtHavenIcon:		'/images/Vis.png',			// TODO GOEDE PLAATJE PAKKEN
+	JachtHavenIcon:		'/images/Aanlegstijger.png',
 	
 	
 	// Trailing lijn
@@ -122,7 +122,35 @@ var Config = {
 	// Text kleur
 	TextColor: 			'#EEEEEE',
 	TextColorIPhone: 	'#000000',
-	
+
+
+	/*	- - - - - - - - - - 
+	 * 	   DETAIL
+	 *	- - - - - - - - - -
+	 */ 
+
+	 // Text weer te geven als er geen foto is
+	 NoPictureDetail: 'Geen foto beschikbaar',
+	 // 
+	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
+	 //detailview eigenschappen
+	 HeigthDetail : 	"Hoogte: ",
+	 WidthDetail : 		"Breedte: ",
+	 TypeDetail : 		"Type: ",
+	 AdressDetail : 	"Adres: ",
+	 UnitDetail : 		" Meter",
+	 SquareUnitDetail:  " Vierkante meter",
+	 BronDetail: 		"Bron: ",
+	 ZipcodeDetail: 	"Postcode: ",
+	 CityDetail:   		"Stad: ",
+	 SizeDetail: 		"Oppervlakte: ",
+	 CodeDetail:		"Code: ",
+	 BrugDetail:		"Brug",
+	 JachthavenDetail:	"Jachthaven",
+	 LigplaatsenDetail:	"Ligplaats",
+	 //titel van de toon op kaart knop
+	 LatLonNotFound : "Geen coordinaten gevonden..",
+
 	 
 	/*
 	 * Overige instellingen
