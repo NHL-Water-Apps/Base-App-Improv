@@ -22,12 +22,50 @@
 		}),
 
 		//de data in de lijsten
-		table : Titanium.UI.createTableView({   
-			data: 			VwApp.Data.bruggen,     
-			zIndex: 		0,
+		table : Titanium.UI.createTableView({    
+			zIndex: 		0
 		})
 			
 	};	
+	
+	function x() {
+		var data = [];
+	
+		for (var i = 0; i < VwApp.Data.bruggen.length; i++) {
+			data.push(VwApp.List.makeRow(VwApp.Data.bruggen[i]));
+		}
+		
+		ListWindow.table.setData(data);
+	}
+	
+	Ti.Geolocation.addEventListener('location', function (e) {
+		if (!e.coords)
+			return;
+		
+		for (name in VwApp.Data) {
+			if (VwApp.Data.hasOwnProperty(name)) {
+				for (var i = 0; i < VwApp.Data[name].length; i++) {
+					VwApp.Data[name][i].DISTANCE = VwApp.Map.distanceBetweenCoords(
+						VwApp.Data[name][i].LON,
+						VwApp.Data[name][i].LAT,
+						e.coords.longitude,
+						e.coords.latitude
+					);
+				}
+			}
+		}
+		
+		x();
+	});
+	
+	
+	var data = [];
+	
+	for (var i = 0; i < VwApp.Data.bruggen.length; i++) {
+		data.push(VwApp.List.makeRow(VwApp.Data.bruggen[i]));
+	}
+	
+	ListWindow.table.setData(data);
 	
 	//	Search toevoegen
 	ListWindow.table.search = ListWindow.searchbar;
@@ -44,7 +82,7 @@
 	//waardes van detailview veranderen
 	//for(d in e){ Titanium.API.warn(d);	}
 		 
-		VwApp.UI.changeDetailView(e.rowData);
+		VwApp.UI.changeDetailView(e.rowData.data);
 		VwApp.UI.TabBar.listTab.open(VwApp.UI.DetailWindow.window);
 	});
 	

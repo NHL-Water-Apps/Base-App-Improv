@@ -1,4 +1,4 @@
-var Config = require('Config');
+var Config = require('/Config');
 
 // Locale variabelen.
 var currentUserLocation
@@ -59,11 +59,15 @@ var updateGeolocation = function() {
 	            Ti.API.error('Error: ' + e.error);
 	        } else {
 	            currentUserLocation = e.coords;
+	            
+	            //Ti.GeoLocation.fireEvent('location', e);
 	        }
 	    });
 	} else {
 		alert(Config.NoGeolocationMsg);
-	}   
+	} 
+	
+	
 };
 
 /**
@@ -293,6 +297,9 @@ var filterAnnotations = function(region, data){
 	// Annotaties binnen deze regio bepalen
 	var newAnnotations = getAnnotationsToAdd(data.bruggen, Config.BridgeGreenIcon, 
 							height, Config.BridgeRedIcon, delimiters);
+	
+	newAnnotations = concat(newAnnotations, getAnnotationsToAdd(data.jachthavens, Config.JachtHavenIcon, null, null, delimiters));
+	newAnnotations = concat(newAnnotations, getAnnotationsToAdd(data.ligplaatsen, Config.AanlegPlaatsIcon, null, null, delimiters));
 	//Titanium.API.warn('Er zijn: ' + newAnnotations.length + ' gevonden.');						
 	
 	/*
@@ -504,12 +511,42 @@ function showTrail(plaats){
  		showTrail(plaats + 1)}, Config.TrailerTimeout);
 }
 
+/**
+ * Geeft de afstand in kilometers van een punt a tot punt b.
+ * 
+ * @param {Object} [xa]
+ * 		De longitude van punt a.
+ * 
+ * @param {Object} [ya]
+ * 		De latitude van punt a.
+ * 
+ * @param {Object} [xb]
+ * 		De longitude van punt b.
+ * 
+ * @param {Object} [yb]
+ * 		De latitude van punt b.
+ * 
+ * @returns {number}
+ * 		De afstand tussen punt a en b in kilometers.
+ */
+var distanceBetweenCoords = function (xa, ya, xb, yb) {
+	// Simpel pythagoras formuletje.
+	var dx = Math.abs(xa - xb),
+		dy = Math.abs(ya - yb),
+
+		// Het aantal kilometers dat in een enkele graad gaat.
+		kmdegree = 40060 / 360;
+
+	return (kmdegree * Math.sqrt(dx * dx + dy * dy)).toFixed(2);
+};
+
 // Maak een aantal functies van de module publiek beschikbaar.
-exports.setMapView = 		setMapView;
-exports.setLocation = 		setLocation;
-exports.updateGeolocation = updateGeolocation;
-exports.getUserLocation = 	getUserLocation;
-exports.makeAnnotation =	makeAnnotation;
-exports.annotationsArray = 	annotationsArray;
-exports.showTrail = 		showTrail;
-exports.filterAnnotations = filterAnnotations;
+exports.setMapView = 			setMapView;
+exports.setLocation = 			setLocation;
+exports.updateGeolocation = 	updateGeolocation;
+exports.getUserLocation = 		getUserLocation;
+exports.makeAnnotation =		makeAnnotation;
+exports.annotationsArray = 		annotationsArray;
+exports.showTrail = 			showTrail;
+exports.filterAnnotations = 	filterAnnotations;
+exports.distanceBetweenCoords = distanceBetweenCoords;

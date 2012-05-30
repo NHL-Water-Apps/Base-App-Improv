@@ -68,6 +68,10 @@ var Config = {
 	BridgeGreenIcon: 	'/images/BrugGroen.png',
 	BridgeRedIcon: 		'/images/BrugRood.png',
 	
+	AanlegPlaatsIcon:   '/images/Aanleg.png',
+	JachtHavenIcon:		'/images/Vis.png',			// TODO GOEDE PLAATJE PAKKEN
+	
+	
 	// Trailing lijn
 	TraillingLineIcon: 	'/images/trailstip.png',
 	
