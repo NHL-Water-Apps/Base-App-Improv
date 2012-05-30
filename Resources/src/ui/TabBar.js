@@ -1,23 +1,23 @@
 (function() {
 	var TabBar = {
 		// De tabgroep die de tabs controleert.
-		tabGroup : Titanium.UI.createTabGroup(),
+		tabGroup: Titanium.UI.createTabGroup(),
 		
 		// De drie tabs van de tabbalk.
-		mapTab : Titanium.UI.createTab({
-			title : VwApp.Config.MapTabTitle,
+		mapTab: Titanium.UI.createTab({
+			title: VwApp.Config.MapTabTitle,
 			icon:	VwApp.Config.MapTabIcon,
 			window: VwApp.UI.MapWindow.window
 		}),
 	
-		listTab : Titanium.UI.createTab({
-			title : VwApp.Config.ListTabTitle,
+		listTab: Titanium.UI.createTab({
+			title: VwApp.Config.ListTabTitle,
 			icon:	VwApp.Config.ListTabIcon,
 			window: VwApp.UI.ListWindow.window
 		}),
 	
-		settingsTab : Titanium.UI.createTab({
-			title : VwApp.Config.SettingsTabTitle,
+		settingsTab: Titanium.UI.createTab({
+			title: VwApp.Config.SettingsTabTitle,
 			icon:	VwApp.Config.SettingsTabIcon,
 			window: VwApp.UI.SettingsWindow.window
 		})

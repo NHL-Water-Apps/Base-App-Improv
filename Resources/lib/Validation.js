@@ -19,13 +19,12 @@ function checkField(fieldName, saveName){
 	var rExp  = /[0-9]+(\.[0-9]+)?/; 					
 			
 	// kijken of er een juist iets is ingevuld		
-	if(fieldName.value === '' || rExp.test(fieldName.value)) 	
-	{
+	if (fieldName.value === '' || rExp.test(fieldName.value)) {
 		// kijken of er een getal uit de regular expression komt
 		var temp = rExp.exec(fieldName.value); 				
-		if(fieldName.value === '') { Titanium.App.Properties.setString( saveName, null); } 
+		if (fieldName.value === '') { Titanium.App.Properties.setString( saveName, null); } 
 		// kleine controle (gaf een error zonder vreemd genoeg)
-		else if(temp !== null && temp.length > 0){			
+		else if (temp !== null && temp.length > 0) {			
 			
 			// anders het eerste getal uit de regular expression opslaan	
 			Titanium.App.Properties.setString(saveName, temp[0]);
