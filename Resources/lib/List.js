@@ -1,22 +1,25 @@
 var tableData = [];
 
-var makeRow = function(data) {
-	var title = "";
-	
-	if (data.title) {
-		title += data.title;
-	}
-	
-	if (data.DISTANCE) {
-		title += " (" + data.DISTANCE + " km)";
-	}	
+/**
+ * Maakt een tableRow van een dataobject
+ * 
+ * @param {Object} data
+ * 		Een data object.
+ */
+var makeRow = function(data) {	
 	
 	return Titanium.UI.createTableViewRow({
-		title: title,
+		title: data.title,
 		data : data
 	});
 };
 
+/**
+ * Voegt een array van data objecten toe aan de tableData array als tableRows.
+ * 
+ * @param {Object} data
+ * 		Een array van data objecten.
+ */
 var addData = function(data) {
 	if (!data)
 		return;
@@ -24,16 +27,14 @@ var addData = function(data) {
 	for (var i = 0; i < data.length; i++) {
 		tableData.push(makeRow(data[i]));
 	}
-	
-	return tableData;
 };
 
-var sortData = function(data) {
-	if (!data) {
-		return;
-	}
+/**
+ * Sorteert de huidige data.
+ */
+var sortData = function() {
 	
-	data.sort(function(a, b) {
+	tableData.sort(function(a, b) {
 		if (a.title < b.title)
 			return -1;
 		if (a.title > b.title)
@@ -41,15 +42,23 @@ var sortData = function(data) {
 			
 		return 0;
 	});	
-	
-	return data;
 };
 
+/**
+ * Verwijdert alle tableData
+ */
 var clearData = function() {
 	tableData = [];
 };
 
-exports.makeRow = makeRow;
+/**
+ * Returned alle table data als array.
+ */
+var getData = function() {
+	return tableData;
+};
+
 exports.addData = addData;
 exports.sortData = sortData;
 exports.clearData = clearData;
+exports.getData = getData;

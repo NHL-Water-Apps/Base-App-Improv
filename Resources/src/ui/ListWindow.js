@@ -22,26 +22,34 @@
 		//de data in de lijsten
 		table : Titanium.UI.createTableView({    
 			zIndex: 		0
-		}),			
-	};	
-
-	var updateListData = function() {
-		// Alle data toevoegen aan de lijst
-		var tableData = [];
+		}),
 		
+		refresh: false			
+	};	
+	
+	/**
+	 *  Deze functie update de data en voegt deze data toe aan de table/list.
+	 */
+	var updateListData = function() {		
 		VwApp.List.clearData();
 		
-		tableData = VwApp.List.addData(VwApp.Data.bruggen);
-		tableData = VwApp.List.addData(VwApp.Data.jachthavens);
-		tableData = VwApp.List.addData(VwApp.Data.ligplaatsen);
+		// Alle data sets als tabledata toevoegen
+		for (name in VwApp.Data) {
+			if (VwApp.Data.hasOwnProperty(name)) {
+				VwApp.List.addData(VwApp.Data[name]);
+			}
+		}
 		
-		tableData = VwApp.List.sortData(tableData);
+		// Sorteren
+		VwApp.List.sortData();
 		
-		ListWindow.table.data = tableData;
+		// Stop alles in de table
+		ListWindow.table.setData(VwApp.List.getData());
 	};
 	
 	VwApp.OnLoad.addFn(function() {
-		
+		// Update de table list.
+		updateListData();
 		
 		//eventlistener	wanneer er geklikt wordt op een van de vakken in de lijst
 		ListWindow.table.addEventListener('click', function(e){  
@@ -49,35 +57,13 @@
 			VwApp.UI.changeDetailView(e.rowData.data);
 			VwApp.UI.TabBar.listTab.open(VwApp.UI.DetailWindow.window);
 		});
-		
-		
-		/*Ti.Geolocation.addEventListener('location', function (e) {
-			if (!e.coords)
-				return;
-			
-			for (name in VwApp.Data) {
-				if (VwApp.Data.hasOwnProperty(name)) {
-					for (var i = 0; i < VwApp.Data[name].length; i++) {
-						VwApp.Data[name][i].DISTANCE = VwApp.Map.distanceBetweenCoords(
-							VwApp.Data[name][i].LON,
-							VwApp.Data[name][i].LAT,
-							e.coords.longitude,
-							e.coords.latitude
-						);
-					}
-				}
-			}
-			
-			updateListData();
-		}); */
-		
-		updateListData();
 	});
 	
 	// Wanneer de searchbar wordt aangeraakt komt de cancelButton niet tevoorschijn (iphone only)
 	ListWindow.searchbar.addEventListener('focus', function(){
 		ListWindow.searchbar.setShowCancel(false);
 	});
+	
 	//	Search toevoegen
 	ListWindow.table.search = ListWindow.searchbar;
 	

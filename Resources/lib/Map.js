@@ -20,7 +20,7 @@ Titanium.Geolocation.purpose = Config.GelocationIntent;
  * keer correct aangeroepen is. 
  * 
  * @param {Titanium.Map.View} [mapview]
- * 		Een Titaniium.Map.View die door de module moet worden gebruikt.
+ * 		Een Titanium.Map.View die door de module moet worden gebruikt.
  */
 var setMapView = function(mapview) {
 	mapView = mapview;
