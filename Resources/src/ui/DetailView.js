@@ -21,16 +21,15 @@
 			image:				'',
 			height: 			'auto',
 			width: 				'80%',
-			top: 				'2%',
-			bottom:				'5%'
+			top:				'3%'
 		}),
 		
 		// Wanneer er geen foto beschikbaar is komt er een tekst te staan
 		NoImagebridge : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
-			left: 			'3 %',
-			bottom: 		'5%', 
+			left: 			'3%',
+			top:	 		'3%', 
 			width : 		'auto',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
@@ -39,10 +38,10 @@
 		//Type van de data
 		TypeData : Titanium.UI.createLabel({
 			text : 			"",
-			textAlign : 	"left",
+			textAlign: 		'center',
 			left: 			'3 %',
 			width : 		'auto',
-			heigth : 		13,
+			heigth : 		18,
 			top:			'2%',
 			color:			VwApp.Config.TextColor
 		}),
@@ -131,8 +130,10 @@
 			
 		//de button om de brug op de kaart te tonen
 		Toonkaart : Titanium.UI.createButton({
-			top: 			60, 
+			top: 			40, 
 			image:			VwApp.Config.ShowOnMap,
+			height:			35,
+			width:			112,
 			position: 		'center'
 		})	
 	};
@@ -153,6 +154,17 @@
 		if (!data) {
 			return;
 		}
+		
+		//image hoogte is 0%, dus niet zichtbaar
+		DetailWindow.Imagebridge.setHeight('0%'); 
+		//elke tekst in de labels leeg maken
+		for(text in DetailWindow) {
+			if (DetailWindow.hasOwnProperty(text)) {
+				if(DetailWindow[text].setText)			
+					DetailWindow[text].setHeight(0);
+			}
+		}
+		
 		// title
 		if (data.title) {
 			DetailWindow.window.setTitle(data.title);
@@ -160,8 +172,10 @@
 			DetailWindow.window.setTitle("-");
 		}
 
-		// het type data bovenaan zetten
-		if (data.TYPE == 'jachthavens') {
+		
+		DetailWindow.TypeData.setHeight('auto');
+		//het type data bovenaan zetten
+		if(data.TYPE == 'jachthavens') {
 			DetailWindow.TypeData.setText(VwApp.Config.JachthavenDetail);
 		}
 		if (data.TYPE == 'bruggen'){
@@ -171,7 +185,6 @@
 			DetailWindow.TypeData.setText(VwApp.Config.LigplaatsenDetail);
 		}
 		
-		DetailWindow.Container.add(DetailWindow.NoImagebridge);
 
 		//afbeelding
 		if (data.TYPE == 'ligplaatsen' || data.TYPE == 'bruggen') {
@@ -191,35 +204,39 @@
 			} else { 
 				// geen foto beschikbaar
 				 
+				DetailWindow.NoImagebridge.setHeight('auto');
 				// wanneer foto's laden ingeschakeld is en er is geen foto beschikbaar toon de tekst dat er geen foto beschikbaar is
 				if (Titanium.App.Properties.getBool('laadData', true)) {     
-						DetailWindow.Imagebridge.setHeight('0%');  //image hoogte is 0%, dus niet zichtbaar
 						DetailWindow.NoImagebridge.setText(VwApp.Config.NoPictureDetail);
 				}	
 				// als het laden van foto's uitgeschakeld is geef hierover een melding
 				else {
-					// image hoogte is 0%, dus niet zichtbaar
-					DetailWindow.Imagebridge.setHeight('0%'); 
 					DetailWindow.NoImagebridge.setText(VwApp.Config.PictureOffDetail);
 				}
 			}
 			
-			DetailWindow.Container.add(DetailWindow.Imagebridge);
-			DetailWindow.Container.add(DetailWindow.NoImagebridge); 
+			 
 		}
 		
 		// adres, geldt alleen voor bepaalde types
 		if (data.TYPE == 'jachthavens' || data.TYPE == 'bruggen') {
+			DetailWindow.Adres.setHeight('auto');
+			
 			if (data.ADRESS) {
 				DetailWindow.Adres.setText(VwApp.Config.AdressDetail + data.ADRESS);
 			} else {
 				DetailWindow.Adres.setText(VwApp.Config.AdressDetail + "-");
 			}
 			
-			DetailWindow.Container.add(DetailWindow.Adres);
 		}
 	
 		if (data.TYPE == 'bruggen') {
+			
+			DetailWindow.Hoogte.setHeight('auto');
+			DetailWindow.Breedte.setHeight('auto');
+			DetailWindow.Type.setHeight('auto');
+			DetailWindow.Bron.setHeight('auto');
+			
 			// hoogte
 			if (data.HEIGHT || data.HEIGHT == 0) {
 				DetailWindow.Hoogte.setText(VwApp.Config.HeigthDetail + data.HEIGHT + VwApp.Config.UnitDetail);
@@ -243,20 +260,21 @@
 			
 			// bron
 			if (data.SOURCE) {
-				DetailWindow.Type.setText(VwApp.Config.BronDetail + data.SOURCE);
+				DetailWindow.Bron.setText(VwApp.Config.BronDetail + data.SOURCE);
 			} else {
-				DetailWindow.Type.setText(VwApp.Config.BronDetail + "-");
+				DetailWindow.Bron.setText(VwApp.Config.BronDetail + "-");
 			}
 			
-			DetailWindow.Container.add(DetailWindow.Type);
-			DetailWindow.Container.add(DetailWindow.Hoogte);
-			DetailWindow.Container.add(DetailWindow.Breedte);
-			DetailWindow.Container.add(DetailWindow.Bron);
 		}
 		
 		if (data.TYPE == 'jachthavens') {	
+			
+			DetailWindow.Postcode.setHeight('auto');
+			DetailWindow.Stad.setHeight('auto');
+			DetailWindow.Oppervlakte.setHeight('auto');
+			
 			// postcode
-			if(data.ZIPCODE) {
+			if (data.ZIPCODE) {
 				DetailWindow.Postcode.setText(VwApp.Config.ZipcodeDetail + data.ZIPCODE);
 			} else {
 				DetailWindow.Postcode.setText(VwApp.Config.ZipcodeDetail + "-");
@@ -275,13 +293,13 @@
 			} else {
 				DetailWindow.Oppervlakte.setText(VwApp.Config.SizeDetail + "-");
 			}
-	
-			DetailWindow.Container.add(DetailWindow.Stad);
-			DetailWindow.Container.add(DetailWindow.Postcode);
-			DetailWindow.Container.add(DetailWindow.Oppervlakte);
 		}
 		
 		if (data.TYPE == 'ligplaatsen') {
+			
+			DetailWindow.Type.setHeight('auto');
+			DetailWindow.Code.setHeight('auto');
+			
 			if (data.MOORAGETYPE) { 
 				DetailWindow.Type.setText(VwApp.Config.TypeDetail + data.MOORAGETYPE);
 			} else {
@@ -293,9 +311,6 @@
 			} else {
 				DetailWindow.Code.setText(VwApp.Config.CodeDetail + "-");
 			}
-			
-			DetailWindow.Container.add(DetailWindow.Type);
-			DetailWindow.Container.add(DetailWindow.Code);
 		}
 		
 		if (data.LON && data.LAT) { 
@@ -305,9 +320,6 @@
 			Lat = "";
 		  	Lon = "";
 		}
-	
-		// toonkaart hier pas toevoegen, anders komt deze bovenaan te staan
-		DetailWindow.Container.add(DetailWindow.Toonkaart); 
 	}
 	
 	/**
@@ -404,6 +416,21 @@
 	});
 		
 	// toevoegen aan scrollview
+	DetailWindow.Container.add(DetailWindow.TypeData);	
+	DetailWindow.Container.add(DetailWindow.Imagebridge);
+	DetailWindow.Container.add(DetailWindow.NoImagebridge);
+	DetailWindow.Container.add(DetailWindow.Type);	
+	DetailWindow.Container.add(DetailWindow.Adres);
+	DetailWindow.Container.add(DetailWindow.Stad);
+	DetailWindow.Container.add(DetailWindow.Postcode);
+	DetailWindow.Container.add(DetailWindow.Hoogte);
+	DetailWindow.Container.add(DetailWindow.Breedte);
+	DetailWindow.Container.add(DetailWindow.Oppervlakte);
+	DetailWindow.Container.add(DetailWindow.Code);
+	DetailWindow.Container.add(DetailWindow.Bron);
+	// toonkaart hier pas toevoegen, anders komt deze bovenaan te staan
+	DetailWindow.Container.add(DetailWindow.Toonkaart); 
+
 	DetailWindow.window.add(DetailWindow.Container);
 	
 	
