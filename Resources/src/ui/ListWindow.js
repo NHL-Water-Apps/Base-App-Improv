@@ -28,7 +28,7 @@
 			
 	};	
 	
-	/*function x() {
+	function x() {
 		var data = [];
 	
 		for (var i = 0; i < VwApp.Data.bruggen.length; i++) {
@@ -55,8 +55,8 @@
 			}
 		}
 		
-		//x();
-	}); */
+		x();
+	});
 	
 	
 	var data = [];
