@@ -41,6 +41,7 @@
 			touchEnabled: 	false
 		}),
 		
+		//	Een rij aanmaken welke alles voor de hoogte gaat bevatten
 		boatHeightRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.HeightText,
 			top: 			0,
@@ -60,6 +61,7 @@
 			touchEnabled: 	false
 		}),
 		
+		// Input box waarin we de hoogte kunnen aangeven 
 		boatHeightInput: Titanium.UI.createTextField({
 			height: 		'auto',
 			width: 			'35%',
@@ -74,6 +76,7 @@
 			touchEnabled: 	true
 		}),
 		
+		// Een rij maken voor de hoogte
 		boatWidthRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.WidthText,
 			top: 			0,
@@ -93,6 +96,7 @@
 			width: 		'auto'
 		}),
 		
+		// Inputveld maken voor de breedte
 		boatWidthInput: Titanium.UI.createTextField({
 			height: 	'auto',
 			width: 		'35%',
@@ -147,6 +151,7 @@
 			top: 			'1%'
 		}),
 		
+		// Een rij maken die de laad afbeeldingen veld gaat bevatten
 		loadPictureRow: Titanium.UI.createTableViewRow({
 			title: VwApp.Config.LoadPicturesText,
 			top: 			0,
@@ -166,6 +171,7 @@
 			width: 	'auto'
 		}),
 		
+		// Een checkbox voor of wij afbeeldingen mogen laden of niet
 		loadPictureCheckBox: Titanium.UI.createSwitch({
 			style: 	Titanium.Platform.osname === 'android' ? Titanium.UI.Android.SWITCH_STYLE_CHECKBOX : 0,
 			value: 	Titanium.App.Properties.getBool('laadData', false),
@@ -189,7 +195,7 @@
 	// Ophalen van de opgeslagen waarde
 	var mapType = Titanium.App.Properties.getString('mapType', 'map');
 	// controle of de teruggegeven waarde valid is
-	if(!(mapType === 'map' || mapType === 'satelite' || mapType === 'hybrid')) {
+	if (!(mapType === 'map' || mapType === 'satelite' || mapType === 'hybrid')) {
 		
 		// zoniet dan instellen op de standaardwaarde van de kaart
 		 mapType = 'map'; Titanium.App.Properties.setString('mapType', 'map');	
@@ -197,7 +203,7 @@
 	
 	// Kijken welke waarde er opgeslagen stond en deze inladen
 	// En tevens de kaart instellen op het juiste type
-	if(mapType === 'map') { 
+	if (mapType === 'map') { 
 		SettingsWindow.mapStandardRow.hasCheck = true; 
 		VwApp.UI.MapWindow.map.mapType = Titanium.Map.STANDARD_TYPE; 
 	} else if (mapType === 'satelite') { 
@@ -219,7 +225,7 @@
 		SettingsWindow.mapStandardRow.addEventListener('click', function(){
 			SettingsWindow.mapStandardRow.hasCheck = true;					// De juiste aanvinken
 			SettingsWindow.mapSateliteRow.hasCheck = false;				// De rest uitvinken
-			if(Titanium.Platform.osname !== 'android'){	// Dit omdat deze het niet doet op android
+			if (Titanium.Platform.osname !== 'android') {	// Dit omdat deze het niet doet op android
 				SettingsWindow.mapHybridRow.hasCheck = false;			
 			}
 			VwApp.UI.MapWindow.map.mapType = Titanium.Map.STANDARD_TYPE, // juiste kaart type instellen
@@ -229,14 +235,14 @@
 		SettingsWindow.mapSateliteRow.addEventListener('click', function(){
 			SettingsWindow.mapStandardRow.hasCheck = false;
 			SettingsWindow.mapSateliteRow.hasCheck = true;
-			if(Titanium.Platform.osname !== 'android'){
+			if (Titanium.Platform.osname !== 'android') {
 				SettingsWindow.mapHybridRow.hasCheck = false;
 			}
 			VwApp.UI.MapWindow.map.mapType = Titanium.Map.SATELLITE_TYPE;
 			Titanium.App.Properties.setString('mapType', 'satelite');
 		});
 		// idem maar omdat dit kaart type het niet doet op android staat er een if voor
-		if(Titanium.Platform.osname !== 'android'){
+		if (Titanium.Platform.osname !== 'android') {
 			SettingsWindow.mapHybridRow.addEventListener('click', function(){
 				SettingsWindow.mapStandardRow.hasCheck = false;
 				SettingsWindow.mapSateliteRow.hasCheck = false;
@@ -249,38 +255,39 @@
 		/**
 		 * 	Eventlistener die ervoor zorgt dat de velden focus kwijtkunnen
 		 */
-		SettingsWindow.settingsView.addEventListener('click', function(){
-			if(SettingsWindow.boatHeightInput.focus){
+		SettingsWindow.settingsView.addEventListener('click', function() {
+			if (SettingsWindow.boatHeightInput.focus) {
 				SettingsWindow.boatHeightInput.blur();
 			};
-			if(SettingsWindow.boatWidthInput.focus){
+			if (SettingsWindow.boatWidthInput.focus) {
 				SettingsWindow.boatWidthInput.blur();
 			};
 		});
 		
 		//	Kopelen van de controle functies aan de inputvelden
 		// 	indien we deze optie geven
-		if(VwApp.Config.ShowHeight)	{	
+		if (VwApp.Config.ShowHeight) {	
 			SettingsWindow.boatHeightInput.addEventListener('blur', function(){
 				SettingsWindow.boatHeightInput.blur();
 				// controle op dit veld aanroepen
 				VwApp.Validation.checkField(SettingsWindow.boatHeightInput, 'height');
 				
 				// Vervolgens de kaart updaten
-				//VwApp.UI.MapWindow.map.removeAllAnnotations();
-				// Alle annotations toevoegen aan de kaart
-				//VwApp.Map.annotationsArray(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
+				// 	door middel van een syntetische event aanroepen
 				VwApp.UI.MapWindow.map.fireEvent('regionChanged');
 			});
 		}
 		// 	indien we een breedte willen weergeven
-		if(VwApp.Config.ShowWidth)
-		{
+		if (VwApp.Config.ShowWidth) {
 			SettingsWindow.boatWidthInput.addEventListener('blur', function(){
 				SettingsWindow.boatWidthInput.blur();
 				
 				// controle op dit veld aanroepen
 				VwApp.Validation.checkField(SettingsWindow.boatWidthInput, 'width');
+				
+				// Vervolgens de kaart updaten
+				// 	door middel van een syntetische event aanroepen
+				VwApp.UI.MapWindow.map.fireEvent('regionChanged');
 			});
 		}
 		
@@ -288,7 +295,7 @@
 	 	 * 	Eventlistener toevoegen die kijkt of er op het laden van afbeeldingen switch gedrukt is
 	 	 * 	Indien zo nieuwe waarde opslaan
 	 	 */
-		SettingsWindow.loadPictureCheckBox.addEventListener('change', function(){
+		SettingsWindow.loadPictureCheckBox.addEventListener('change', function() {
 			// Het opslaan van de waarde van de switch
 			Titanium.App.Properties.setBool('laadData', SettingsWindow.loadPictureCheckBox.value);
 		});
@@ -297,20 +304,20 @@
 	/*
  	 *		TOEVOEGEN VAN ALLES AAN DE WINDOW 
 	 */
-	if(VwApp.Config.ShowHeight) {
+	if (VwApp.Config.ShowHeight) {
 		//	Het label en het inputfield toevoegen aan de hoogte rij
 		SettingsWindow.boatHeightRow.add(SettingsWindow.boatHeightInput);
-		if(Titanium.Platform.osname === 'android'){
+		if (Titanium.Platform.osname === 'android') {
 			SettingsWindow.boatHeightRow.add(SettingsWindow.boatHeightLabel);
 		}
 		// Toevoegen aan de sectie
 		SettingsWindow.boatDimensionSection.add(SettingsWindow.boatHeightRow);
 	}
 	
-	if(VwApp.Config.ShowWidth) {
+	if (VwApp.Config.ShowWidth) {
 		//	Zelfde voor de breedte
 		SettingsWindow.boatWidthRow.add(SettingsWindow.boatWidthInput);
-		if(Titanium.Platform.osname === 'android'){
+		if (Titanium.Platform.osname === 'android') {
 			SettingsWindow.boatWidthRow.add(SettingsWindow.boatWidthLabel);
 		}
 		// Toevoegen aan de sectie
@@ -320,10 +327,10 @@
 	// 	De verschillende types kaart toevoegen aan de sectie
 	SettingsWindow.mapTypeSection.add(SettingsWindow.mapStandardRow);
 	SettingsWindow.mapTypeSection.add(SettingsWindow.mapSateliteRow);
-	if(Titanium.Platform.osname !== 'android') { SettingsWindow.mapTypeSection.add(SettingsWindow.mapHybridRow); }
+	if (Titanium.Platform.osname !== 'android') { SettingsWindow.mapTypeSection.add(SettingsWindow.mapHybridRow); }
 	
 	// 	De optie toevoegen om afbeeldingen te laden of niet
-	if(Titanium.Platform.osname === 'android') {
+	if (Titanium.Platform.osname === 'android') {
 		SettingsWindow.loadPictureRow.add(SettingsWindow.loadPictureLabel);
 	}
 	SettingsWindow.loadPictureRow.add(SettingsWindow.loadPictureCheckBox);
@@ -331,10 +338,10 @@
 	
 	// Sectie toevoegen aan de tabel
 	// Maar alleen als we dit aangegeven hebben in de config (hoogte en breedte) anders niet
-	if(VwApp.Config.ShowHeight || VwApp.Config.ShowWidth) {
+	if (VwApp.Config.ShowHeight || VwApp.Config.ShowWidth) {
 		SettingsWindow.settingsView.data = [SettingsWindow.boatDimensionSection, SettingsWindow.mapTypeSection, 
 											SettingsWindow.dataUsageSection];
-	} else{
+	} else {
 		SettingsWindow.settingsView.data = [ SettingsWindow.mapTypeSection, 
 											SettingsWindow.dataUsageSection];
 	}
@@ -342,11 +349,11 @@
 	
 	
 	// Het geheel toevoegen aan de window
-	if(Titanium.Platform.osname === 'android') {
+	if (Titanium.Platform.osname === 'android') {
 		// Tabel toevoegen aan de scrollView om ze een android bug te omzeilen
 		SettingsWindow.settingsScrollView.add(SettingsWindow.settingsView);
 		SettingsWindow.window.add(SettingsWindow.settingsScrollView);
-	} else{
+	} else {
 		SettingsWindow.window.add(SettingsWindow.settingsView);	
 	}
 	

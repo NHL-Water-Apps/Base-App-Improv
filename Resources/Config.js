@@ -49,13 +49,38 @@ var Config = {
 	// Sectie kaart type
 	MapTypeHeader:   'Kaart eigenschappen',
 	
+	// Text voor de verschillende types kaart
 	MapSateliteText: 'Satelliet',
 	MapStandardText: 'Kaart',
 	MapHybridText:	 'Hybride',
 	
+	// Text voor het data gebruik
 	DataUsageHeader: 'Datagebruik:',
 	LoadPicturesText: 'Afbeeldingen laden',
 	
+	// voor het detailscherm
+
+	// Text weer te geven als er geen foto is
+	NoPictureDetail: 'Geen foto beschikbaar',
+	// Text weer te geven als het laden van foto's is uitgeschakeld
+	PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
+	
+	// Text op het detailscherm verder eigenschappen
+	HeigthDetail: 		"Hoogte: ",
+	WidthDetail: 		"Breedte: ",
+	TypeDetail: 		"Type: ",
+	AdressDetail: 		"Adres: ",
+	UnitDetail: 		" Meter",
+ 	SquareUnitDetail:  	" Vierkante meter",
+	BronDetail: 		"Bron: ",
+	ZipcodeDetail: 		"Postcode: ",
+	CityDetail:   		"Stad: ",
+	SizeDetail: 		"Oppervlakte: ",
+	CodeDetail:			"Code: ",
+	
+	// Text voor als er geen coordinaten gevonden zijn
+	//		bij het klikken op de knop
+	LatLonNotFound : "Geen coordinaten gevonden..",
 	
 	/*
 	 * Icoontjes / button / plaatjes
@@ -95,32 +120,9 @@ var Config = {
 	SearchBackgroundColor: '#000000',
 	
 	// Text kleur
-	TextColor: 	'#EEEEEE',
-	TextColorIPhone: '#000000',
+	TextColor: 			'#EEEEEE',
+	TextColorIPhone: 	'#000000',
 	
-	/*	- - - - - - - - - - 
-	 * 	   DETAIL
-	 *	- - - - - - - - - -
-	 */ 
-
-	 // Text weer te geven als er geen foto is
-	 NoPictureDetail: 'Geen foto beschikbaar',
-	 // 
-	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
-	 //detailview eigenschappen
-	 HeigthDetail : 	"Hoogte: ",
-	 WidthDetail : 		"Breedte: ",
-	 TypeDetail : 		"Type: ",
-	 AdressDetail : 	"Adres: ",
-	 UnitDetail : 		" Meter",
-	 SquareUnitDetail:  " Vierkante meter",
-	 BronDetail: 		"Bron: ",
-	 ZipcodeDetail: 	"Postcode: ",
-	 CityDetail:   		"Stad: ",
-	 SizeDetail: 		"Oppervlakte: ",
-	 CodeDetail:		"Code: ",
-	 //titel van de toon op kaart knop
-	 LatLonNotFound : "Geen coordinaten gevonden..",
 	 
 	/*
 	 * Overige instellingen
@@ -140,10 +142,13 @@ var Config = {
 	// de button voor de positie van de gebruiker word gedrukt.
 	DefaultUserLocZoom: 0.005,
 	
+	// Bool value die aangeeft of deze app trail moet laden of niet
+	ShowTrail:		true,
 	// Instellingen voor de trail achter de persoon aan (in miliseconden)
-	TrailerTimeout: 100000, // 1 seconde
+	TrailerTimeout: 1000, // 1 seconde
 	// Aantal stipjes trail op de kaart
-	AmountOfTrail: 10,
+	AmountOfTrail: 	10,
+	
 	
 	// Minimale hoogte voor annotaties
 	regionDeltaHorizontal:	0.1,

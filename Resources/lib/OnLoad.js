@@ -21,9 +21,11 @@ var addFn = function (fn) {
 var setLoaded = function () {		
 	if (loaded)
 		return;
-		
+	
+	// Loop door alle methodes in de que
 	while (onLoadFn.length > 0) {
 		var fn = onLoadFn.pop();
+		// En voer ze uit
 		fn();
 	}
 	
@@ -37,6 +39,6 @@ var isLoaded = function () {
 	return loaded;
 }
 
-exports.addFn    = addFn;
+exports.addFn = 	addFn;
 exports.setLoaded = setLoaded;
 exports.isLoaded  = isLoaded;

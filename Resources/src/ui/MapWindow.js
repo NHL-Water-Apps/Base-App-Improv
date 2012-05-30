@@ -32,24 +32,6 @@
 		regionChanged: 0
 	};
 	
-	/**
-	 *  SPECIFIEK VOOR ANDROID
-	 */
-	if (Titanium.Platform.osname === 'android') {
-		// Zoekbalk is default onzichtbaar. (voor android)
-		//MapWindow.searchbar.setVisible(false);
-
-		// Event listener op orientation change, om de hoogte van de searchbar
-		// consistent te houden tussen landschap en portret mode 
-		Titanium.Gesture.addEventListener('orientationchange', function () {
-			var height = Titanium.Gesture.isPortrait() ? '12%' : '20%';
-			//MapWindow.searchbar.setHeight(height);
-		});
-		
-		// Bij het laden alvast een keer kunstmatig bovenstaande event-
-		// listener aanroepen.
-		Titanium.Gesture.fireEvent('orientationchange');
-	}
 	
 	// Stel de huidige mapview in als mapview te gebruiken door de Map module.
 	VwApp.Map.setMapView(MapWindow.map);
@@ -92,9 +74,13 @@
 	 	 */
 		MapWindow.map.addEventListener('click', function(e){
 			// Kijken waar er gedrukt is
+			
+			// Als we op de rechterknop gedrukt hebben of rechterpanel (android)
 			if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane')
 			{
+				// Dan de detailpagina updaten
 				VwApp.UI.changeDetailView(e.annotation.dataToPass);
+				// en deze openen
 				VwApp.UI.TabBar.mapTab.open(VwApp.UI.DetailWindow.window, {animate: true});
 			}
 		});
@@ -109,17 +95,15 @@
 		}
 		
 		// Het loggen van de trail starten
-		VwApp.Map.showTrail(0);
+		if (VwApp.Config.ShowTrail) { VwApp.Map.showTrail(0); }
 	});
 	
 	// Voeg alle onderdelen toe aan MapWindow.window
 	MapWindow.window.add(MapWindow.map);
-	//MapWindow.window.add(MapWindow.searchbar);
 	
 	MapWindow.window.add(MapWindow.locationButton);	
 					
 	// Voeg MapWindow toe aan de UI namespace voor gebruik buiten deze closure.
 	VwApp.UI.MapWindow = MapWindow;
-	
-	
+		
 })();
