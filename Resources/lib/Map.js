@@ -241,8 +241,8 @@ var filterAnnotations = function(region, data){
 	mapView.addAnnotations(trailers);
 	
 	// Kijken of we niet al te ver uitgezoomed zijn
-	if((region.latitudeDelta > Config.regionDeltaHorizontal && region.longitudeDelta  > Config.regionDeltaVertical ) || 
-	   (region.longitudeDelta > Config.regionDeltaHorizontal && region.latitudeDelta > Config.regionDeltaVertical )){
+	if((region.latitudeDelta > Config.regionDeltaHorizontal && region.longitudeDelta  > regionDeltaVertical ) || 
+		(region.longitudeDelta > Config.regionDeltaHorizontal && region.latitudeDelta > regionDeltaVertical)){
 		// indien dan alle punten verwijderen 
 		//mapView.removeAllAnnotations();
 		//mapView.addAnnotations(trailers);
