@@ -160,15 +160,14 @@
 			DetailWindow.window.setTitle("-");
 		}
 
-		//het type data bovenaan zetten
-		if(data.TYPE == 'jachthavens') {
+		// het type data bovenaan zetten
+		if (data.TYPE == 'jachthavens') {
 			DetailWindow.TypeData.setText(VwApp.Config.JachthavenDetail);
 		}
-		
-		if(data.TYPE == 'bruggen'){
+		if (data.TYPE == 'bruggen'){
 			DetailWindow.TypeData.setText(VwApp.Config.BrugDetail);
 		}
-		if(data.TYPE == 'ligplaatsen') {
+		if (data.TYPE == 'ligplaatsen') {
 			DetailWindow.TypeData.setText(VwApp.Config.LigplaatsenDetail);
 		}
 		
