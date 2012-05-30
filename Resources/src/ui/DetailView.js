@@ -18,10 +18,10 @@
 		
 		//wanneer er een foto beschikbaar is deze weergeven in een imageview
 		Imagebridge : 	Ti.UI.createImageView({
-			image:				'',
-			height: 			'auto',
-			width: 				'80%',
-			top:				'3%'
+			image:			'',
+			height: 		'auto',
+			width: 			'80%',
+			top:			'3%'
 		}),
 		
 		// Wanneer er geen foto beschikbaar is komt er een tekst te staan
@@ -158,10 +158,9 @@
 		//image hoogte is 0%, dus niet zichtbaar
 		DetailWindow.Imagebridge.setHeight('0%'); 
 		//elke tekst in de labels leeg maken
-		for(text in DetailWindow) {
-			if (DetailWindow.hasOwnProperty(text)) {
-				if(DetailWindow[text].setText)			
-					DetailWindow[text].setHeight(0);
+		for (text in DetailWindow) {
+			if (DetailWindow.hasOwnProperty(text) && DetailWindow[text].setText) {		
+				DetailWindow[text].setHeight(0);
 			}
 		}
 		
@@ -175,7 +174,7 @@
 		
 		DetailWindow.TypeData.setHeight('auto');
 		//het type data bovenaan zetten
-		if(data.TYPE == 'jachthavens') {
+		if (data.TYPE == 'jachthavens') {
 			DetailWindow.TypeData.setText(VwApp.Config.JachthavenDetail);
 		}
 		if (data.TYPE == 'bruggen'){
@@ -355,7 +354,7 @@
 				
 				// alles er tussenuithalen tot er een '=' komt
 				while (oldlink[i] != '=') { 
-					i++
+					i++;
 				}
 			}
 			// else de nieuwe link maken
