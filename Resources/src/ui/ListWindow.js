@@ -1,7 +1,6 @@
 (function () {
 	//sorteren van de data
-	VwApp.Data.bruggen.sort(sortName);  
- 
+ 	VwApp.Data.jachthavens.sort(sortName);
 	//listwindow
 	var ListWindow = {
 		window: Titanium.UI.createWindow({
@@ -15,7 +14,8 @@
 			barColor: 		 VwApp.Config.SearchBackgroundColor,   
 			filterAttribute: 'title',  			
    			hintText: 		 VwApp.Config.SearchBarText,  
-   			showCancel:		 false, 			  
+   			showCancel:		 false, 
+   			focusable: 		 false, 			  
    			top:			 0, 			
 			zIndex: 		 9,
 			height: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? 43 : 55 

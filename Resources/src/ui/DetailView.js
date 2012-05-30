@@ -21,7 +21,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			top: 			'0%',
+			bottom: 		'5%', 
 			width : 		'auto',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
@@ -50,27 +50,66 @@
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
-		Adres : Titanium.UI.createLabel({
+		Bron : 	Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			top: 			'5%',
 			width : 		'auto',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
+		Adres : Titanium.UI.createLabel({
+			text : 			"",
+			textAlign : 	"left",
+			left: 			'3 %',
+			width : 		'auto',
+			heigth : 		'auto',
+			color:			VwApp.Config.TextColor
+		}),
+		Postcode : 	Titanium.UI.createLabel({
+			text : 			"",
+			textAlign : 	"left",
+			left: 			'3 %',
+			width : 		'auto',
+			heigth : 		'auto',
+			color:			VwApp.Config.TextColor
+		}),
+		Stad : 	Titanium.UI.createLabel({
+			text : 			"",
+			textAlign : 	"left",
+			left: 			'3 %',
+			width : 		'auto',
+			heigth : 		'auto',
+			color:			VwApp.Config.TextColor
+		}),
+		Oppervlakte : 	Titanium.UI.createLabel({
+			text : 			"",
+			textAlign : 	"left",
+			left: 			'3 %',
+			width : 		'auto',
+			heigth : 		'auto',
+			color:			VwApp.Config.TextColor
+		}),
+		Code : 	Titanium.UI.createLabel({
+			text : 			"",
+			textAlign : 	"left",
+			left: 			'3 %',
+			width : 		'auto',
+			heigth : 		'auto',
+			color:			VwApp.Config.TextColor
+		}),
+		 
 		Imagebridge : 	Ti.UI.createImageView({
-			url:				'',  //dummylink voor foto, dit kan dataToPass zijn
-			height: 			'35%',
-			width : 			Titanium.Gesture.isPortrait() ? '90%' :'60%',
+			image:				'',  //dummylink voor foto, dit kan dataToPass zijn
+			height: 			'auto',
+			width: 				'80%',
 			top: 				'2%',
+			bottom:				'5%'
 			}),
 		//de button om de brug op de kaart te tonen
 		Toonkaart : Titanium.UI.createButton({
-			top: 			80, 
-			height: 		'auto',
-			width: 			'auto', 
-			title: 			VwApp.Config.ShowOnMapDetail,
+			top: 			60, 
+			image:			VwApp.Config.ShowOnMap,
 			position: 		'center'
 		}),		
 	};
@@ -174,30 +213,50 @@
 	 	return newlink;
 	}
 
+	function ChangeMoorageLink(oldlink) {
+		var newlink = "";  //link die ontstaat uit de oude link
+		var slash = 0;    //integer to count the number of '/'	
+		for (var i = 0; i < oldlink.length; i++) {				
+			if(oldlink[i] == '/') {
+				slash++
+			}
+				
+			if(slash == 7) {   //wanneer en een '.' voorkomt				
+				newlink = newlink +"/foto_marrekrite/";
+				for(var n = oldlink.length - 5; n < oldlink.length; n++) {				
+					newlink = newlink + oldlink[n];
+				}
+				//newlink = newlink + "_1.jpg";
+				return newlink;
+			}
+			
+			newlink = newlink + oldlink[i];				
+		}
+	 	
+	}
 	//wanneer er geklikt wordt op de button setlocation op map en open de map, mits lat en lon aanwezig
 	DetailWindow.Toonkaart.addEventListener('click', function(){   
-		if(Lat != "") {	
+		if(Lat != "") {		
 			VwApp.Map.setLocation(Lat, Lon, VwApp.Config.DefaultUserLocZoom);
 			VwApp.UI.TabBar.tabGroup.setActiveTab(VwApp.UI.TabBar.mapTab);
 			VwApp.UI.DetailWindow.window.close();
-		} else {
-			alert (VwApp.Config.LatLonNotFound);
-		}	
+		}
+	});
+	
+	var fotonummer = 1;
+	var datalink;
+	DetailWindow.Imagebridge.addEventListener('click', function() {   
+		fotonummer++;
+		DetailWindow.Imagebridge.get
+		if (fotonummer > 5)
+		{fotonummer = 1;}
+		DetailWindow.Imagebridge.setImage(ChangeMoorageLink(datalink) + "_" + fotonummer + ".jpg");
 	});
 	
 	//toevoegen aan scrollview
-	DetailWindow.Container.add(DetailWindow.Imagebridge)
-	DetailWindow.Container.add(DetailWindow.NoImagebridge)
-	DetailWindow.Container.add(DetailWindow.Adres);
-	DetailWindow.Container.add(DetailWindow.Type);
-	DetailWindow.Container.add(DetailWindow.Hoogte);
-	DetailWindow.Container.add(DetailWindow.Breedte); 
-	DetailWindow.Container.add(DetailWindow.Toonkaart); 
 	DetailWindow.window.add(DetailWindow.Container);
 	
 	
 	VwApp.UI.DetailWindow = DetailWindow;
 	VwApp.UI.changeDetailView = ChangeValue;
 })();
-	
-
