@@ -54,7 +54,7 @@ var Config = {
 	MapHybridText:	 'Hybride',
 	
 	DataUsageHeader: 'Datagebruik:',
-	LoadPicturesText: 'Internet afbeeldingen laden',
+	LoadPicturesText: 'Afbeeldingen laden',
 	
 	
 	/*
@@ -92,6 +92,7 @@ var Config = {
 	
 	// Text kleur
 	TextColor: 	'#EEEEEE',
+	TextColorIPhone: '#000000',
 		/*	- - - - - - - - - - 
 	 * 	   DETAIL
 	 *	- - - - - - - - - -
@@ -139,9 +140,12 @@ var Config = {
 	// Aantal stipjes trail op de kaart
 	AmountOfTrail: 10,
 	
-	// De maximale hoeveelheid annotaties die we kunnen toevoegen
-	maxAnnotations: 20,
-	RemoveInterval: 100,
+	// Minimale hoogte voor annotaties
+	regionDeltaHorizontal:	0.1,
+	regionDeltaVertical: 	0.05,
+	
+	// De interval waarop we annotaties verwijderen in miliseconden
+	RemoveInterval: 200,
 	
 	OrientationModes: [ 
 		Titanium.UI.PORTRAIT,

@@ -15,10 +15,9 @@
 			height: Titanium.Platform.osname === 'android' ? 
 			// 	op android de hoogte absoluut zetten anders werkt hij niet en is hij weg :<
 			(Titanium.Gesture.isPortrait ? Titanium.Platform.displayCaps.platformHeight : 
-				Titanium.Platform.displayCaps.platformWidth) : 
-					'100%',
+				Titanium.Platform.displayCaps.platformWidth) : '100%',
 			width: 	'100%',
-			scrollable: false,
+			scrollable: true,
 			style: 	Titanium.UI.iPhone.TableViewStyle.GROUPED
 			// Data wordt onderaan toegevoegd
 		}),
@@ -43,6 +42,7 @@
 		}),
 		
 		boatHeightRow: Titanium.UI.createTableViewRow({
+			title: 			VwApp.Config.HeightText,
 			top: 			0,
 			left: 			0,
 			selectionStyle: 0,
@@ -68,12 +68,14 @@
 			right: 			'5%',
 			keyboardType: 	Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 			returnKeyType: 	Titanium.UI.RETURNKEY_DONE,
-			top: 			Titanium.Platform.osname === 'android' ? '5%' : '6%',
+			top: 			Titanium.Platform.osname === 'android' ? '5%' : 10,
+			bottom: 		Titanium.Platform.osname === 'android' ? 0 : 10,
 			hintText: 		VwApp.Config.HeightHintText,
 			touchEnabled: 	true
 		}),
 		
 		boatWidthRow: Titanium.UI.createTableViewRow({
+			title: 			VwApp.Config.WidthText,
 			top: 			0,
 			left: 			0,
 			width: 			'100%',
@@ -83,7 +85,7 @@
 		
 		boatWidthLabel: Titanium.UI.createLabel({
 			text: 		VwApp.Config.WidthText,
-			top: 		Titanium.Platform.osname === 'android' ? '32%' : '6%',
+			top: 		'32%',
 			left: 		'5%',
 			touchEnabled: false,
 			color:		VwApp.Config.TextColor,
@@ -98,8 +100,9 @@
 			keyboardType: Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 			returnKeyType: Titanium.UI.RETURNKEY_DONE,
 			value: 		Titanium.App.Properties.getString('width', null),
-			top: 		Titanium.Platform.osname === 'android' ? '5%' : '6%',
-			hintText: 	VwApp.Config.WidthHintText
+			top: 		Titanium.Platform.osname === 'android' ? '5%' : 10,
+			bottom: 	Titanium.Platform.osname === 'android' ? 0 : 10,
+			hintText: 	VwApp.Config.WidthHintText,
 		}),
 		
 		// 	Deze sectie bevat de mogelijkheid om tussen verschillende types kaart te kiezen
@@ -113,7 +116,7 @@
 		mapSateliteRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.MapSateliteText,
 			className: 		"row",
-			color:			VwApp.Config.TextColor,
+			color:			Titanium.Platform.osname === 'android' ? VwApp.Config.TextColor : VwApp.Config.TextColorIPhone,
 			hasCheck: 		false,
 			touchEnabled: 	false,
 		}),
@@ -122,7 +125,7 @@
 		mapStandardRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.MapStandardText,
 			className: 		"row",
-			color:			VwApp.Config.TextColor,
+			color:			Titanium.Platform.osname === 'android' ? VwApp.Config.TextColor : VwApp.Config.TextColorIPhone,
 			hasCheck: 		false,
 			touchEnabled: 	false
 		}),
@@ -131,7 +134,7 @@
 		mapHybridRow: Titanium.UI.createTableViewRow({
 			title: 			VwApp.Config.MapHybridText,
 			className: 		"row",
-			color:			VwApp.Config.TextColor,
+			color:			Titanium.Platform.osname === 'android' ? VwApp.Config.TextColor : VwApp.Config.TextColorIPhone,
 			hasCheck: 		false,	
 			touchEnabled: 	false
 		}),
@@ -145,17 +148,18 @@
 		}),
 		
 		loadPictureRow: Titanium.UI.createTableViewRow({
+			title: VwApp.Config.LoadPicturesText,
 			top: 			0,
 			left: 			0,
 			width: 			'auto',
 			selectionStyle:	0,
-			height: 		'auto'
+			height: 		Titanium.Platform.osname === 'android' ? 'auto' : 40
 		}),
 		
 		loadPictureLabel: Titanium.UI.createLabel({
 			text: 	VwApp.Config.LoadPicturesText,
-			top: 	Titanium.Platform.osname === 'android' ? '33%' : '6%', 
-			left: 	'23%',
+			top: 	'33%', 
+			left: 	'5%',
 			color:	VwApp.Config.TextColor,
 			touchEnabled: false,
 			height: 'auto',
@@ -165,7 +169,7 @@
 		loadPictureCheckBox: Titanium.UI.createSwitch({
 			style: 	Titanium.Platform.osname === 'android' ? Titanium.UI.Android.SWITCH_STYLE_CHECKBOX : 0,
 			value: 	Titanium.App.Properties.getBool('laadData', false),
-			left: 	'5%'
+			right: 	'5%'
 		})
 		
 	};
@@ -290,8 +294,9 @@
 	if(VwApp.Config.ShowHeight){
 		//	Het label en het inputfield toevoegen aan de hoogte rij
 		SettingsWindow.boatHeightRow.add(SettingsWindow.boatHeightInput);
-		SettingsWindow.boatHeightRow.add(SettingsWindow.boatHeightLabel);
-		
+		if(Titanium.Platform.osname === 'android'){
+			SettingsWindow.boatHeightRow.add(SettingsWindow.boatHeightLabel);
+		}
 		// Toevoegen aan de sectie
 		SettingsWindow.boatDimensionSection.add(SettingsWindow.boatHeightRow);
 	}
@@ -299,8 +304,9 @@
 	if(VwApp.Config.ShowWidth){
 		//	Zelfde voor de breedte
 		SettingsWindow.boatWidthRow.add(SettingsWindow.boatWidthInput);
-		SettingsWindow.boatWidthRow.add(SettingsWindow.boatWidthLabel);
-		
+		if(Titanium.Platform.osname === 'android'){
+			SettingsWindow.boatWidthRow.add(SettingsWindow.boatWidthLabel);
+		}
 		// Toevoegen aan de sectie
 		SettingsWindow.boatDimensionSection.add(SettingsWindow.boatWidthRow);
 	}
@@ -311,7 +317,9 @@
 	if(Titanium.Platform.osname !== 'android') { SettingsWindow.mapTypeSection.add(SettingsWindow.mapHybridRow); }
 	
 	// 	De optie toevoegen om afbeeldingen te laden of niet
-	SettingsWindow.loadPictureRow.add(SettingsWindow.loadPictureLabel);
+	if(Titanium.Platform.osname === 'android'){
+		SettingsWindow.loadPictureRow.add(SettingsWindow.loadPictureLabel);
+	}
 	SettingsWindow.loadPictureRow.add(SettingsWindow.loadPictureCheckBox);
 	SettingsWindow.dataUsageSection.add(SettingsWindow.loadPictureRow);
 	
@@ -326,11 +334,17 @@
 											SettingsWindow.dataUsageSection];
 	}
 	
-	// Tabel toevoegen aan de scrollView om ze een android bug te omzeilen
-	SettingsWindow.settingsScrollView.add(SettingsWindow.settingsView);
+	
 	
 	// Het geheel toevoegen aan de window
-	SettingsWindow.window.add(SettingsWindow.settingsScrollView);
+	if(Titanium.Platform.osname === 'android'){
+		// Tabel toevoegen aan de scrollView om ze een android bug te omzeilen
+		SettingsWindow.settingsScrollView.add(SettingsWindow.settingsView);
+		SettingsWindow.window.add(SettingsWindow.settingsScrollView);
+	}
+	else{
+		SettingsWindow.window.add(SettingsWindow.settingsView);	
+	}
 	
 	// Voeg SettingsWindow toe aan de UI namespace voor gebruik buiten deze 
 	// closure.
