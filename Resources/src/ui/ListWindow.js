@@ -77,7 +77,10 @@
 		});
 	});
 	
-	
+	// Wanneer de searchbar wordt aangeraakt komt de cancelButton niet tevoorschijn (iphone only)
+	ListWindow.searchbar.addEventListener('focus', function(){
+		ListWindow.searchbar.setShowCancel(false);
+	});
 	//	Search toevoegen
 	ListWindow.table.search = ListWindow.searchbar;
 	
