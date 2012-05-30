@@ -208,87 +208,90 @@
 		SettingsWindow.mapHybridRow.hasCheck = true; VwApp.UI.MapWindow.map.mapType = Titanium.Map.HYBRID_TYPE; 
 	} 
 	
-	/**
-	 * 	 Verschillende functies voor elk type kaart
- 	 *  	- Elke functie zal all andere "vinkjes" weghalen en de juiste aanvinken
- 	 * 		- De nieuwe waarde opslaan 
- 	 * 		- De map opnieuw instellen zodat deze de juiste type kaart gebruikt
- 	 */
-	SettingsWindow.mapStandardRow.addEventListener('click', function(){
-		SettingsWindow.mapStandardRow.hasCheck = true;					// De juiste aanvinken
-		SettingsWindow.mapSateliteRow.hasCheck = false;				// De rest uitvinken
-		if(Titanium.Platform.osname !== 'android'){	// Dit omdat deze het niet doet op android
-			SettingsWindow.mapHybridRow.hasCheck = false;			
-		}
-		VwApp.UI.MapWindow.map.mapType = Titanium.Map.STANDARD_TYPE, // juiste kaart type instellen
-		Titanium.App.Properties.setString('mapType', 'map'); // en opslaan
-	});
-	// idem
-	SettingsWindow.mapSateliteRow.addEventListener('click', function(){
-		SettingsWindow.mapStandardRow.hasCheck = false;
-		SettingsWindow.mapSateliteRow.hasCheck = true;
-		if(Titanium.Platform.osname !== 'android'){
-			SettingsWindow.mapHybridRow.hasCheck = false;
-		}
-		VwApp.UI.MapWindow.map.mapType = Titanium.Map.SATELLITE_TYPE;
-		Titanium.App.Properties.setString('mapType', 'satelite');
-	});
-	// idem maar omdat dit kaart type het niet doet op android staat er een if voor
-	if(Titanium.Platform.osname !== 'android'){
-		SettingsWindow.mapHybridRow.addEventListener('click', function(){
+	VwApp.OnLoad.addFn(function(){
+		
+		/**
+		 * 	 Verschillende functies voor elk type kaart
+	 	 *  	- Elke functie zal all andere "vinkjes" weghalen en de juiste aanvinken
+	 	 * 		- De nieuwe waarde opslaan 
+	 	 * 		- De map opnieuw instellen zodat deze de juiste type kaart gebruikt
+	 	 */
+		SettingsWindow.mapStandardRow.addEventListener('click', function(){
+			SettingsWindow.mapStandardRow.hasCheck = true;					// De juiste aanvinken
+			SettingsWindow.mapSateliteRow.hasCheck = false;				// De rest uitvinken
+			if(Titanium.Platform.osname !== 'android'){	// Dit omdat deze het niet doet op android
+				SettingsWindow.mapHybridRow.hasCheck = false;			
+			}
+			VwApp.UI.MapWindow.map.mapType = Titanium.Map.STANDARD_TYPE, // juiste kaart type instellen
+			Titanium.App.Properties.setString('mapType', 'map'); // en opslaan
+		});
+		// idem
+		SettingsWindow.mapSateliteRow.addEventListener('click', function(){
 			SettingsWindow.mapStandardRow.hasCheck = false;
-			SettingsWindow.mapSateliteRow.hasCheck = false;
-			SettingsWindow.mapHybridRow.hasCheck = true;
-			VwApp.UI.MapWindow.map.mapType = Titanium.Map.HYBRID_TYPE;
-			Titanium.App.Properties.setString('mapType', 'hybrid');
+			SettingsWindow.mapSateliteRow.hasCheck = true;
+			if(Titanium.Platform.osname !== 'android'){
+				SettingsWindow.mapHybridRow.hasCheck = false;
+			}
+			VwApp.UI.MapWindow.map.mapType = Titanium.Map.SATELLITE_TYPE;
+			Titanium.App.Properties.setString('mapType', 'satelite');
 		});
-	}
-	
-	/**
-	 * 	Eventlistener die ervoor zorgt dat de velden focus kwijtkunnen
-	 */
-	SettingsWindow.settingsView.addEventListener('click', function(){
-		if(SettingsWindow.boatHeightInput.focus){
-			SettingsWindow.boatHeightInput.blur();
-		};
-		if(SettingsWindow.boatWidthInput.focus){
-			SettingsWindow.boatWidthInput.blur();
-		};
-	});
-	
-	//	Kopelen van de controle functies aan de inputvelden
-	// 	indien we deze optie geven
-	if(VwApp.Config.ShowHeight)	{	
-		SettingsWindow.boatHeightInput.addEventListener('blur', function(){
-			SettingsWindow.boatHeightInput.blur();
-			// controle op dit veld aanroepen
-			VwApp.Validation.checkField(SettingsWindow.boatHeightInput, 'height');
-			
-			// Vervolgens de kaart updaten
-			//VwApp.UI.MapWindow.map.removeAllAnnotations();
-			// Alle annotations toevoegen aan de kaart
-			//VwApp.Map.annotationsArray(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
-			VwApp.UI.MapWindow.map.fireEvent('regionChanged');
+		// idem maar omdat dit kaart type het niet doet op android staat er een if voor
+		if(Titanium.Platform.osname !== 'android'){
+			SettingsWindow.mapHybridRow.addEventListener('click', function(){
+				SettingsWindow.mapStandardRow.hasCheck = false;
+				SettingsWindow.mapSateliteRow.hasCheck = false;
+				SettingsWindow.mapHybridRow.hasCheck = true;
+				VwApp.UI.MapWindow.map.mapType = Titanium.Map.HYBRID_TYPE;
+				Titanium.App.Properties.setString('mapType', 'hybrid');
+			});
+		}
+		
+		/**
+		 * 	Eventlistener die ervoor zorgt dat de velden focus kwijtkunnen
+		 */
+		SettingsWindow.settingsView.addEventListener('click', function(){
+			if(SettingsWindow.boatHeightInput.focus){
+				SettingsWindow.boatHeightInput.blur();
+			};
+			if(SettingsWindow.boatWidthInput.focus){
+				SettingsWindow.boatWidthInput.blur();
+			};
 		});
-	}
-	// 	indien we een breedte willen weergeven
-	if(VwApp.Config.ShowWidth)
-	{
-		SettingsWindow.boatWidthInput.addEventListener('blur', function(){
-			SettingsWindow.boatWidthInput.blur();
-			
-			// controle op dit veld aanroepen
-			VwApp.Validation.checkField(SettingsWindow.boatWidthInput, 'width');
+		
+		//	Kopelen van de controle functies aan de inputvelden
+		// 	indien we deze optie geven
+		if(VwApp.Config.ShowHeight)	{	
+			SettingsWindow.boatHeightInput.addEventListener('blur', function(){
+				SettingsWindow.boatHeightInput.blur();
+				// controle op dit veld aanroepen
+				VwApp.Validation.checkField(SettingsWindow.boatHeightInput, 'height');
+				
+				// Vervolgens de kaart updaten
+				//VwApp.UI.MapWindow.map.removeAllAnnotations();
+				// Alle annotations toevoegen aan de kaart
+				//VwApp.Map.annotationsArray(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
+				VwApp.UI.MapWindow.map.fireEvent('regionChanged');
+			});
+		}
+		// 	indien we een breedte willen weergeven
+		if(VwApp.Config.ShowWidth)
+		{
+			SettingsWindow.boatWidthInput.addEventListener('blur', function(){
+				SettingsWindow.boatWidthInput.blur();
+				
+				// controle op dit veld aanroepen
+				VwApp.Validation.checkField(SettingsWindow.boatWidthInput, 'width');
+			});
+		}
+		
+		/*
+	 	 * 	Eventlistener toevoegen die kijkt of er op het laden van afbeeldingen switch gedrukt is
+	 	 * 	Indien zo nieuwe waarde opslaan
+	 	 */
+		SettingsWindow.loadPictureCheckBox.addEventListener('change', function(){
+			// Het opslaan van de waarde van de switch
+			Titanium.App.Properties.setBool('laadData', SettingsWindow.loadPictureCheckBox.value);
 		});
-	}
-	
-	/*
- 	 * 	Eventlistener toevoegen die kijkt of er op het laden van afbeeldingen switch gedrukt is
- 	 * 	Indien zo nieuwe waarde opslaan
- 	 */
-	SettingsWindow.loadPictureCheckBox.addEventListener('change', function(){
-		// Het opslaan van de waarde van de switch
-		Titanium.App.Properties.setBool('laadData', SettingsWindow.loadPictureCheckBox.value);
 	});
 	
 	/*

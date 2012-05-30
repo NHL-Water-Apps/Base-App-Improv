@@ -1,6 +1,4 @@
 (function () {
-	//sorteren van de data
- 	VwApp.Data.jachthavens.sort(sortName);
 	//listwindow
 	var ListWindow = {
 		window: Titanium.UI.createWindow({
@@ -27,7 +25,8 @@
 		})
 			
 	};	
-	
+
+/*	
 	function x() {
 		var data = [];
 	
@@ -58,14 +57,26 @@
 		x();
 	});
 	
+*/	
+	VwApp.OnLoad.addFn(function() {
+		var data = [];
 	
-	var data = [];
+		for (var i = 0; i < VwApp.Data.bruggen.length; i++) {
+			data.push(VwApp.List.makeRow(VwApp.Data.bruggen[i]));
+		}
+		
+		ListWindow.table.setData(data);
+		
+		//eventlistener	wanneer er geklikt wordt op een van de vakken in de lijst
+		ListWindow.table.addEventListener('click', function(e){  
+		//waardes van detailview veranderen
+		//for(d in e){ Titanium.API.warn(d);	}
+			 
+			VwApp.UI.changeDetailView(e.rowData.data);
+			VwApp.UI.TabBar.listTab.open(VwApp.UI.DetailWindow.window);
+		});
+	});
 	
-	for (var i = 0; i < VwApp.Data.bruggen.length; i++) {
-		data.push(VwApp.List.makeRow(VwApp.Data.bruggen[i]));
-	}
-	
-	ListWindow.table.setData(data);
 	
 	//	Search toevoegen
 	ListWindow.table.search = ListWindow.searchbar;
@@ -76,15 +87,6 @@
 	
 	// Voeg alle UI onderdelen toe aan ListWindow.window
 	ListWindow.window.add(ListWindow.table);
-	
-	//eventlistener	wanneer er geklikt wordt op een van de vakken in de lijst
-	ListWindow.table.addEventListener('click', function(e){  
-	//waardes van detailview veranderen
-	//for(d in e){ Titanium.API.warn(d);	}
-		 
-		VwApp.UI.changeDetailView(e.rowData.data);
-		VwApp.UI.TabBar.listTab.open(VwApp.UI.DetailWindow.window);
-	});
 	
 	
 	// Voeg ListWindow toe aan de UI namespace voor gebruik buiten deze closure.

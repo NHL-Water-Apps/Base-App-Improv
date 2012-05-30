@@ -241,8 +241,8 @@ var filterAnnotations = function(region, data){
 	mapView.addAnnotations(trailers);
 	
 	// Kijken of we niet al te ver uitgezoomed zijn
-	if((region.latitudeDelta > Config.regionDeltaHorizontal && region.longitudeDelta  > regionDeltaVertical ) || 
-		(region.longitudeDelta > Config.regionDeltaHorizontal && region.latitudeDelta > regionDeltaVertical)){
+	if((region.latitudeDelta > Config.regionDeltaHorizontal && region.longitudeDelta  > Config.regionDeltaVertical ) || 
+		(region.longitudeDelta > Config.regionDeltaHorizontal && region.latitudeDelta > Config.regionDeltaVertical)){
 		// indien dan alle punten verwijderen 
 		//mapView.removeAllAnnotations();
 		//mapView.addAnnotations(trailers);
@@ -448,11 +448,13 @@ var deleteAnnotation = function(region){
  * 		De array die bij de andere array dient te worden toegevoegd 
  */
 var concat = function(destination, source){
+	if (source) {
+		for (var i = 0; i < source.length; i++) {
+			// Toevoegen aan het einde van de array
+			destination[destination.length] = source[i];
+		}
+	}	
 	
-	for(var i = 0; i < source.length; i++){
-		// Toevoegen aan het einde van de array
-		destination[destination.length] = source[i];
-	}
 	// Samengevoegde array terugegeven
 	return destination
 };

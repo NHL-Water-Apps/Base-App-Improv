@@ -7,7 +7,7 @@ var loaded 	 = false,
  * @param {Object} fn
  * 		Een functie die uitgevoerd moet worden als de app geladen is.
  */
-var onload = function (fn) {
+var addFn = function (fn) {
 	if (!fn)
 		return;
 	
@@ -22,7 +22,7 @@ var setLoaded = function () {
 	if (loaded)
 		return;
 		
-	while (onloadFn.length > 0) {
+	while (onLoadFn.length > 0) {
 		var fn = onLoadFn.pop();
 		fn();
 	}
@@ -37,6 +37,6 @@ var isLoaded = function () {
 	return loaded;
 }
 
-exports.onload    = onload;
+exports.addFn    = addFn;
 exports.setLoaded = setLoaded;
 exports.isLoaded  = isLoaded;

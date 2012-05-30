@@ -16,16 +16,7 @@
 			regionFit: 	  true, 
 			userLocation: true,
 		}),
-		
-		// Object van de zoekbalk op de kaart.
-		/*searchbar: Titanium.UI.createSearchBar({
-			barColor: 	VwApp.Config.SearchBackgroundColor, 
-			showCancel: false, 
-			focusable: 	false, 
-			hintText: 	VwApp.Config.SearchBarText, 
-			top : 0
-		}),*/
-		
+			
 		// De button waarmee je naar je eigen locatie gaat.
 		locationButton: Titanium.UI.createButton({
 			image:  VwApp.Config.UserLocateIcon,
@@ -58,86 +49,77 @@
 		// Bij het laden alvast een keer kunstmatig bovenstaande event-
 		// listener aanroepen.
 		Titanium.Gesture.fireEvent('orientationchange');
-		
-		// Event listener die de zoekbalk toont/verbergt wanneer er op de search 
-		// soft-button van het android toestel word gedrukt.
-		/*MapWindow.window.addEventListener('android:search', function () {
-			if (MapWindow.searchbar.visible === true) {
-				MapWindow.searchbar.setVisible(false, {animated: true});
-			} else {
-				MapWindow.searchbar.setVisible(true, {animated: true});
-			}
-		});*/
 	}
 	
 	// Stel de huidige mapview in als mapview te gebruiken door de Map module.
 	VwApp.Map.setMapView(MapWindow.map);
-	
-	/**
-	 * De eventhandler voor de knop die de locatie van de gebruiker moet vinden.
-	 */
-	MapWindow.locationButton.addEventListener('click', function() {
-		var location;
 		
+	// Een aantal dingen die we niet gelijk nodig hebben stoppen we in de onload
+	// queue.
+	VwApp.OnLoad.addFn(function() {
+		
+		/**
+		 * De eventhandler voor de knop die de locatie van de gebruiker moet vinden.
+		 */
+		MapWindow.locationButton.addEventListener('click', function() {
+			var location;
+			
+			VwApp.Map.updateGeolocation();
+			location = VwApp.Map.getUserLocation();
+			if (location) {
+				VwApp.Map.setLocation(location.latitude, location.longitude, VwApp.Config.DefaultUserLocZoom);
+			} 
+		});
+		
+		/**
+		 *	Eventlisener die aangeroepen wordt als de map wordt verplaats of ingezoomt
+		 * 		deze roept de functie aan die alle annotaties op de kaart aanmaakt 
+		 */
+		MapWindow.map.addEventListener('regionChanged', function(e){
+			clearTimeout(MapWindow.regionChanged);
+			
+			MapWindow.regionChanged = setTimeout(function() {			
+				if(VwApp.UI.MapWindow.drawAnnotations){
+					VwApp.Map.filterAnnotations(e, VwApp.Data);
+				}
+			}, 400);		
+		});
+		
+		/**
+	 	 *	Fucntie die draait op het moment dat er op een punt in de kaart geklikt wordt
+	 	 * 	Als hierop geklikt is zal er gekeken "waar" er op de item geklikt is en als dat
+	 	 * 		op het knopje is, zal er een nieuw venster geopend worden naar een detailview	 
+	 	 */
+		MapWindow.map.addEventListener('click', function(e){
+			// Kijken waar er gedrukt is
+			if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane')
+			{
+				VwApp.UI.changeDetailView(e.annotation.dataToPass);
+				VwApp.UI.TabBar.mapTab.open(VwApp.UI.DetailWindow.window, {animate: true});
+			}
+		});
+		
+		
+		// Indien we een locatie krijgen gaan we gelijk naar deze locatie bij het starten van de app		
 		VwApp.Map.updateGeolocation();
 		location = VwApp.Map.getUserLocation();
+		
 		if (location) {
 			VwApp.Map.setLocation(location.latitude, location.longitude, VwApp.Config.DefaultUserLocZoom);
-		} 
-	});
-	
-	/**
-	 *	Eventlisener die aangeroepen wordt als de map wordt verplaats of ingezoomt
-	 * 		deze roept de functie aan die alle annotaties op de kaart aanmaakt 
-	 */
-	MapWindow.map.addEventListener('regionChanged', function(e){
-		clearTimeout(MapWindow.regionChanged);
-		
-		MapWindow.regionChanged = setTimeout(function() {			
-			if(VwApp.UI.MapWindow.drawAnnotations){
-				VwApp.Map.filterAnnotations(e, VwApp.Data);
-			}
-		}, 400);		
-	});
-	
-
-	/**
- 	 *	Fucntie die draait op het moment dat er op een punt in de kaart geklikt wordt
- 	 * 	Als hierop geklikt is zal er gekeken "waar" er op de item geklikt is en als dat
- 	 * 		op het knopje is, zal er een nieuw venster geopend worden naar een detailview	 
- 	 */
-	MapWindow.map.addEventListener('click', function(e){
-		// Kijken waar er gedrukt is
-		if(e.clicksource === 'rightButton' || e.clicksource === 'rightPane')
-		{
-			VwApp.UI.changeDetailView(e.annotation.dataToPass);
-			VwApp.UI.TabBar.mapTab.open(VwApp.UI.DetailWindow.window, {animate: true});
 		}
+		
+		// Het loggen van de trail starten
+		VwApp.Map.showTrail(0);
 	});
-	
-	// Alle annotations toevoegen aan de kaart
-	//VwApp.Map.annotationsArray(VwApp.Data.bruggen, VwApp.Config.BridgeGreenIcon, VwApp.Config.BridgeRedIcon);
-	
-	// Indien we een locatie krijgen gaan we gelijk naar deze locatie bij het starten van de app
-	VwApp.Map.updateGeolocation();
-	location = VwApp.Map.getUserLocation();
-	if (location) {
-		VwApp.Map.setLocation(location.latitude, location.longitude, VwApp.Config.DefaultUserLocZoom);
-	}
-	
-	// Het loggen van de trail starten
-	VwApp.Map.showTrail(0);
 	
 	// Voeg alle onderdelen toe aan MapWindow.window
 	MapWindow.window.add(MapWindow.map);
 	//MapWindow.window.add(MapWindow.searchbar);
 	
 	MapWindow.window.add(MapWindow.locationButton);	
-			
+					
 	// Voeg MapWindow toe aan de UI namespace voor gebruik buiten deze closure.
 	VwApp.UI.MapWindow = MapWindow;
 	
-	// Een variable die we gebruiken voor het aangeven of we nu de annotaties
-	//    kunnen wegschrijven (false wanneer we bewegen op de kaart)
-	VwApp.UI.MapWindow.drawAnnotations = true;
+	
 })();
