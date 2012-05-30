@@ -36,7 +36,22 @@
 			color:			VwApp.Config.TextColor
 		}),
 		
+<<<<<<< HEAD
 		// Hieronder staan de eigenschappen van de data
+=======
+		//Type van de data
+		TypeData : Titanium.UI.createLabel({
+			text : 			"",
+			textAlign : 	"left",
+			left: 			'3 %',
+			width : 		'auto',
+			heigth : 		13,
+			top:			'2%',
+			color:			VwApp.Config.TextColor
+		}),
+		
+		//Hieronder staan de eigenschappen van de data
+>>>>>>> Type data in detailview
 		Type : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -79,7 +94,6 @@
 			left: 			'3 %',
 			width : 		'auto',
 			heigth : 		'auto',
-			top:			'5%',
 			color:			VwApp.Config.TextColor
 		}),
 		
@@ -149,9 +163,24 @@
 		} else {
 			DetailWindow.window.setTitle("-");
 		}
-	
-		// afbeelding
-		if (data.TYPE == 'ligplaatsen' || data.TYPE == 'bruggen') {
+		
+		//het type data bovenaan zetten
+		if(data.TYPE == 'jachthavens'){
+			DetailWindow.TypeData.setText(Config.JachthavenDetail);
+		}
+		
+		if(data.TYPE == 'bruggen'){
+			DetailWindow.TypeData.setText(Config.BrugDetail);
+		}
+		if(data.TYPE == 'ligplaatsen'){
+			DetailWindow.TypeData.setText(Config.LigplaatsenDetail);
+		}
+		
+		
+		DetailWindow.Container.add(DetailWindow.NoImagebridge);
+		//afbeelding
+		if(data.TYPE == 'ligplaatsen' || data.TYPE == 'bruggen')
+		{
 			//kijken of er een foto beschikbaar is en of het laten zien van foto's aangevinkt is in de settings.
 			if (data.PICTURE && Titanium.App.Properties.getBool('laadData', true)) {
 				//foto tonen
