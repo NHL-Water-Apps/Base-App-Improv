@@ -97,11 +97,12 @@ var Config = {
 	// Text kleur
 	TextColor: 	'#EEEEEE',
 	TextColorIPhone: '#000000',
-		/*	- - - - - - - - - - 
+	
+	/*	- - - - - - - - - - 
 	 * 	   DETAIL
 	 *	- - - - - - - - - -
 	 */ 
-	 
+
 	 // Text weer te geven als er geen foto is
 	 NoPictureDetail: 'Geen foto beschikbaar',
 	 // 
