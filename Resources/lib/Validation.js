@@ -38,7 +38,7 @@ function checkField(fieldName, saveName){
 		}
 	}
 	// indien de invoer niet valid is het textveld een andere kleur geven
-	else{														
+	else {														
 		fieldName.color = 'red';								
 	}
 }

@@ -8,6 +8,7 @@ var VwApp = {
 
 	// Laad een aantal modules en voeg ze toe aan de namespace.
 	Config: require('Config'),
+	OnLoad: require('lib/Onload'),
 	Map:	require('lib/Map'),
 	List:	require('lib/List'),
 	//Utils:  require('lib/Utils'),
@@ -50,3 +51,7 @@ Titanium.include('src/ui/TabBar.js');
 
 // Start de app
 VwApp.UI.TabBar.tabGroup.open();
+
+// De app is geladen, dus geef aan dat de app is geladen om de onload queue uit
+// te voeren.
+VwApp.OnLoad.setLoaded();
