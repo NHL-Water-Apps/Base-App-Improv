@@ -22,59 +22,56 @@
 		//de data in de lijsten
 		table : Titanium.UI.createTableView({    
 			zIndex: 		0
-		})
-			
+		}),			
 	};	
 
-/*	
-	function x() {
-		var data = [];
-	
-		for (var i = 0; i < VwApp.Data.bruggen.length; i++) {
-			data.push(VwApp.List.makeRow(VwApp.Data.bruggen[i]));
-		}
+	var updateListData = function() {
+		// Alle data toevoegen aan de lijst
+		var tableData = [];
 		
-		ListWindow.table.setData(data);
-	}
-	
-	Ti.Geolocation.addEventListener('location', function (e) {
-		if (!e.coords)
-			return;
+		VwApp.List.clearData();
 		
-		for (name in VwApp.Data) {
-			if (VwApp.Data.hasOwnProperty(name)) {
-				for (var i = 0; i < VwApp.Data[name].length; i++) {
-					VwApp.Data[name][i].DISTANCE = VwApp.Map.distanceBetweenCoords(
-						VwApp.Data[name][i].LON,
-						VwApp.Data[name][i].LAT,
-						e.coords.longitude,
-						e.coords.latitude
-					);
-				}
-			}
-		}
+		tableData = VwApp.List.addData(VwApp.Data.bruggen);
+		tableData = VwApp.List.addData(VwApp.Data.jachthavens);
+		tableData = VwApp.List.addData(VwApp.Data.ligplaatsen);
 		
-		x();
-	});
+		tableData = VwApp.List.sortData(tableData);
+		
+		ListWindow.table.data = tableData;
+	};
 	
-*/	
 	VwApp.OnLoad.addFn(function() {
-		var data = [];
-	
-		for (var i = 0; i < VwApp.Data.bruggen.length; i++) {
-			data.push(VwApp.List.makeRow(VwApp.Data.bruggen[i]));
-		}
 		
-		ListWindow.table.setData(data);
 		
 		//eventlistener	wanneer er geklikt wordt op een van de vakken in de lijst
 		ListWindow.table.addEventListener('click', function(e){  
-		//waardes van detailview veranderen
-		//for(d in e){ Titanium.API.warn(d);	}
-			 
+		//waardes van detailview veranderen		 
 			VwApp.UI.changeDetailView(e.rowData.data);
 			VwApp.UI.TabBar.listTab.open(VwApp.UI.DetailWindow.window);
 		});
+		
+		
+		/*Ti.Geolocation.addEventListener('location', function (e) {
+			if (!e.coords)
+				return;
+			
+			for (name in VwApp.Data) {
+				if (VwApp.Data.hasOwnProperty(name)) {
+					for (var i = 0; i < VwApp.Data[name].length; i++) {
+						VwApp.Data[name][i].DISTANCE = VwApp.Map.distanceBetweenCoords(
+							VwApp.Data[name][i].LON,
+							VwApp.Data[name][i].LAT,
+							e.coords.longitude,
+							e.coords.latitude
+						);
+					}
+				}
+			}
+			
+			updateListData();
+		}); */
+		
+		updateListData();
 	});
 	
 	
@@ -92,17 +89,3 @@
 	// Voeg ListWindow toe aan de UI namespace voor gebruik buiten deze closure.
 	VwApp.UI.ListWindow = ListWindow;
 })();
-
-
-//sorteerfunctie
-function sortName(thisObject,thatObject) { 
-    if (thisObject.title > thatObject.title)
-    {
-        return 1;
-    }
-    else if (thisObject.title < thatObject.title)
-    {
-        return -1;
-    }
-    return 0;
-  }
