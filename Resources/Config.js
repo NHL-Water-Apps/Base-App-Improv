@@ -94,7 +94,7 @@ var Config = {
 	BridgeRedIcon: 		'/images/BrugRood.png',
 	
 	AanlegPlaatsIcon:   '/images/Aanleg.png',
-	JachtHavenIcon:		'/images/Vis.png',			// TODO GOEDE PLAATJE PAKKEN
+	JachtHavenIcon:		'/images/Aanlegstijger.png',
 	
 	
 	// Trailing lijn
