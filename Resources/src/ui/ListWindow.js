@@ -23,7 +23,7 @@
 
 		//de data in de lijsten
 		table : Titanium.UI.createTableView({   
-			data: 			VwApp.Data.jachthavens,     
+			data: 			VwApp.Data.ligplaatsen,     
 			zIndex: 		0,
 		})
 			
