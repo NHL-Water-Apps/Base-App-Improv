@@ -159,24 +159,24 @@
 		} else {
 			DetailWindow.window.setTitle("-");
 		}
-		
-		// het type data bovenaan zetten
-		if (data.TYPE == 'jachthavens') {
-			DetailWindow.TypeData.setText(Config.JachthavenDetail);
+
+		//het type data bovenaan zetten
+		if(data.TYPE == 'jachthavens') {
+			DetailWindow.TypeData.setText(VwApp.Config.JachthavenDetail);
 		}
 		
-		if (data.TYPE == 'bruggen') {
-			DetailWindow.TypeData.setText(Config.BrugDetail);
+		if(data.TYPE == 'bruggen'){
+			DetailWindow.TypeData.setText(VwApp.Config.BrugDetail);
 		}
-		if (data.TYPE == 'ligplaatsen') {
-			DetailWindow.TypeData.setText(Config.LigplaatsenDetail);
+		if(data.TYPE == 'ligplaatsen') {
+			DetailWindow.TypeData.setText(VwApp.Config.LigplaatsenDetail);
 		}
-		
 		
 		DetailWindow.Container.add(DetailWindow.NoImagebridge);
-		// afbeelding
+
+		//afbeelding
 		if (data.TYPE == 'ligplaatsen' || data.TYPE == 'bruggen') {
-			// kijken of er een foto beschikbaar is en of het laten zien van foto's aangevinkt is in de settings.
+			//kijken of er een foto beschikbaar is en of het laten zien van foto's aangevinkt is in de settings.
 			if (data.PICTURE && Titanium.App.Properties.getBool('laadData', true)) {
 				// foto tonen
 				if (data.TYPE == 'bruggen') {
