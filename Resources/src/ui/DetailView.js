@@ -7,14 +7,17 @@
 			width: 			'100%', 
 			backgroundColor: VwApp.Config.ViewBackgroundColor,  
 			contentHeight: 	'auto',
-			navBarHidden: 	false
+			navBarHidden: 	false,
 		}),
 		
 		// Een container waar we alles in stoppen
 		Container: Titanium.UI.createScrollView({
 			height:			'100%',
 			width:			'100%',
-			layout:			'vertical' 
+			layout:			'vertical',
+			scrollType:		'vertical',
+			contentHeight: 	'auto',
+			contentWidth: 	'auto'
 		}),
 		
 		//wanneer er een foto beschikbaar is deze weergeven in een imageview
@@ -158,16 +161,19 @@
 		}
 		
 		//image hoogte is 0%, dus niet zichtbaar
-		DetailWindow.Imagebridge.setHeight('0%'); 
-		//elke tekst in de labels leeg maken
-		for (text in DetailWindow) {
-			if (DetailWindow.hasOwnProperty(text) && DetailWindow[text].setText) {		
-				DetailWindow[text].setHeight(0);
+		DetailWindow.Imagebridge.height = '0%';
+		
+		// ALLEEN VOOR ANDROID
+		if (Titanium.Platform.osname === 'android') { 
+			//elke tekst in de labels leeg maken
+			for (text in DetailWindow) {
+				if (DetailWindow.hasOwnProperty(text) && DetailWindow[text].setText) {		
+					DetailWindow[text].height = 0;
+				}
 			}
 		}
-		
 		//Toonkaart weergeven
-		DetailWindow.Toonkaart.setHeight(35);
+		DetailWindow.Toonkaart.height = 35;
 
 		// title
 		if (data.title) {
@@ -177,7 +183,8 @@
 		}
 
 		
-		DetailWindow.TypeData.setHeight('auto');
+		DetailWindow.TypeData.height = 'auto';
+		
 		//het type data bovenaan zetten
 		if (data.TYPE == 'jachthavens') {
 			DetailWindow.TypeData.setText(VwApp.Config.JachthavenDetail);
@@ -203,12 +210,12 @@
 						DetailWindow.Imagebridge.setImage(ChangeMoorageLink(data.PICTURE));
 				}
 
-				DetailWindow.Imagebridge.setHeight('auto');
+				DetailWindow.Imagebridge.height = 'auto';
 				DetailWindow.NoImagebridge.setText("");
 			} else { 
 				// geen foto beschikbaar
 				 
-				DetailWindow.NoImagebridge.setHeight('auto');
+				DetailWindow.NoImagebridge.height = 'auto';
 				// wanneer foto's laden ingeschakeld is en er is geen foto beschikbaar toon de tekst dat er geen foto beschikbaar is
 				if (Titanium.App.Properties.getBool('laadData', true)) {     
 					DetailWindow.NoImagebridge.setText(VwApp.Config.NoPictureDetail);
@@ -224,7 +231,7 @@
 		
 		// adres, geldt alleen voor bepaalde types
 		if (data.TYPE == 'jachthavens' || data.TYPE == 'bruggen') {
-			DetailWindow.Adres.setHeight('auto');
+			DetailWindow.Adres.height = ('auto');
 			
 			if (data.ADRESS) {
 				DetailWindow.Adres.setText(VwApp.Config.AdressDetail + data.ADRESS);
@@ -236,10 +243,10 @@
 	
 		if (data.TYPE == 'bruggen') {
 			
-			DetailWindow.Hoogte.setHeight('auto');
-			DetailWindow.Breedte.setHeight('auto');
-			DetailWindow.Type.setHeight('auto');
-			DetailWindow.Bron.setHeight('auto');
+			DetailWindow.Hoogte.height = 'auto';
+			DetailWindow.Breedte.height = 'auto';
+			DetailWindow.Type.height = 'auto';
+			DetailWindow.Bron.height = 'auto';
 			
 			// hoogte
 			if (data.HEIGHT || data.HEIGHT == 0) {
@@ -273,9 +280,9 @@
 		
 		if (data.TYPE == 'jachthavens') {	
 			
-			DetailWindow.Postcode.setHeight('auto');
-			DetailWindow.Stad.setHeight('auto');
-			DetailWindow.Oppervlakte.setHeight('auto');
+			DetailWindow.Postcode.height = 'auto';
+			DetailWindow.Stad.height = 'auto';
+			DetailWindow.Oppervlakte.height = 'auto';
 			
 			// postcode
 			if (data.ZIPCODE) {
@@ -301,8 +308,8 @@
 		
 		if (data.TYPE == 'ligplaatsen') {
 			
-			DetailWindow.Type.setHeight('auto');
-			DetailWindow.Code.setHeight('auto');
+			DetailWindow.Type.height = 'auto';
+			DetailWindow.Code.height = 'auto';
 			
 			if (data.MOORAGETYPE) { 
 				DetailWindow.Type.setText(VwApp.Config.TypeDetail + data.MOORAGETYPE);
