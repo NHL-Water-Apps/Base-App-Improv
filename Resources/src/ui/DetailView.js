@@ -139,7 +139,8 @@
 			image:			VwApp.Config.ShowOnMap,
 			height:			35,
 			width:			112,
-			position: 		'center'
+			position: 		'center',
+			text:			''
 		})	
 	};
 	
@@ -163,16 +164,16 @@
 		//image hoogte is 0%, dus niet zichtbaar
 		DetailWindow.Imagebridge.height = '0%';
 		
-		// ALLEEN VOOR ANDROID
-		if (Titanium.Platform.osname === 'android') { 
-			//elke tekst in de labels leeg maken
+		
+			//elke tekst in de labels op 0% zetten
 			for (text in DetailWindow) {
 				if (DetailWindow.hasOwnProperty(text) && DetailWindow[text].setText) {		
 					DetailWindow[text].height = 0;
 				}
 			}
-		}
-		//Toonkaart weergeven
+		
+		DetailWindow.window.Height = '100%';
+		DetailWindow.Container.Height = '100%';
 		DetailWindow.Toonkaart.height = 35;
 
 		// title
