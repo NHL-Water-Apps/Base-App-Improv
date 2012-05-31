@@ -25,8 +25,7 @@
 			image:				'',
 			height: 			'auto',
 			width: 				'80%',
-			top:				'2%',
-			maxheight:			50
+			top:				'2%'
 		}),
 		
 		// Wanneer er geen foto beschikbaar is komt er een tekst te staan
@@ -137,10 +136,9 @@
 		Toonkaart : Titanium.UI.createButton({
 			top: 			40, 
 			image:			VwApp.Config.ShowOnMap,
-			height:			35,
-			width:			112,
-			position: 		'center',
-			text:			''
+			height:			'10%',
+			width:			'35%',
+			position: 		'center'
 		})	
 	};
 	
@@ -165,16 +163,16 @@
 		DetailWindow.Imagebridge.height = '0%';
 		
 		
-			//elke tekst in de labels op 0% zetten
-			for (text in DetailWindow) {
-				if (DetailWindow.hasOwnProperty(text) && DetailWindow[text].setText) {		
-					DetailWindow[text].height = 0;
+		//elke tekst in de labels op 0% zetten
+		for (text in DetailWindow) {
+			if (DetailWindow.hasOwnProperty(text) && DetailWindow[text].setText) {		
+				DetailWindow[text].height = 0;		
 				}
 			}
 		
+		//window en container op 100% zetten
 		DetailWindow.window.Height = '100%';
 		DetailWindow.Container.Height = '100%';
-		DetailWindow.Toonkaart.height = 35;
 
 		// title
 		if (data.title) {
@@ -424,6 +422,17 @@
 			VwApp.Map.setLocation(Lat, Lon, VwApp.Config.DefaultUserLocZoom);
 			VwApp.UI.TabBar.tabGroup.setActiveTab(VwApp.UI.TabBar.mapTab);
 			VwApp.UI.DetailWindow.window.close();
+		}
+	});
+	
+	//wanneer er gedraaid wordt met het scherm veranderen de waardes van de afbeelding en de 'toonkaart'-button
+	Titanium.Gesture.addEventListener('orientationchange', function () {
+		if (Titanium.Gesture.isLandscape()) {
+			DetailWindow.Toonkaart.height 	= '7%';
+			DetailWindow.Toonkaart.width 	= '20%';
+		} else {
+			DetailWindow.Toonkaart.height 	= '10%';
+			DetailWindow.Toonkaart.width 	= '35%';
 		}
 	});
 		
