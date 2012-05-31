@@ -18,10 +18,11 @@
 		
 		//wanneer er een foto beschikbaar is deze weergeven in een imageview
 		Imagebridge : 	Ti.UI.createImageView({
-			image:			'',
-			height: 		'auto',
-			width: 			'80%',
-			top:			'3%'
+			image:				'',
+			height: 			'auto',
+			width: 				'80%',
+			top:				'2%',
+			maxheight:			50
 		}),
 		
 		// Wanneer er geen foto beschikbaar is komt er een tekst te staan
@@ -29,7 +30,6 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3%',
-			top:	 		'3%', 
 			width : 		'auto',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
@@ -53,6 +53,7 @@
 			left: 			'3 %',
 			width : 		'auto',
 			heigth : 		'auto',
+			top:			'2%',
 			color:			VwApp.Config.TextColor
 		}),
 		
@@ -164,6 +165,9 @@
 			}
 		}
 		
+		//Toonkaart weergeven
+		DetailWindow.Toonkaart.setHeight(35);
+
 		// title
 		if (data.title) {
 			DetailWindow.window.setTitle(data.title);
