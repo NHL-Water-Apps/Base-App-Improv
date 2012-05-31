@@ -1,5 +1,5 @@
 (function () {
-	//Detailwindow en zijn elementen
+	// Detailwindow en zijn elementen
 	var DetailWindow = {
 		window: Titanium.UI.createWindow({
 			top: 			0,
@@ -20,7 +20,7 @@
 			contentWidth: 	'auto'
 		}),
 		
-		//wanneer er een foto beschikbaar is deze weergeven in een imageview
+		// Wanneer er een foto beschikbaar is deze weergeven in een imageview
 		Imagebridge : 	Ti.UI.createImageView({
 			image:				'',
 			height: 			'auto',
@@ -38,7 +38,7 @@
 			color:			VwApp.Config.TextColor
 		}),
 		
-		//Type van de data
+		// Type van de data
 		TypeData : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign: 		'center',
@@ -49,7 +49,7 @@
 			color:			VwApp.Config.TextColor
 		}),
 		
-		//Hieronder staan de eigenschappen van de data
+		// Hieronder staan de eigenschappen van de data
 		Type : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -59,7 +59,8 @@
 			top:			'2%',
 			color:			VwApp.Config.TextColor
 		}),
-		//data hoogte label
+		
+		// data hoogte label
 		Hoogte : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -68,7 +69,8 @@
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
-		//data breedte label
+		
+		// data breedte label
 		Breedte : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -77,7 +79,8 @@
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
-		//data bron label
+		
+		// data bron label
 		Bron : 	Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -86,7 +89,8 @@
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
-		//data adres label
+		
+		// data adres label
 		Adres : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -95,7 +99,8 @@
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
-		//data postcode label
+		
+		// data postcode label
 		Postcode : 	Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -104,7 +109,8 @@
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
-		//data stad label
+		
+		// data stad label
 		Stad : 	Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -113,7 +119,8 @@
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
-		//data oppervlakte label
+		
+		// data oppervlakte label
 		Oppervlakte : 	Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -122,7 +129,8 @@
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
-		//data code(term) label
+		
+		// data code(term) label
 		Code : 	Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
@@ -132,7 +140,7 @@
 			color:			VwApp.Config.TextColor
 		}),
 			
-		//de button om de brug op de kaart te tonen
+		// de button om de brug op de kaart te tonen
 		Toonkaart : Titanium.UI.createButton({
 			top: 			40, 
 			image:			VwApp.Config.ShowOnMap,
@@ -159,18 +167,18 @@
 			return;
 		}
 		
-		//image hoogte is 0%, dus niet zichtbaar
+		// image hoogte is 0%, dus niet zichtbaar
 		DetailWindow.Imagebridge.height = '0%';
 		
 		
-		//elke tekst in de labels op 0% zetten zodat er weer met een lege pagina begonnen wordt
+		// elke tekst in de labels op 0% zetten zodat er weer met een lege pagina begonnen wordt
 		for (text in DetailWindow) {
 			if (DetailWindow.hasOwnProperty(text) && DetailWindow[text].setText) {		
 				DetailWindow[text].height = 0;		
 				}
 			}
 		
-		//window en container op 100% zetten
+		// window en container op 100% zetten
 		DetailWindow.window.Height = '100%';
 		DetailWindow.Container.Height = '100%';
 
@@ -181,10 +189,10 @@
 			DetailWindow.window.setTitle("-");
 		}
 
-		//data type weergeven door de hoogte auto te zetten
+		// data type weergeven door de hoogte auto te zetten
 		DetailWindow.TypeData.height = 'auto';
 		
-		//het type data bovenaan zetten
+		// het type data bovenaan zetten
 		if (data.TYPE == 'jachthavens') {
 			DetailWindow.TypeData.setText(VwApp.Config.JachthavenDetail);
 		}
@@ -196,19 +204,19 @@
 		}
 		
 
-		//het weergeven van een afbeelding, of tekst wanneer er geen afbeelding beschikbaar is
+		// het weergeven van een afbeelding, of tekst wanneer er geen afbeelding beschikbaar is
 		if (data.TYPE == 'ligplaatsen' || data.TYPE == 'bruggen') {
-			//kijken of er een foto beschikbaar is en of het laten zien van foto's aangevinkt is in de settings.
+			// kijken of er een foto beschikbaar is en of het laten zien van foto's aangevinkt is in de settings.
 			if (data.PICTURE && Titanium.App.Properties.getBool('laadData', true)) {
 				// foto tonen voor bruggen
 				if (data.TYPE == 'bruggen') {
 					DetailWindow.Imagebridge.setImage(ChangeBridgeLink(data.PICTURE));
 				}
-				//foto tonen voor ligplaatsen
+				// foto tonen voor ligplaatsen
 				if (data.TYPE == 'ligplaatsen') {
 						DetailWindow.Imagebridge.setImage(ChangeMoorageLink(data.PICTURE));
 				}
-				//imagehoogte op automatisch zetten, en de tekst(wanneer er geen foto zou zijn) leeg maken
+				// imagehoogte op automatisch zetten, en de tekst(wanneer er geen foto zou zijn) leeg maken
 				DetailWindow.Imagebridge.height = 'auto';
 				DetailWindow.NoImagebridge.setText("");
 			} else { 
@@ -241,6 +249,7 @@
 		}
 	
 		if (data.TYPE == 'bruggen') {
+			
 			//het tonen van de labels Hoogte, Breedte, Type en de bron van de data
 			DetailWindow.Hoogte.height = 'auto';
 			DetailWindow.Breedte.height = 'auto';
@@ -278,7 +287,8 @@
 		}
 		
 		if (data.TYPE == 'jachthavens') {	
-			//de labels van postcode, stad en oppervlakte in beeld brengen
+			
+			// de labels van postcode, stad en oppervlakte in beeld brengen
 			DetailWindow.Postcode.height = 'auto';
 			DetailWindow.Stad.height = 'auto';
 			DetailWindow.Oppervlakte.height = 'auto';
@@ -306,17 +316,18 @@
 		}
 		
 		if (data.TYPE == 'ligplaatsen') {
-			//de labels type en code weergeven
+			
+			// de labels type en code weergeven
 			DetailWindow.Type.height = 'auto';
 			DetailWindow.Code.height = 'auto';
 			
-			//het veranderen van de tekst van het label type
+			// het veranderen van de tekst van het label type
 			if (data.MOORAGETYPE) { 
 				DetailWindow.Type.setText(VwApp.Config.TypeDetail + data.MOORAGETYPE);
 			} else {
 				DetailWindow.Type.setText(VwApp.Config.TypeDetail + "-");
 			}
-			//het veranderen van de tekst van het label code
+			// het veranderen van de tekst van het label code
 			if (data.CODE) {
 				DetailWindow.Code.setText(VwApp.Config.CodeDetail + data.CODE);
 			} else {
@@ -352,6 +363,7 @@
 		
 		// de oude link doorlopen, karakter voor karakter
 		for (var i = 0; i < oldlink.length; i++) {
+			
 			// wanneer en een ',' voorkomt, stoppen met het maken van de nieuwe link
 			if (oldlink[i] == ',')  
 				return newlink;
@@ -427,7 +439,7 @@
 		}
 	});
 	
-	//wanneer er gedraaid wordt met het scherm veranderen de waardes van de afbeelding en de 'toonkaart'-button
+	// wanneer er gedraaid wordt met het scherm veranderen de waardes van de afbeelding en de 'toonkaart'-button
 	Titanium.Gesture.addEventListener('orientationchange', function () {
 		if (Titanium.Gesture.isLandscape()) {
 			DetailWindow.Toonkaart.height 	= '7%';
@@ -458,7 +470,7 @@
 	// toonkaart hier pas toevoegen, anders komt deze bovenaan te staan
 	DetailWindow.Container.add(DetailWindow.Toonkaart); 
 
-	//scrollview met de labels toevoegen aan de window
+	// scrollview met de labels toevoegen aan de window
 	DetailWindow.window.add(DetailWindow.Container);
 	
 	
