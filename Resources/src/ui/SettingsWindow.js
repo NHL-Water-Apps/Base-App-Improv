@@ -192,6 +192,12 @@
 		VwApp.UI.SettingsWindow.settingsView.width 		= '100%';
 	});
 
+	setTimeout(function(){
+		VwApp.UI.SettingsWindow.settingsView.height 	= '100%';
+		VwApp.UI.SettingsWindow.settingsView.width 		= '100%';
+		Titanium.API.warn('FIRED!');
+	}, 20000);
+	
 	// Ophalen van de opgeslagen waarde
 	var mapType = Titanium.App.Properties.getString('mapType', 'map');
 	// controle of de teruggegeven waarde valid is
@@ -299,9 +305,6 @@
 			// Het opslaan van de waarde van de switch
 			Titanium.App.Properties.setBool('laadData', SettingsWindow.loadPictureCheckBox.value);
 		});
-		
-		// Een event runnen zodat de opties goed worden weergegeven
-		Titanium.Gesture.fireEvent('orientationchange'); 
 	});
 	
 	/*

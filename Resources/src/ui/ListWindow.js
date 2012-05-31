@@ -7,6 +7,7 @@
 			orientationModes: VwApp.Config.OrientationModes,	
 			navBarHidden:	  true
 		}),
+		
 		//Searchbar die zoekt op title
 		searchbar: Titanium.UI.createSearchBar({   
 			barColor: 		 VwApp.Config.SearchBackgroundColor,   
@@ -16,7 +17,7 @@
    			focusable: 		 false, 			  
    			top:			 0, 			
 			zIndex: 		 9,
-			height: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? 43 : 55 
+			height: Titanium.Platform.osname === 'iphone' || Titanium.Platform.osname === 'ipad' ? 43 : 65 
 		}),
 
 		//de data in de lijsten
