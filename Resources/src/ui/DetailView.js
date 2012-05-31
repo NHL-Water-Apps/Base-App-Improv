@@ -6,7 +6,8 @@
 			height: 		'100%',
 			width: 			'100%', 
 			backgroundColor: VwApp.Config.ViewBackgroundColor,  
-			contentHeight: 	'auto'
+			contentHeight: 	'auto',
+			navBarHidden: 	false
 		}),
 		
 		// Een container waar we alles in stoppen
