@@ -299,6 +299,9 @@
 			// Het opslaan van de waarde van de switch
 			Titanium.App.Properties.setBool('laadData', SettingsWindow.loadPictureCheckBox.value);
 		});
+		
+		// Een event runnen zodat de opties goed worden weergegeven
+		Titanium.Gesture.fireEvent('orientationchange'); 
 	});
 	
 	/*
