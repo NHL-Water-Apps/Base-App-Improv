@@ -167,6 +167,8 @@
 			return;
 		}
 		
+		Titanium.Gesture.fireEvent('orientationchange');
+		
 		// image hoogte is 0%, dus niet zichtbaar
 		DetailWindow.Imagebridge.height = '0%';
 		
