@@ -56,7 +56,7 @@
 			left: 			'3 %',
 			width : 		'auto',
 			heigth : 		'auto',
-			top:			'2%',
+			//top:			'2%',
 			color:			VwApp.Config.TextColor
 		}),
 		
