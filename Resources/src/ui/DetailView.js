@@ -206,7 +206,7 @@
 				DetailWindow.NoImagebridge.setHeight('auto');
 				// wanneer foto's laden ingeschakeld is en er is geen foto beschikbaar toon de tekst dat er geen foto beschikbaar is
 				if (Titanium.App.Properties.getBool('laadData', true)) {     
-						DetailWindow.NoImagebridge.setText(VwApp.Config.NoPictureDetail);
+					DetailWindow.NoImagebridge.setText(VwApp.Config.NoPictureDetail);
 				}	
 				// als het laden van foto's uitgeschakeld is geef hierover een melding
 				else {
@@ -414,7 +414,9 @@
 		}
 	});
 		
-	// toevoegen aan scrollview
+	// Alle labels toevoegen aan de scrollview
+	// Bij het aanroepen van een change method zal overal
+	// 	de juiste data in komen te staan
 	DetailWindow.Container.add(DetailWindow.TypeData);	
 	DetailWindow.Container.add(DetailWindow.Imagebridge);
 	DetailWindow.Container.add(DetailWindow.NoImagebridge);
