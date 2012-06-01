@@ -344,7 +344,10 @@
 		SettingsWindow.loadPictureRow.add(SettingsWindow.loadPictureLabel);
 	}
 	SettingsWindow.loadPictureRow.add(SettingsWindow.loadPictureCheckBox);
-	SettingsWindow.dataUsageSection.add(SettingsWindow.loadPictureRow);
+	// Kijken of we dataUsage opties dienen weer te geven in deze app
+	if (VwApp.Config.DataOptions) {
+		SettingsWindow.dataUsageSection.add(SettingsWindow.loadPictureRow);
+	}
 	
 	// Sectie toevoegen aan de tabel
 	// Maar alleen als we dit aangegeven hebben in de config (hoogte en breedte) anders niet

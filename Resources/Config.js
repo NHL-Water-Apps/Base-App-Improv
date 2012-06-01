@@ -58,6 +58,9 @@ var Config = {
 	DataUsageHeader: 'Datagebruik:',
 	LoadPicturesText: 'Afbeeldingen laden',
 	
+	// Data opties weergeven
+	DataOptions: 	 true,
+	
 	// voor het detailscherm
 
 	// Text weer te geven als er geen foto is
