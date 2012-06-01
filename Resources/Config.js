@@ -65,20 +65,7 @@ var Config = {
 	NoPictureDetail: 'Geen foto beschikbaar',
 	// Text weer te geven als het laden van foto's is uitgeschakeld
 	PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
-	
-	// Text op het detailscherm verder eigenschappen
-	HeigthDetail: 		"Hoogte: ",
-	WidthDetail: 		"Breedte: ",
-	TypeDetail: 		"Type: ",
-	AdressDetail: 		"Adres: ",
-	UnitDetail: 		" Meter",
- 	SquareUnitDetail:  	" Vierkante meter",
-	BronDetail: 		"Bron: ",
-	ZipcodeDetail: 		"Postcode: ",
-	CityDetail:   		"Stad: ",
-	SizeDetail: 		"Oppervlakte: ",
-	CodeDetail:			"Code: ",
-	
+		
 	// Text voor als er geen coordinaten gevonden zijn
 	//		bij het klikken op de knop
 	LatLonNotFound : "Geen coordinaten gevonden..",
@@ -132,20 +119,7 @@ var Config = {
 	 // 
 	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	 //detailview eigenschappen
-	 HeigthDetail : 	"Hoogte: ",
-	 WidthDetail : 		"Breedte: ",
-	 TypeDetail : 		"Type: ",
-	 AdressDetail : 	"Adres: ",
-	 UnitDetail : 		" Meter",
-	 SquareUnitDetail:  " Vierkante meter",
-	 BronDetail: 		"Bron: ",
-	 ZipcodeDetail: 	"Postcode: ",
 	 CityDetail:   		"Stad: ",
-	 SizeDetail: 		"Oppervlakte: ",
-	 CodeDetail:		"Code: ",
-	 BrugDetail:		"Brug",
-	 JachthavenDetail:	"Jachthaven",
-	 LigplaatsenDetail:	"Ligplaats",
 	 VisStekDetail:		"Visstek",
 	 //titel van de toon op kaart knop
 	 LatLonNotFound : "Geen coordinaten gevonden..",
