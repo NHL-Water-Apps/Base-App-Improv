@@ -58,6 +58,9 @@ var Config = {
 	DataUsageHeader: 'Datagebruik:',
 	LoadPicturesText: 'Afbeeldingen laden',
 	
+	// Data opties weergeven
+	DataOptions: 	 true,
+	
 	// voor het detailscherm
 
 	// Text weer te geven als er geen foto is
@@ -108,6 +111,7 @@ var Config = {
 	
 	//icoontje voor 'ga naar de kaart' in het detailscherm
 	ShowOnMap:			'/images/ToonOpKaart.png',
+	ShowOnMapGroter:	'/images/ToonOpKaart@2x.png',
 	
 	/*
 	 * Kleuren opties
@@ -173,18 +177,14 @@ var Config = {
 	// Bool value die aangeeft of deze app trail moet laden of niet
 	ShowTrail:		true,
 	// Instellingen voor de trail achter de persoon aan (in miliseconden)
-	TrailerTimeout: 1000, // 1 seconde
-	// Aantal stipjes trail op de kaart
-	AmountOfTrail: 	10,
-	
+	TrailerTimeout: 1000, // 1 seconde	
 	
 	// Minimale hoogte voor annotaties
 	regionDeltaHorizontal:	0.1,
 	regionDeltaVertical: 	0.05,
 	
-	// De interval waarop we annotaties verwijderen in miliseconden
-	RemoveInterval: 200,
 	
+	// De verschillende orientaties modes aan elk window meegeven
 	OrientationModes: [ 
 		Titanium.UI.PORTRAIT,
 		Titanium.UI.UPSIDE_PORTRAIT,
