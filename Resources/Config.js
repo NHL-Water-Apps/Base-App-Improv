@@ -108,6 +108,7 @@ var Config = {
 	
 	//icoontje voor 'ga naar de kaart' in het detailscherm
 	ShowOnMap:			'/images/ToonOpKaart.png',
+	ShowOnMapGroter:	'/images/ToonOpKaart@2x.png',
 	
 	/*
 	 * Kleuren opties
