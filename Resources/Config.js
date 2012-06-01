@@ -6,9 +6,9 @@ var Config = {
 	 * GEEN .JS extensie toevoegen aan het pad.
 	 */
 	DataToLoad: {
-		'bruggen' : 'Data/Bruggen',
-		'jachthavens' : 'Data/Jachthavens',
-		'ligplaatsen' : 'Data/Ligplaatsen'
+		'bruggen' : 'Data/Bruggen.lwd',
+		'jachthavens' : 'Data/Jachthavens.lwd',
+		'ligplaatsen' : 'Data/Ligplaatsen.lwd'
 	},
 
 	/*
@@ -164,10 +164,10 @@ var Config = {
 	// De regio waar de app op terugvalt als het de locatie van de gebruiker
 	// niet gevonden kan worden. In dit geval een overzicht van Friesland.
 	DefaultRegion: {
-		latitude:  		53.1337,
-		longitude: 		5.85,
-		latitudeDelta:	0.9, 
-		longitudeDelta:	0.9
+		latitude:  		53.20239,
+		longitude: 		5.814075,
+		latitudeDelta:	0.05, 
+		longitudeDelta:	0.05
 	},
 	
 	// De hoeveelheid zoom uitgedrukt in deltaX dat de kaart inzoomt als er op
