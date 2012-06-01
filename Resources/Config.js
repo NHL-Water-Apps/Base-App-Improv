@@ -57,7 +57,7 @@ var Config = {
 	LoadPicturesText: 'Afbeeldingen laden',
 	
 	// Data opties weergeven
-	DataOptions: 	 true,
+	DataOptions: 	 false,
 	
 	// voor het detailscherm
 
