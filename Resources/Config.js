@@ -56,6 +56,9 @@ var Config = {
 	DataUsageHeader: 'Datagebruik:',
 	LoadPicturesText: 'Afbeeldingen laden',
 	
+	// Data opties weergeven
+	DataOptions: 	 true,
+	
 	// voor het detailscherm
 
 	// Text weer te geven als er geen foto is
@@ -102,6 +105,7 @@ var Config = {
 	
 	//icoontje voor 'ga naar de kaart' in het detailscherm
 	ShowOnMap:			'/images/ToonOpKaart.png',
+	ShowOnMapGroter:	'/images/ToonOpKaart@2x.png',
 	
 	/*
 	 * Kleuren opties
