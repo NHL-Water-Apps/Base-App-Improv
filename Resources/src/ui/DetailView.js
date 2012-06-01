@@ -143,7 +143,8 @@
 		// de button om de brug op de kaart te tonen
 		Toonkaart : Titanium.UI.createButton({
 			top: 			40, 
-			image:			VwApp.Config.ShowOnMap,
+			title:			Titanium.Platform.osname !== 'android' ? 'Toon op kaart' : '',
+			image:			Titanium.Platform.osname === 'android' ? VwApp.Config.ShowOnMap : '',
 			height:			'10%',
 			width:			'35%',
 			position: 		'center'
@@ -444,11 +445,23 @@
 	// wanneer er gedraaid wordt met het scherm veranderen de waardes van de afbeelding en de 'toonkaart'-button
 	Titanium.Gesture.addEventListener('orientationchange', function () {
 		if (Titanium.Gesture.isLandscape()) {
-			DetailWindow.Toonkaart.height 	= '7%';
-			DetailWindow.Toonkaart.width 	= '20%';
+			if(Titanium.Platform.osname === 'ipad'){
+				DetailWindow.Toonkaart.height 	= 40;
+				DetailWindow.Toonkaart.width 	= 120;
+			}
+			else{
+				DetailWindow.Toonkaart.height 	= '17%';
+				DetailWindow.Toonkaart.width 	= '26%';
+			}
 		} else {
-			DetailWindow.Toonkaart.height 	= '10%';
-			DetailWindow.Toonkaart.width 	= '35%';
+			if(Titanium.Platform.osname === 'ipad'){
+				DetailWindow.Toonkaart.height 	= 40;
+				DetailWindow.Toonkaart.width 	= 120;
+			}
+			else{
+				DetailWindow.Toonkaart.height 	= '10%';
+				DetailWindow.Toonkaart.width 	= '35%';
+			}
 		}
 	});
 		
