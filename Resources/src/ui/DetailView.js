@@ -198,11 +198,9 @@
 		// het type data bovenaan zetten
 		if (data.TYPE == 'jachthavens') {
 			DetailWindow.TypeData.setText(VwApp.Config.JachthavenDetail);
-		}
-		if (data.TYPE == 'bruggen'){
+		} else if (data.TYPE == 'bruggen'){
 			DetailWindow.TypeData.setText(VwApp.Config.BrugDetail);
-		}
-		if (data.TYPE == 'ligplaatsen') {
+		} else if (data.TYPE == 'ligplaatsen') {
 			DetailWindow.TypeData.setText(VwApp.Config.LigplaatsenDetail);
 		}
 		
