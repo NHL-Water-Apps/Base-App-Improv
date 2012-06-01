@@ -21,7 +21,7 @@
 		}),
 		
 		// Wanneer er een foto beschikbaar is deze weergeven in een imageview
-		Imagebridge : 	Ti.UI.createImageView({
+		ImageView : 	Ti.UI.createImageView({
 			image:				'',
 			height: 			'auto',
 			width: 				'80%',
@@ -29,7 +29,7 @@
 		}),
 		
 		// Wanneer er geen foto beschikbaar is komt er een tekst te staan
-		NoImagebridge : Titanium.UI.createLabel({
+		NoImage : Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3%',
@@ -170,7 +170,7 @@
 		Titanium.Gesture.fireEvent('orientationchange');
 		
 		// image hoogte is 0%, dus niet zichtbaar
-		DetailWindow.Imagebridge.height = '0%';
+		DetailWindow.ImageView.height = '0%';
 		
 		
 		// elke tekst in de labels op 0% zetten zodat er weer met een lege pagina begonnen wordt
@@ -212,26 +212,26 @@
 			if (data.PICTURE && Titanium.App.Properties.getBool('laadData', true)) {
 				// foto tonen voor bruggen
 				if (data.TYPE == 'bruggen') {
-					DetailWindow.Imagebridge.setImage(ChangeBridgeLink(data.PICTURE));
+					DetailWindow.ImageView.setImage(ChangeBridgeLink(data.PICTURE));
 				}
 				// foto tonen voor ligplaatsen
 				if (data.TYPE == 'ligplaatsen') {
-						DetailWindow.Imagebridge.setImage(ChangeMoorageLink(data.PICTURE));
+						DetailWindow.ImageView.setImage(ChangeMoorageLink(data.PICTURE));
 				}
 				// imagehoogte op automatisch zetten, en de tekst(wanneer er geen foto zou zijn) leeg maken
-				DetailWindow.Imagebridge.height = 'auto';
-				DetailWindow.NoImagebridge.setText("");
+				DetailWindow.ImageView.height = 'auto';
+				DetailWindow.NoImage.setText("");
 			} else { 
 				// else, in het geval wanneer er geen foto beschikbaar is
 				 
-				DetailWindow.NoImagebridge.height = 'auto';
+				DetailWindow.NoImage.height = 'auto';
 				// wanneer foto's laden ingeschakeld is en er is geen foto beschikbaar toon de tekst dat er geen foto beschikbaar is
 				if (Titanium.App.Properties.getBool('laadData', true)) {     
-					DetailWindow.NoImagebridge.setText(VwApp.Config.NoPictureDetail);
+					DetailWindow.NoImage.setText(VwApp.Config.NoPictureDetail);
 				}	
 				// als het laden van foto's uitgeschakeld is geef hierover een melding
 				else {
-					DetailWindow.NoImagebridge.setText(VwApp.Config.PictureOffDetail);
+					DetailWindow.NoImage.setText(VwApp.Config.PictureOffDetail);
 				}
 			}
 			
@@ -458,8 +458,8 @@
 	// In eerste instantie worden die labels allemaal op hoogte 0% gezet
 	// verder in die methode worden ze dan weergeven wanneer dit van toepassing is
 	DetailWindow.Container.add(DetailWindow.TypeData);	
-	DetailWindow.Container.add(DetailWindow.Imagebridge);
-	DetailWindow.Container.add(DetailWindow.NoImagebridge);
+	DetailWindow.Container.add(DetailWindow.ImageView);
+	DetailWindow.Container.add(DetailWindow.NoImage);
 	DetailWindow.Container.add(DetailWindow.Type);	
 	DetailWindow.Container.add(DetailWindow.Adres);
 	DetailWindow.Container.add(DetailWindow.Stad);
