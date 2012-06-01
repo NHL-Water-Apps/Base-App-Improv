@@ -178,6 +178,7 @@ var Config = {
 	regionDeltaHorizontal:	0.1,
 	regionDeltaVertical: 	0.05,
 	
+	
 	// De verschillende orientaties modes aan elk window meegeven
 	OrientationModes: [ 
 		Titanium.UI.PORTRAIT,
