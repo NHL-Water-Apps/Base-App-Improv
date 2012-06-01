@@ -143,7 +143,7 @@
 		// de button om de brug op de kaart te tonen
 		Toonkaart : Titanium.UI.createButton({
 			top: 			40, 
-			title:			Titanium.Platform.osname !== 'android' ? 'Toon op kaart' : '',
+			title:			Titanium.Platform.osname !== 'android' ? VwApp.Config.ShowOnMapText : '',
 			image:			Titanium.Platform.osname === 'android' ? (Titanium.Platform.displayCaps.platformHeight > 700 ? 
 								VwApp.Config.ShowOnMapGroter : VwApp.Config.ShowOnMap ) : '',
 			//height:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 40 : '17%'): (Titanium.Platform.osname === 'ipad' ? 40 : '10%'),
