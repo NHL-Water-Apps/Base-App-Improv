@@ -344,12 +344,14 @@
 	
 	// Sectie toevoegen aan de tabel
 	// Maar alleen als we dit aangegeven hebben in de config (hoogte en breedte) anders niet
-	if (VwApp.Config.ShowHeight || VwApp.Config.ShowWidth) {
+	if ((VwApp.Config.ShowHeight || VwApp.Config.ShowWidth) && VwApp.Config.DataOptions ) {
 		SettingsWindow.settingsView.data = [SettingsWindow.boatDimensionSection, SettingsWindow.mapTypeSection, 
 											SettingsWindow.dataUsageSection];
-	} else {
+	} else if (VwApp.Config.DataOptions) {
 		SettingsWindow.settingsView.data = [ SettingsWindow.mapTypeSection, 
 											SettingsWindow.dataUsageSection];
+	} else {
+		SettingsWindow.settingsView.data = [SettingsWindow.mapTypeSection];
 	}
 	
 	
