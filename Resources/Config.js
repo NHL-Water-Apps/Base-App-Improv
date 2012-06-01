@@ -177,17 +177,12 @@ var Config = {
 	// Bool value die aangeeft of deze app trail moet laden of niet
 	ShowTrail:		true,
 	// Instellingen voor de trail achter de persoon aan (in miliseconden)
-	TrailerTimeout: 1000, // 1 seconde
-	// Aantal stipjes trail op de kaart
-	AmountOfTrail: 	10,
-	
+	TrailerTimeout: 1000, // 1 seconde	
 	
 	// Minimale hoogte voor annotaties
 	regionDeltaHorizontal:	0.1,
 	regionDeltaVertical: 	0.05,
 	
-	// De interval waarop we annotaties verwijderen in miliseconden
-	RemoveInterval: 200,
 	
 	// De verschillende orientaties modes aan elk window meegeven
 	OrientationModes: [ 
