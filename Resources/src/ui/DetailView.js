@@ -443,20 +443,18 @@
 	// wanneer er gedraaid wordt met het scherm veranderen de waardes van de afbeelding en de 'toonkaart'-button
 	Titanium.Gesture.addEventListener('orientationchange', function () {
 		if (Titanium.Gesture.isLandscape()) {
-			if(Titanium.Platform.osname === 'ipad'){
+			if (Titanium.Platform.osname === 'ipad') {
 				DetailWindow.Toonkaart.height 	= 40;
 				DetailWindow.Toonkaart.width 	= 120;
-			}
-			else{
+			} else{
 				DetailWindow.Toonkaart.height 	= '17%';
 				DetailWindow.Toonkaart.width 	= '26%';
 			}
 		} else {
-			if(Titanium.Platform.osname === 'ipad'){
+			if (Titanium.Platform.osname === 'ipad') {
 				DetailWindow.Toonkaart.height 	= 40;
 				DetailWindow.Toonkaart.width 	= 120;
-			}
-			else{
+			} else {
 				DetailWindow.Toonkaart.height 	= '10%';
 				DetailWindow.Toonkaart.width 	= '35%';
 			}
