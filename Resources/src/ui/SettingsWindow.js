@@ -191,11 +191,13 @@
 		VwApp.UI.SettingsWindow.settingsView.height 	= '100%';
 		VwApp.UI.SettingsWindow.settingsView.width 		= '100%';
 	});
-
+	
+	/**
+	 *	Functie die een workaround is voor een settingsWindow bug 
+	 */
 	setTimeout(function(){
 		VwApp.UI.SettingsWindow.settingsView.height 	= '100%';
 		VwApp.UI.SettingsWindow.settingsView.width 		= '100%';
-		Titanium.API.warn('FIRED!');
 	}, 20000);
 	
 	// Ophalen van de opgeslagen waarde
@@ -283,6 +285,7 @@
 				VwApp.UI.MapWindow.map.fireEvent('regionChanged');
 			});
 		}
+		
 		// 	indien we een breedte willen weergeven
 		if (VwApp.Config.ShowWidth) {
 			SettingsWindow.boatWidthInput.addEventListener('blur', function(){
@@ -296,6 +299,7 @@
 				VwApp.UI.MapWindow.map.fireEvent('regionChanged');
 			});
 		}
+		
 		
 		/*
 	 	 * 	Eventlistener toevoegen die kijkt of er op het laden van afbeeldingen switch gedrukt is

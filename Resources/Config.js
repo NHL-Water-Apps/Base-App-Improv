@@ -108,6 +108,7 @@ var Config = {
 	
 	//icoontje voor 'ga naar de kaart' in het detailscherm
 	ShowOnMap:			'/images/ToonOpKaart.png',
+	ShowOnMapGroter:	'/images/ToonOpKaart@2x.png',
 	
 	/*
 	 * Kleuren opties
@@ -185,6 +186,7 @@ var Config = {
 	// De interval waarop we annotaties verwijderen in miliseconden
 	RemoveInterval: 200,
 	
+	// De verschillende orientaties modes aan elk window meegeven
 	OrientationModes: [ 
 		Titanium.UI.PORTRAIT,
 		Titanium.UI.UPSIDE_PORTRAIT,
