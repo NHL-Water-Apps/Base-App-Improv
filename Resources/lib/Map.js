@@ -245,14 +245,9 @@ var getAnnotationsToAdd = function(data, iconGreen, height, iconRed, delimiter){
 			// indoen we voldoen het onderschrift maken
 			var subtitle = '';
 			
-			// Kijken of er een hoogte meegegeven is
-			if (data[i].HEIGHT) {
-				subtitle += Config.AnnotationSubHeight + data[i].HEIGHT + '\t';
-			}
-			
-			// Kijken of er een breedte meegegeven is
-			if (data[i].WIDTH) {
-				subtitle += Config.AnnotationSubWidth + data[i].WIDTH;
+			// De subtitle maken
+			if(data[i].CITY){
+				subtitle += data[i].CITY;
 			}
 			
 			// Kijken welke icoon we gaan weergeven (indien we hiervoor gaan controleren)
