@@ -145,8 +145,8 @@
 			top: 			40, 
 			title:			Titanium.Platform.osname !== 'android' ? 'Toon op kaart' : '',
 			image:			Titanium.Platform.osname === 'android' ? VwApp.Config.ShowOnMap : '',
-			height:			'10%',
-			width:			'35%',
+			height:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 40 : '17%'): (Titanium.Platform.osname === 'ipad' ? 40 : '10%'),
+			width:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 120 : '26%'): (Titanium.Platform.osname === 'ipad' ? 120 : '35%'),
 			position: 		'center'
 		})	
 	};
