@@ -59,71 +59,8 @@
 			top:			'2%',
 			color:			VwApp.Config.TextColor
 		}),
-		
-		Hoogte : Titanium.UI.createLabel({
-			text : 			"",
-			textAlign : 	"left",
-			left: 			'3 %',
-			width : 		'auto',
-			heigth : 		'auto',
-			color:			VwApp.Config.TextColor
-		}),
-		
-		Breedte : Titanium.UI.createLabel({
-			text : 			"",
-			textAlign : 	"left",
-			left: 			'3 %',
-			width : 		'auto',
-			heigth : 		'auto',
-			color:			VwApp.Config.TextColor
-		}),
-		
-		Bron : 	Titanium.UI.createLabel({
-			text : 			"",
-			textAlign : 	"left",
-			left: 			'3 %',
-			width : 		'auto',
-			heigth : 		'auto',
-			color:			VwApp.Config.TextColor
-		}),
-		
-		Adres : Titanium.UI.createLabel({
-			text : 			"",
-			textAlign : 	"left",
-			left: 			'3 %',
-			width : 		'auto',
-			heigth : 		'auto',
-			color:			VwApp.Config.TextColor
-		}),
-		
-		Postcode : 	Titanium.UI.createLabel({
-			text : 			"",
-			textAlign : 	"left",
-			left: 			'3 %',
-			width : 		'auto',
-			heigth : 		'auto',
-			color:			VwApp.Config.TextColor
-		}),
-		
+
 		Stad : 	Titanium.UI.createLabel({
-			text : 			"",
-			textAlign : 	"left",
-			left: 			'3 %',
-			width : 		'auto',
-			heigth : 		'auto',
-			color:			VwApp.Config.TextColor
-		}),
-		
-		Oppervlakte : 	Titanium.UI.createLabel({
-			text : 			"",
-			textAlign : 	"left",
-			left: 			'3 %',
-			width : 		'auto',
-			heigth : 		'auto',
-			color:			VwApp.Config.TextColor
-		}),
-		
-		Code : 	Titanium.UI.createLabel({
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
@@ -185,15 +122,8 @@
 		DetailWindow.TypeData.height = 'auto';
 		
 		//het type data bovenaan zetten
-		if (data.TYPE == 'jachthavens') {
-			DetailWindow.TypeData.setText(VwApp.Config.JachthavenDetail);
-		}
-		if (data.TYPE == 'bruggen'){
-			DetailWindow.TypeData.setText(VwApp.Config.BrugDetail);
-		}
-		if (data.TYPE == 'ligplaatsen') {
-			DetailWindow.TypeData.setText(VwApp.Config.LigplaatsenDetail);
-		}
+		DetailWindow.TypeData.setText(VwApp.Config.VisStekDetail);
+		
 		
 
 		//afbeelding

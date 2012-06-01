@@ -6,9 +6,7 @@ var Config = {
 	 * GEEN .JS extensie toevoegen aan het pad.
 	 */
 	DataToLoad: {
-		'bruggen' : 'Data/Bruggen',
-		'jachthavens' : 'Data/Jachthavens',
-		'ligplaatsen' : 'Data/Ligplaatsen'
+		'visstekken' : 'Data/Visstekken'
 	},
 
 	/*
@@ -37,12 +35,12 @@ var Config = {
 	DimensionHeader: 'Boot eigenschappen',
 	
 	// Alle eigenschappen vna de hoogte 
-	ShowHeight:		 true,
+	ShowHeight:		 false,
 	HeightText:		 'Hoogte(m):',
 	HeightHintText:  'Hoogte',
 	
 	// Alle eigenschappen van de breedte
-	ShowWidth:		 true,		 
+	ShowWidth:		 false,		 
 	WidthText:		 'Breedte(m):',
 	WidthHintText:   'Breedte',
 	
@@ -90,11 +88,7 @@ var Config = {
 	SettingsTabIcon: '/images/settings.png',
 	
 	// Icoontje voor op de kaart (brug hier)
-	BridgeGreenIcon: 	'/images/BrugGroen.png',
-	BridgeRedIcon: 		'/images/BrugRood.png',
-	
-	AanlegPlaatsIcon:   '/images/Aanleg.png',
-	JachtHavenIcon:		'/images/Aanlegstijger.png',
+	VisStekIcon:	 '/images/Vis.png',
 	
 	
 	// Trailing lijn
@@ -148,6 +142,7 @@ var Config = {
 	 BrugDetail:		"Brug",
 	 JachthavenDetail:	"Jachthaven",
 	 LigplaatsenDetail:	"Ligplaats",
+	 VisStekDetail:		"Visstek",
 	 //titel van de toon op kaart knop
 	 LatLonNotFound : "Geen coordinaten gevonden..",
 
@@ -171,7 +166,7 @@ var Config = {
 	DefaultUserLocZoom: 0.005,
 	
 	// Bool value die aangeeft of deze app trail moet laden of niet
-	ShowTrail:		true,
+	ShowTrail:		false,
 	// Instellingen voor de trail achter de persoon aan (in miliseconden)
 	TrailerTimeout: 1000, // 1 seconde
 	// Aantal stipjes trail op de kaart
@@ -181,9 +176,6 @@ var Config = {
 	// Minimale hoogte voor annotaties
 	regionDeltaHorizontal:	0.1,
 	regionDeltaVertical: 	0.05,
-	
-	// De interval waarop we annotaties verwijderen in miliseconden
-	RemoveInterval: 200,
 	
 	OrientationModes: [ 
 		Titanium.UI.PORTRAIT,
