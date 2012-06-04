@@ -256,12 +256,12 @@ var getAnnotationsToAdd = function(data, iconGreen, height, iconRed, delimiter){
 			
 			// Kijken of er een hoogte meegegeven is
 			if (data[i].HEIGHT) {
-				subtitle += Config.AnnotationSubHeight + data[i].HEIGHT + '\t';
+				subtitle += Config.AnnotationSubHeight + data[i].HEIGHT + Config.AnnotationUnit + '\t';
 			}
 			
 			// Kijken of er een breedte meegegeven is
 			if (data[i].WIDTH) {
-				subtitle += Config.AnnotationSubWidth + data[i].WIDTH;
+				subtitle += Config.AnnotationSubWidth + data[i].WIDTH + Config.AnnotationUnit;
 			}
 			
 			// Kijken welke icoon we gaan weergeven (indien we hiervoor gaan controleren)

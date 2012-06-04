@@ -31,6 +31,7 @@ var Config = {
 	// Voor de subtitel van een annotation
 	AnnotationSubHeight: 	'H: ',
 	AnnotationSubWidth:		'B: ',
+	AnnotationUnit:			' m',
 	
 	// Settings view:
 	// Sectie afmetingen van de boot: 
@@ -106,13 +107,13 @@ var Config = {
 	 */
 	
 	// Achtergrond kleur van alle views
-	ViewBackgroundColor:   '#000000',
+	ViewBackgroundColor:   '#e4e4e4',
 	
 	// Achtergrond kleur van de zoekbalkjes
 	SearchBackgroundColor: '#000000',
 	
 	// Text kleur
-	TextColor: 			'#EEEEEE',
+	TextColor: 			'#000000',
 	TextColorIPhone: 	'#000000',
 
 
@@ -126,17 +127,17 @@ var Config = {
 	 // 
 	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	 //detailview eigenschappen
-	 HeigthDetail : 	"Hoogte: ",
-	 WidthDetail : 		"Breedte: ",
-	 TypeDetail : 		"Type: ",
-	 AdressDetail : 	"Adres: ",
-	 UnitDetail : 		" Meter",
-	 SquareUnitDetail:  " Vierkante meter",
-	 BronDetail: 		"Bron: ",
-	 ZipcodeDetail: 	"Postcode: ",
-	 CityDetail:   		"Stad: ",
+	 HeigthDetail : 	"Hoogte:	  ",
+	 WidthDetail : 		"Breedte: 	  ",
+	 TypeDetail : 		"Type:	      ",
+	 AdressDetail : 	"Adres:       ",
+	 UnitDetail: 		" m",
+ 	 SquareUnitDetail:  " m²",
+	 BronDetail: 		"Bron: 		  ",
+	 ZipcodeDetail: 	"Postcode:    ",
+	 CityDetail:   		"Stad: 		  ",
 	 SizeDetail: 		"Oppervlakte: ",
-	 CodeDetail:		"Code: ",
+	 CodeDetail:		"Code:        ",
 	 BrugDetail:		"Brug",
 	 JachthavenDetail:	"Jachthaven",
 	 LigplaatsenDetail:	"Ligplaats",
@@ -165,17 +166,12 @@ var Config = {
 	// Bool value die aangeeft of deze app trail moet laden of niet
 	ShowTrail:		true,
 	// Instellingen voor de trail achter de persoon aan (in miliseconden)
-	TrailerTimeout: 1000, // 1 seconde
-	// Aantal stipjes trail op de kaart
-	AmountOfTrail: 	10,
-	
+	TrailerTimeout: 1000, // 1 seconde	
 	
 	// Minimale hoogte voor annotaties
 	regionDeltaHorizontal:	0.1,
 	regionDeltaVertical: 	0.05,
 	
-	// De interval waarop we annotaties verwijderen in miliseconden
-	RemoveInterval: 200,
 	
 	// De verschillende orientaties modes aan elk window meegeven
 	OrientationModes: [ 
