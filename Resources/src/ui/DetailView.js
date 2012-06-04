@@ -56,10 +56,10 @@
 	/**
 	 * 	Bij de ipad de button wel een hoogte en breedte meegeven
 	 */
-	if (Titanium.Platform.osname === 'ipad') {
-				DetailWindow.Toonkaart.height 	= 40;
-				DetailWindow.Toonkaart.width 	= 120;
-	}
+	//if (Titanium.Platform.osname === 'ipad' || Titanium.Platform.osname === 'iphone') {
+	//			DetailWindow.Toonkaart.height 	= 40;
+	//			DetailWindow.Toonkaart.width 	= 120;
+	//}
 	
 	// variabelen voor de lat en de lon
 	var Lat = "";

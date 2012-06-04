@@ -244,7 +244,7 @@ var getAnnotationsToAdd = function(data, iconGreen, height, iconRed, delimiter){
 			
 			// indoen we voldoen het onderschrift maken
 			var subtitle = '';
-			
+
 			// De subtitle maken
 			if(data[i].CITY){
 				subtitle += data[i].CITY;

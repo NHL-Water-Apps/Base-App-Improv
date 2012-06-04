@@ -29,6 +29,7 @@ var Config = {
 	// Voor de subtitel van een annotation
 	AnnotationSubHeight: 	'H: ',
 	AnnotationSubWidth:		'B: ',
+	AnnotationUnit:			' m',
 	
 	// Settings view:
 	// Sectie afmetingen van de boot: 
@@ -65,7 +66,7 @@ var Config = {
 	NoPictureDetail: 'Geen foto beschikbaar',
 	// Text weer te geven als het laden van foto's is uitgeschakeld
 	PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
-		
+
 	// Text voor als er geen coordinaten gevonden zijn
 	//		bij het klikken op de knop
 	LatLonNotFound : "Geen coordinaten gevonden..",
@@ -100,13 +101,13 @@ var Config = {
 	 */
 	
 	// Achtergrond kleur van alle views
-	ViewBackgroundColor:   '#000000',
+	ViewBackgroundColor:   '#e4e4e4',
 	
 	// Achtergrond kleur van de zoekbalkjes
 	SearchBackgroundColor: '#000000',
 	
 	// Text kleur
-	TextColor: 			'#EEEEEE',
+	TextColor: 			'#000000',
 	TextColorIPhone: 	'#000000',
 
 
@@ -120,8 +121,10 @@ var Config = {
 	 // 
 	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	 //detailview eigenschappen
-	 CityDetail:   		"Stad: ",
+
+	 CityDetail:   		"Stad: 		  ",
 	 VisStekDetail:		"Visstek",
+
 	 //titel van de toon op kaart knop
 	 LatLonNotFound : "Geen coordinaten gevonden..",
 
