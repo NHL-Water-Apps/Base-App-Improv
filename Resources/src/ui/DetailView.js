@@ -6,8 +6,6 @@
 			image:			Titanium.Platform.osname === 'android' ? (Titanium.Platform.displayCaps.platformHeight > 700 ? 
 								VwApp.Config.ShowOnMapGroter : VwApp.Config.ShowOnMap ) : '',
 			title:			Titanium.Platform.osname === 'android' ? '': VwApp.Config.ShowOnMapText,
-			//height:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 40 : '17%'): (Titanium.Platform.osname === 'ipad' ? 40 : '10%'),
-			//width:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 120 : '26%'): (Titanium.Platform.osname === 'ipad' ? 120 : '35%'),
 			position: 		'center'
 		});
 	
