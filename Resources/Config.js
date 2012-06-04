@@ -153,8 +153,8 @@ var Config = {
 	TrailerTimeout: 1000, // 1 seconde	
 	
 	// Minimale hoogte voor annotaties
-	regionDeltaHorizontal:	0.1,
-	regionDeltaVertical: 	0.05,
+	regionDeltaHorizontal:	0.5,
+	regionDeltaVertical: 	0.5,
 	
 	
 	// De verschillende orientaties modes aan elk window meegeven
