@@ -101,7 +101,7 @@ var Config = {
 	 */
 	
 	// Achtergrond kleur van alle views
-	ViewBackgroundColor:   '#e4e4e4',
+	ViewBackgroundColor:   '#f9f9f9',
 	
 	// Achtergrond kleur van de zoekbalkjes
 	SearchBackgroundColor: '#000000',
@@ -121,7 +121,6 @@ var Config = {
 	 // 
 	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	 //detailview eigenschappen
-
 	 CityDetail:   		"Stad: 		  ",
 	 VisStekDetail:		"Visstek",
 
