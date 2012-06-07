@@ -153,7 +153,7 @@ var Config = {
 	
 	// Minimale hoogte voor annotaties
 	regionDeltaHorizontal:	0.5,
-	regionDeltaVertical: 	0.5,
+	regionDeltaVertical: 	0.25,
 	
 	
 	// De verschillende orientaties modes aan elk window meegeven
