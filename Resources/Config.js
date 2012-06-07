@@ -69,7 +69,6 @@ var Config = {
 	// Text weer te geven als het laden van foto's is uitgeschakeld
 	PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	
-	
 	// Text voor als er geen coordinaten gevonden zijn
 	//		bij het klikken op de knop
 	LatLonNotFound : "Geen coordinaten gevonden..",
@@ -101,6 +100,7 @@ var Config = {
 	//icoontje voor 'ga naar de kaart' in het detailscherm
 	ShowOnMap:			'/images/ToonOpKaart.png',
 	ShowOnMapGroter:	'/images/ToonOpKaart@2x.png',
+	ShowOnMapText:		'Toon op kaart',
 	
 	/*
 	 * Kleuren opties
