@@ -46,7 +46,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'100%',
 			heigth : 		'auto',
 			top:			'2%',
 			color:			VwApp.Config.TextColor
