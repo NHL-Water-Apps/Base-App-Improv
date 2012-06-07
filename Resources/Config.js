@@ -127,13 +127,13 @@ var Config = {
 	 // 
 	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	 //detailview eigenschappen
-	 HeigthDetail : 	"Hoogte:	  ",
+	 HeigthDetail : 	"Hoogte:	",
 	 WidthDetail : 		"Breedte:  ",
 	 TypeDetail : 		"Type:	      ",
 	 AdressDetail : 	"Adres:      ",
 	 UnitDetail: 		" m",
  	 SquareUnitDetail:  " m²",
-	 BronDetail: 		"Bron: 		  ",
+	 BronDetail: 		"Bron: 		",
 	 ZipcodeDetail: 	"Postcode:    ",
 	 CityDetail:   		"Stad: 		  ",
 	 SizeDetail: 		"Oppervlakte: ",
