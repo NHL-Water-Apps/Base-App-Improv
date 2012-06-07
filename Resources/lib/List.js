@@ -1,3 +1,7 @@
+// Ervoor zorgen dat de config variablen ook beschikbaar zjin in deze
+//	module
+var Config = require('/Config');
+
 var tableData = [];
 
 /**
@@ -10,7 +14,8 @@ var makeRow = function(data) {
 	
 	return Titanium.UI.createTableViewRow({
 		title: data.title,
-		data : data
+		data : data,
+		color : Config.TextColor
 	});
 };
 

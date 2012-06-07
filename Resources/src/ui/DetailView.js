@@ -146,19 +146,20 @@
 			title:			Titanium.Platform.osname !== 'android' ? 'Toon op kaart' : '',
 			image:			Titanium.Platform.osname === 'android' ? (Titanium.Platform.displayCaps.platformHeight > 700 ? 
 								VwApp.Config.ShowOnMapGroter : VwApp.Config.ShowOnMap ) : '',
-			//height:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 40 : '17%'): (Titanium.Platform.osname === 'ipad' ? 40 : '10%'),
-			//width:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 120 : '26%'): (Titanium.Platform.osname === 'ipad' ? 120 : '35%'),
-			position: 		'center'
+			height:			Titanium.Platform.osname !== 'android' ? 40 : 'auto',
+			width:			Titanium.Platform.osname !== 'android' ? 120 : 'auto',
+			position: 		'center',
+	
 		})	
 	};
 	
 	/**
 	 * 	Bij de ipad de button wel een hoogte en breedte meegeven
 	 */
-	if (Titanium.Platform.osname === 'ipad') {
-				DetailWindow.Toonkaart.height 	= 40;
-				DetailWindow.Toonkaart.width 	= 120;
-	}
+	//if (Titanium.Platform.osname === 'ipad' || Titanium.Platform.osname === 'iphone') {
+	//			DetailWindow.Toonkaart.height 	= 40;
+	//			DetailWindow.Toonkaart.width 	= 120;
+	//}
 	
 	// variabelen voor de lat en de lon
 	var Lat = "";

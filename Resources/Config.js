@@ -31,6 +31,7 @@ var Config = {
 	// Voor de subtitel van een annotation
 	AnnotationSubHeight: 	'H: ',
 	AnnotationSubWidth:		'B: ',
+	AnnotationUnit:			' m',
 	
 	// Settings view:
 	// Sectie afmetingen van de boot: 
@@ -68,18 +69,6 @@ var Config = {
 	// Text weer te geven als het laden van foto's is uitgeschakeld
 	PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	
-	// Text op het detailscherm verder eigenschappen
-	HeigthDetail: 		"Hoogte: ",
-	WidthDetail: 		"Breedte: ",
-	TypeDetail: 		"Type: ",
-	AdressDetail: 		"Adres: ",
-	UnitDetail: 		" Meter",
- 	SquareUnitDetail:  	" Vierkante meter",
-	BronDetail: 		"Bron: ",
-	ZipcodeDetail: 		"Postcode: ",
-	CityDetail:   		"Stad: ",
-	SizeDetail: 		"Oppervlakte: ",
-	CodeDetail:			"Code: ",
 	
 	// Text voor als er geen coordinaten gevonden zijn
 	//		bij het klikken op de knop
@@ -118,13 +107,13 @@ var Config = {
 	 */
 	
 	// Achtergrond kleur van alle views
-	ViewBackgroundColor:   '#000000',
+	ViewBackgroundColor:   '#e4e4e4',
 	
 	// Achtergrond kleur van de zoekbalkjes
 	SearchBackgroundColor: '#000000',
 	
 	// Text kleur
-	TextColor: 			'#EEEEEE',
+	TextColor: 			'#000000',
 	TextColorIPhone: 	'#000000',
 
 
@@ -138,17 +127,17 @@ var Config = {
 	 // 
 	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	 //detailview eigenschappen
-	 HeigthDetail : 	"Hoogte: ",
-	 WidthDetail : 		"Breedte: ",
-	 TypeDetail : 		"Type: ",
-	 AdressDetail : 	"Adres: ",
-	 UnitDetail : 		" Meter",
-	 SquareUnitDetail:  " Vierkante meter",
-	 BronDetail: 		"Bron: ",
-	 ZipcodeDetail: 	"Postcode: ",
-	 CityDetail:   		"Stad: ",
+	 HeigthDetail : 	"Hoogte:	  ",
+	 WidthDetail : 		"Breedte: 	  ",
+	 TypeDetail : 		"Type:	      ",
+	 AdressDetail : 	"Adres:       ",
+	 UnitDetail: 		" m",
+ 	 SquareUnitDetail:  " m²",
+	 BronDetail: 		"Bron: 		  ",
+	 ZipcodeDetail: 	"Postcode:    ",
+	 CityDetail:   		"Stad: 		  ",
 	 SizeDetail: 		"Oppervlakte: ",
-	 CodeDetail:		"Code: ",
+	 CodeDetail:		"Code:        ",
 	 BrugDetail:		"Brug",
 	 JachthavenDetail:	"Jachthaven",
 	 LigplaatsenDetail:	"Ligplaats",
