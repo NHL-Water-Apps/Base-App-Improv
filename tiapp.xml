@@ -9,12 +9,12 @@
     </deployment-targets>
     <sdk-version>2.0.1.GA2</sdk-version>
     <id>m.waterapp</id>
-    <name>WaterWijzer B & A</name>
+    <name>Base-App-Improv</name>
     <version>1.0</version>
-    <publisher>NHL Hogeschool Leeuwarden</publisher>
-    <url>http://www.nhl.nl/nhl/14/home.html</url>
-    <description>Een app voor bruggen en aanlegplaatsen</description>
-    <copyright>2012 by NHL Leeuwarden</copyright>
+    <publisher>martndemus</publisher>
+    <url>http://</url>
+    <description>not specified</description>
+    <copyright>2012 by martndemus</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
