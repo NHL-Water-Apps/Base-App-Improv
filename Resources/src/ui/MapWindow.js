@@ -76,7 +76,7 @@
 			// Kijken waar er gedrukt is
 			
 			// Als we op de rechterknop gedrukt hebben of rechterpanel (android)
-			if(!e.clicksource && e.clicksource !== 'pin' && e.clicksource !== 'annotation')
+			if(e.clicksource != 'null' && e.clicksource !== 'pin' && e.clicksource !== 'annotation')
 			{
 				// Dan de detailpagina updaten
 				VwApp.UI.changeDetailView(e.annotation.dataToPass);
