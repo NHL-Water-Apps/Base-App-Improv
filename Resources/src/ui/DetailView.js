@@ -1,4 +1,14 @@
 (function () {
+	
+	// de button om de brug op de kaart te tonen
+	var	Toonkaart = Titanium.UI.createButton({
+			top: 			40, 
+			image:			Titanium.Platform.osname === 'android' ? (Titanium.Platform.displayCaps.platformHeight > 700 ? 
+								VwApp.Config.ShowOnMapGroter : VwApp.Config.ShowOnMap ) : '',
+			title:			Titanium.Platform.osname === 'android' ? '': VwApp.Config.ShowOnMapText,
+			position: 		'center'
+		});
+	
 	// Detailwindow en zijn elementen
 	var DetailWindow = {
 		window: Titanium.UI.createWindow({
@@ -138,18 +148,6 @@
 			width : 		'auto',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
-		}),
-			
-		// de button om de brug op de kaart te tonen
-		Toonkaart : Titanium.UI.createButton({
-			top: 			40, 
-			title:			Titanium.Platform.osname !== 'android' ? 'Toon op kaart' : '',
-			image:			Titanium.Platform.osname === 'android' ? (Titanium.Platform.displayCaps.platformHeight > 700 ? 
-								VwApp.Config.ShowOnMapGroter : VwApp.Config.ShowOnMap ) : '',
-			height:			Titanium.Platform.osname !== 'android' ? 40 : 'auto',
-			width:			Titanium.Platform.osname !== 'android' ? 120 : 'auto',
-			position: 		'center',
-	
 		})	
 	};
 	
@@ -440,7 +438,7 @@
 	}
 	
 	// wanneer er geklikt wordt op de button setlocation op map en open de map, mits lat en lon aanwezig
-	DetailWindow.Toonkaart.addEventListener('click', function() {   
+	Toonkaart.addEventListener('click', function() {   
 		if (Lat != "") {		
 			VwApp.Map.setLocation(Lat, Lon, VwApp.Config.DefaultUserLocZoom);
 			VwApp.UI.TabBar.tabGroup.setActiveTab(VwApp.UI.TabBar.mapTab);
@@ -467,7 +465,7 @@
 	DetailWindow.Container.add(DetailWindow.Code);
 	DetailWindow.Container.add(DetailWindow.Bron);
 	// toonkaart hier pas toevoegen, anders komt deze bovenaan te staan
-	DetailWindow.Container.add(DetailWindow.Toonkaart); 
+	DetailWindow.Container.add(Toonkaart); 
 
 	// scrollview met de labels toevoegen aan de window
 	DetailWindow.window.add(DetailWindow.Container);

@@ -69,7 +69,6 @@ var Config = {
 	// Text weer te geven als het laden van foto's is uitgeschakeld
 	PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	
-	
 	// Text voor als er geen coordinaten gevonden zijn
 	//		bij het klikken op de knop
 	LatLonNotFound : "Geen coordinaten gevonden..",
@@ -101,13 +100,14 @@ var Config = {
 	//icoontje voor 'ga naar de kaart' in het detailscherm
 	ShowOnMap:			'/images/ToonOpKaart.png',
 	ShowOnMapGroter:	'/images/ToonOpKaart@2x.png',
+	ShowOnMapText:		'Toon op kaart',
 	
 	/*
 	 * Kleuren opties
 	 */
 	
 	// Achtergrond kleur van alle views
-	ViewBackgroundColor:   '#e4e4e4',
+	ViewBackgroundColor:   '#f9f9f9',
 	
 	// Achtergrond kleur van de zoekbalkjes
 	SearchBackgroundColor: '#000000',
@@ -128,16 +128,16 @@ var Config = {
 	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	 //detailview eigenschappen
 	 HeigthDetail : 	"Hoogte:	  ",
-	 WidthDetail : 		"Breedte: 	  ",
+	 WidthDetail : 		"Breedte:  ",
 	 TypeDetail : 		"Type:	      ",
-	 AdressDetail : 	"Adres:       ",
+	 AdressDetail : 	"Adres:      ",
 	 UnitDetail: 		" m",
  	 SquareUnitDetail:  " m²",
 	 BronDetail: 		"Bron: 		  ",
 	 ZipcodeDetail: 	"Postcode:    ",
 	 CityDetail:   		"Stad: 		  ",
 	 SizeDetail: 		"Oppervlakte: ",
-	 CodeDetail:		"Code:        ",
+	 CodeDetail:		"Code:       ",
 	 BrugDetail:		"Brug",
 	 JachthavenDetail:	"Jachthaven",
 	 LigplaatsenDetail:	"Ligplaats",
