@@ -43,7 +43,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3%',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -53,7 +53,7 @@
 			text : 			"",
 			textAlign: 		'center',
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		18,
 			top:			'2%',
 			color:			VwApp.Config.TextColor
@@ -64,7 +64,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			//top:			'2%',
 			color:			VwApp.Config.TextColor
@@ -75,7 +75,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -85,7 +85,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -95,7 +95,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -105,7 +105,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -115,7 +115,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -125,7 +125,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -135,7 +135,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -145,7 +145,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		})	

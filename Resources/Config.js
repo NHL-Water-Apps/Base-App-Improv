@@ -107,7 +107,7 @@ var Config = {
 	 */
 	
 	// Achtergrond kleur van alle views
-	ViewBackgroundColor:   '#f9f9f9',
+	ViewBackgroundColor:   '#e4e4e4',
 	
 	// Achtergrond kleur van de zoekbalkjes
 	SearchBackgroundColor: '#000000',
@@ -128,16 +128,16 @@ var Config = {
 	 PictureOffDetail: 'Het laden van afbeeldingen is uitgeschakeld, schakel deze in bij de instellingen.',
 	 //detailview eigenschappen
 	 HeigthDetail : 	"Hoogte:	  ",
-	 WidthDetail : 		"Breedte:  ",
+	 WidthDetail : 		"Breedte: 	  ",
 	 TypeDetail : 		"Type:	      ",
-	 AdressDetail : 	"Adres:      ",
+	 AdressDetail : 	"Adres:       ",
 	 UnitDetail: 		" m",
  	 SquareUnitDetail:  " m²",
 	 BronDetail: 		"Bron: 		  ",
 	 ZipcodeDetail: 	"Postcode:    ",
 	 CityDetail:   		"Stad: 		  ",
 	 SizeDetail: 		"Oppervlakte: ",
-	 CodeDetail:		"Code:       ",
+	 CodeDetail:		"Code:        ",
 	 BrugDetail:		"Brug",
 	 JachthavenDetail:	"Jachthaven",
 	 LigplaatsenDetail:	"Ligplaats",
