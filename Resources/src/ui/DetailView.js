@@ -1,4 +1,13 @@
 (function () {
+	// de button om de brug op de kaart te tonen
+	var	Toonkaart = Titanium.UI.createButton({
+			top: 			40, 
+			image:			Titanium.Platform.osname === 'android' ? (Titanium.Platform.displayCaps.platformHeight > 700 ? 
+								VwApp.Config.ShowOnMapGroter : VwApp.Config.ShowOnMap ) : '',
+			title:			Titanium.Platform.osname === 'android' ? '': VwApp.Config.ShowOnMapText,
+			position: 		'center'
+		});
+	
 	// Detailwindow en zijn elementen
 	var DetailWindow = {
 		window: Titanium.UI.createWindow({
@@ -137,7 +146,6 @@
 			left: 			'3 %',
 			width : 		'auto',
 			heigth : 		'auto',
-			color:			VwApp.Config.TextColor
 		})
 	};
 			
@@ -150,15 +158,15 @@
 		//height:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 40 : '17%'): (Titanium.Platform.osname === 'ipad' ? 40 : '10%'),
 		//width:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 120 : '26%'): (Titanium.Platform.osname === 'ipad' ? 120 : '35%'),
 		position: 		'center'
-	})	
+	});	
 	
 	/**
 	 * 	Bij de ipad de button wel een hoogte en breedte meegeven
 	 */
-	if (Titanium.Platform.osname === 'ipad') {
-				DetailWindow.Toonkaart.height 	= 40;
-				DetailWindow.Toonkaart.width 	= 120;
-	}
+	//if (Titanium.Platform.osname === 'ipad' || Titanium.Platform.osname === 'iphone') {
+	//			DetailWindow.Toonkaart.height 	= 40;
+	//			DetailWindow.Toonkaart.width 	= 120;
+	//}
 	
 	// variabelen voor de lat en de lon
 	var Lat = "";
