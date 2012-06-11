@@ -106,13 +106,13 @@ var Config = {
 	 */
 	
 	// Achtergrond kleur van alle views
-	ViewBackgroundColor:   '#000000',
+	ViewBackgroundColor:   '#e4e4e4',
 	
 	// Achtergrond kleur van de zoekbalkjes
 	SearchBackgroundColor: '#000000',
 	
 	// Text kleur
-	TextColor: 			'#EEEEEE',
+	TextColor: 			'#000000',
 	TextColorIPhone: 	'#000000',
 
 
