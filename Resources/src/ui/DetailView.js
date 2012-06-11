@@ -1,4 +1,5 @@
 (function () {
+	
 	// de button om de brug op de kaart te tonen
 	var	Toonkaart = Titanium.UI.createButton({
 			top: 			40, 
