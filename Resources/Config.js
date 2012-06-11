@@ -6,9 +6,9 @@ var Config = {
 	 * GEEN .JS extensie toevoegen aan het pad.
 	 */
 	DataToLoad: {
-		'bruggen' : 'Data/Bruggen.lwd',
-		'jachthavens' : 'Data/Jachthavens.lwd',
-		'ligplaatsen' : 'Data/Ligplaatsen.lwd'
+		'bruggen' : 	'Data/Bruggen.js',
+		'jachthavens' : 'Data/Jachthavens.js',
+		'ligplaatsen' : 'Data/Ligplaatsen.js'
 	},
 
 	/*
@@ -141,8 +141,9 @@ var Config = {
 	 BrugDetail:		"Brug",
 	 JachthavenDetail:	"Jachthaven",
 	 LigplaatsenDetail:	"Ligplaats",
+	 
 	 //titel van de toon op kaart knop
-	 LatLonNotFound : "Geen coordinaten gevonden..",
+	 LatLonNotFound : 	"Geen coordinaten gevonden..",
 
 	 
 	/*
