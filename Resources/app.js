@@ -7,12 +7,10 @@
 var VwApp = {
 
 	// Laad een aantal modules en voeg ze toe aan de namespace.
-	Config: require('Config'),
-	OnLoad: require('lib/OnLoad'),
-	Map:	require('lib/Map'),
-	List:	require('lib/List'),
-	//Utils:  require('lib/Utils'),
-	//IO:	require('lib/IO'),
+	Config: 	require('Config'),
+	OnLoad: 	require('lib/OnLoad'),
+	Map:		require('lib/Map'),
+	List:		require('lib/List'),
 	Validation: require('lib/Validation'),
 
 	// Maak alvast namespaces aan voor (..)

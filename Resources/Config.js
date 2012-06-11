@@ -6,7 +6,7 @@ var Config = {
 	 * GEEN .JS extensie toevoegen aan het pad.
 	 */
 	DataToLoad: {
-		'bruggen' : 'Data/Bruggen',
+		'bruggen' : 	'Data/Bruggen',
 		'jachthavens' : 'Data/Jachthavens',
 		'ligplaatsen' : 'Data/Ligplaatsen'
 	},
@@ -141,8 +141,9 @@ var Config = {
 	 BrugDetail:		"Brug",
 	 JachthavenDetail:	"Jachthaven",
 	 LigplaatsenDetail:	"Ligplaats",
+	 
 	 //titel van de toon op kaart knop
-	 LatLonNotFound : "Geen coordinaten gevonden..",
+	 LatLonNotFound : 	"Geen coordinaten gevonden..",
 
 	 
 	/*
@@ -153,10 +154,10 @@ var Config = {
 	// De regio waar de app op terugvalt als het de locatie van de gebruiker
 	// niet gevonden kan worden. In dit geval een overzicht van Friesland.
 	DefaultRegion: {
-		latitude:  		53.1337,
-		longitude: 		5.85,
-		latitudeDelta:	0.9, 
-		longitudeDelta:	0.9
+		latitude:  		53.20239,
+		longitude: 		5.814075,
+		latitudeDelta:	0.05, 
+		longitudeDelta:	0.05
 	},
 	
 	// De hoeveelheid zoom uitgedrukt in deltaX dat de kaart inzoomt als er op
