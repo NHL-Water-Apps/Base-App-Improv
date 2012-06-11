@@ -1,8 +1,4 @@
 (function () {
-<<<<<<< HEAD
-=======
-	
->>>>>>> e1f4b220a2029fab1fafaf52abb6b32fbb03bfb7
 	// de button om de brug op de kaart te tonen
 	var	Toonkaart = Titanium.UI.createButton({
 			top: 			40, 
