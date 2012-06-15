@@ -6,7 +6,7 @@ var Config = {
 	 * GEEN .JS extensie toevoegen aan het pad.
 	 */
 	DataToLoad: {
-		'bruggen' : 'Data/Bruggen.lwd',
+		'bruggen' : 	'Data/Bruggen.lwd',
 		'jachthavens' : 'Data/Jachthavens.lwd',
 		'ligplaatsen' : 'Data/Ligplaatsen.lwd'
 	},
@@ -107,7 +107,7 @@ var Config = {
 	 */
 	
 	// Achtergrond kleur van alle views
-	ViewBackgroundColor:   '#f9f9f9',
+	ViewBackgroundColor:   '#e4e4e4',
 	
 	// Achtergrond kleur van de zoekbalkjes
 	SearchBackgroundColor: '#000000',
