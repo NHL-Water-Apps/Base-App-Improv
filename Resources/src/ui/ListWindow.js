@@ -34,23 +34,27 @@
 	var updateListData = function() {		
 		VwApp.List.clearData();
 		
+		data = [];
+		
 		// Alle data sets als tabledata toevoegen
 		for (name in VwApp.Data) {
 			if (VwApp.Data.hasOwnProperty(name)) {
-				VwApp.List.addData(VwApp.Data[name]);
+				//VwApp.List.addData(VwApp.Data[name]);
+				data = data.concat(VwApp.Data[name]);
 			}
 		}
 		
 		// Sorteren
-		VwApp.List.sortData();
-		
+		//VwApp.List.sortData();
+		data = VwApp.List.sortData(data);
 		// Stop alles in de table
-		ListWindow.table.setData(VwApp.List.getData());
+		ListWindow.table.setData(data);//VwApp.List.getData());
 	};
 	
 	VwApp.OnLoad.addFn(function() {
 		// Update de table list.
 		updateListData();
+		//ListWindow.table.setData(VwApp.Data.bruggen);
 		
 		//eventlistener	wanneer er geklikt wordt op een van de vakken in de lijst
 		ListWindow.table.addEventListener('click', function(e){  

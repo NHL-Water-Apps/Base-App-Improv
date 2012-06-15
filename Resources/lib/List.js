@@ -37,7 +37,8 @@ var addData = function(data) {
 /**
  * Sorteert de huidige data.
  */
-var sortData = function() {
+var sortData = function(data) {
+	tableData = data;
 	
 	tableData.sort(function(a, b) {
 		if (!a.title)
@@ -53,6 +54,7 @@ var sortData = function() {
 			
 		return 0;
 	});	
+	return data;
 };
 
 /**
