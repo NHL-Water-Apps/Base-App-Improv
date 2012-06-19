@@ -34,18 +34,20 @@
 	var updateListData = function() {		
 		VwApp.List.clearData();
 		
+		data = [];
+		
 		// Alle data sets als tabledata toevoegen
 		for (name in VwApp.Data) {
 			if (VwApp.Data.hasOwnProperty(name)) {
-				VwApp.List.addData(VwApp.Data[name]);
+				data = data.concat(VwApp.Data[name]);
 			}
 		}
 		
 		// Sorteren
-		VwApp.List.sortData();
+		data = VwApp.List.sortData(data);
 		
 		// Stop alles in de table
-		ListWindow.table.setData(VwApp.List.getData());
+		ListWindow.table.setData(data);
 	};
 	
 	VwApp.OnLoad.addFn(function() {
