@@ -33,7 +33,7 @@
 		// Type van de data
 		TypeData : Titanium.UI.createLabel({
 			text : 			"",
-			textAlign: 		'center',
+			textAlign: 		'left',
 			left: 			'3 %',
 			width : 		'auto',
 			heigth : 		18,
