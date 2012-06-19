@@ -174,8 +174,6 @@ var filterAnnotations = function(region, data){
 	
 	// Alle annotaties verwijderen
 	mapView.removeAllAnnotations();
-	// En trail stippen weer terug zetten
-	mapView.addAnnotations(trailers);
 	
 	// Kijken of we niet al te ver uitgezoomed zijn
 	if ((region.latitudeDelta > Config.regionDeltaHorizontal && region.longitudeDelta  > Config.regionDeltaVertical ) || 
@@ -183,9 +181,6 @@ var filterAnnotations = function(region, data){
 		// Als dat wel zo is zijn we klaar
 		return;
 	}
-	
-	// Opgeslagen hoogte inlezen
-	var height = parseFloat(Titanium.App.Properties.getString('height', null));
 	
 	// Coordinaten berekenen (lat en long worden vanuit het midden meegegeven) en in een object stoppen
 	var delimiters = {
@@ -199,12 +194,8 @@ var filterAnnotations = function(region, data){
 					};
 	
 	// Annotaties binnen deze regio bepalen
-	var newAnnotations = getAnnotationsToAdd(data.bruggen, Config.BridgeGreenIcon, 
-							height, Config.BridgeRedIcon, delimiters);
-	
-	// Zelfde doen voor de andere dataTypes
-	newAnnotations = concat(newAnnotations, getAnnotationsToAdd(data.jachthavens, Config.JachtHavenIcon, null, null, delimiters));
-	newAnnotations = concat(newAnnotations, getAnnotationsToAdd(data.ligplaatsen, Config.AanlegPlaatsIcon, null, null, delimiters));
+	var newAnnotations = getAnnotationsToAdd(data.visstekken, Config.VisStekIcon, 
+							null , null, delimiters);
 	
 	// Als er annotaties zijn om toe te voegen
 	//	voeg ze toe
@@ -253,15 +244,10 @@ var getAnnotationsToAdd = function(data, iconGreen, height, iconRed, delimiter){
 			
 			// indoen we voldoen het onderschrift maken
 			var subtitle = '';
-			
-			// Kijken of er een hoogte meegegeven is
-			if (data[i].HEIGHT) {
-				subtitle += Config.AnnotationSubHeight + data[i].HEIGHT + Config.AnnotationUnit + '\t';
-			}
-			
-			// Kijken of er een breedte meegegeven is
-			if (data[i].WIDTH) {
-				subtitle += Config.AnnotationSubWidth + data[i].WIDTH + Config.AnnotationUnit;
+
+			// De subtitle maken
+			if(data[i].CITY){
+				subtitle += data[i].CITY;
 			}
 			
 			// Kijken welke icoon we gaan weergeven (indien we hiervoor gaan controleren)
