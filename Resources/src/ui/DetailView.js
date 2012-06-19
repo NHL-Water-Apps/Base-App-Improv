@@ -43,7 +43,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3%',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -53,7 +53,7 @@
 			text : 			"",
 			textAlign: 		'center',
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		18,
 			top:			'2%',
 			color:			VwApp.Config.TextColor
@@ -64,7 +64,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			//top:			'2%',
 			color:			VwApp.Config.TextColor
@@ -75,7 +75,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -85,7 +85,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -95,7 +95,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -105,7 +105,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -115,7 +115,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -125,7 +125,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -135,7 +135,7 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		}),
@@ -145,11 +145,22 @@
 			text : 			"",
 			textAlign : 	"left",
 			left: 			'3 %',
-			width : 		'auto',
+			width : 		'80%',
 			heigth : 		'auto',
 			color:			VwApp.Config.TextColor
 		})	
 	};
+			
+	// de button om de brug op de kaart te tonen
+	var Toonkaart = Titanium.UI.createButton({
+		top: 			40, 
+		title:			Titanium.Platform.osname !== 'android' ? 'Toon op kaart' : '',
+		image:			Titanium.Platform.osname === 'android' ? (Titanium.Platform.displayCaps.platformHeight > 700 ? 
+							VwApp.Config.ShowOnMapGroter : VwApp.Config.ShowOnMap ) : '',
+		//height:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 40 : '17%'): (Titanium.Platform.osname === 'ipad' ? 40 : '10%'),
+		//width:			Titanium.Gesture.isLandscape() ? (Titanium.Platform.osname === 'ipad' ? 120 : '26%'): (Titanium.Platform.osname === 'ipad' ? 120 : '35%'),
+		position: 		'center'
+	});	
 	
 	/**
 	 * 	Bij de ipad de button wel een hoogte en breedte meegeven
